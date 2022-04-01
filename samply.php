@@ -8,6 +8,16 @@
  * Version: 1.0.0
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       samply
+ * Domain Path:       /languages
+ * Requires PHP:      5.6
+ * Requires at least: 4.4
+ * Tested up to:      5.7
+ *
+ * WC requires at least: 3.1
+ * WC tested up to:   5.1.0 
+ * License: GNU General Public License v3.0
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html 
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -65,6 +75,7 @@ final class Samply {
         define( 'SAMPLY_PATH', __DIR__ );
         define( 'SAMPLY_URL', plugins_url( '', SAMPLY_FILE ) );
         define( 'SAMPLY_ASSETS', SAMPLY_URL . '/assets' );
+        define( 'SAMPLY_BASENAME', plugin_basename( __FILE__ ) );
     }
 
     /**

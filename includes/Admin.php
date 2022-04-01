@@ -17,6 +17,7 @@ class Admin {
         $this->dispatch_actions( $main, $licence);
 
         new Admin\Menu( $main, $licence );
+        new Admin\PluginMeta();
     }
 
     /**
