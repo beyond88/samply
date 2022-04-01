@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Samply
- * Description: A plugin for WooCommerce Product Sample
+ * Description: A plugin for WooCommerce Product Sample.
  * Plugin URI: https://github.com/beyond88/sample
  * Author: beyond88
  * Author URI: https://github.com/beyond88
- * Version: 1.0
+ * Version: 1.0.0
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
