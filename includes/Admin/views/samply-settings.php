@@ -10,42 +10,20 @@
 
 ?>
 <div class="wfps_settings">
-	<?php include 'header.php'; 
-        // $status 		 = $this->get_license_status();   
-		$status 		 = false;      
-		// $activation_info = get_option( $this->_activation ); 
-		$activation_info = []; 
+	<?php include 'header.php';
+		$status 		 = false;
 	?>
     <div class="wfps_setting_content">
 		<div class="wfps_setting_form_wrapper">
 			<div class="wfps_tab_container">
-				<div class="wfps_setting_tab_menu">
-					<ul>
-						<?php
-							foreach( $settings['tabs'] as $id => $tab ) {
-								$active = $current_tab == 'wfps_'.$id ? ' wfps_tab_active' : '';								
-						?>
-						<li>
-							<a href="#wfps_<?php echo esc_attr($id); ?>" class="wfps_tab <?php echo esc_attr($active); ?>" data-id="wfps_<?php echo esc_attr($id); ?>">
-								<?php 
-									if( isset( $tab['icon'] ) ) : 
-										echo $tab['icon'];
-									endif; 
-								?>								
-								<?php echo esc_html($tab['title']); ?>
-							</a>
-						</li>						
-						<?php } ?>
-					</ul>
-				</div>
 				<form method="post" action="options.php" novalidate="novalidate">
 					<?php settings_fields( $this->_optionGroup ); ?>									
-					<input id="wfps_builder_id" type="hidden" name="woo_free_product_sample_settings[builder_id]" value="<?php echo esc_attr($current_tab); ?>">
+					<input id="wfps_builder_id" type="hidden" name="samply_settings[builder_id]" value="<?php echo esc_attr($current_tab); ?>">
 				<?php
 					$is_pro = false;		
 					foreach( $settings['tabs'] as $id => $tab  ) {
 						$sections = $tab['sections'];
-						$active = $current_tab == 'wfps_'.$id ? ' wfps-tab-active' : '';	 						
+						$active = $current_tab == 'wfps_'.$id ? 'active' : '';
 				?>					
 					<div class="wfps_builder_tab <?php echo esc_attr($active); ?>" data-id="wfps_<?php echo esc_attr($id); ?>">
 						<div class="wfps_setting_tab_heading">
@@ -59,41 +37,31 @@
 										foreach( $sections as $sec_id => $section ) {
 										$fields = $section['fields'];
 									?>
-									<table class="form-table">
-										<tbody>
-										<?php
-											foreach( $fields as  $key => $value ) :
-												$is_pro = isset( $fields['is_pro'] ) ? $fields['is_pro'] : false;
-											?>
-											<tr <?php if( isset( $value['position'] ) ) { echo  $value['style']; } ?>>
-												<th scope="row">
-													<label for="<?php echo $value['name']; ?>">
-														<?php echo $value['label']; ?>
-													</label>
-												</th>
-												<td>
-													<?php
-													$file_name = isset( $value['type'] ) ? $value['type'] : 'text';
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="card w-75">
+                                                <div class="card-body">
+                                                    <?php foreach( $fields as  $key => $value ) : ?>
+                                                        <div class="mb-3 row">
+                                                            <label for="<?php echo $value['name']; ?>" class="col-sm-2 col-form-label"><?php echo $value['label']; ?></label>
+                                                            <div class="col-sm-10">
+                                                                <?php
+                                                                $file_name = isset( $value['type'] ) ? $value['type'] : 'text';
 
-													if( $file_name ) {
-														include 'fields/'. $file_name .'.php';
-													}
-													if( isset($value['is_pro']) && $value['is_pro'] == true && ! Samply\Helper::isPro()) {
-													?>
-													<sup class="wfps-pro-label"><?php echo __('Pro', 'samply'); ?></sup>
-													<?php } ?>
-													<?php
-													if( isset( $value['description'] ) ) {
-														?>
-														<div class="woo-free-product-sample-form-desc"><?php echo $value['description']; ?></div>
-													<?php } ?>
-												</td>
-											</tr>
-
-										<?php endforeach; ?>
-										
-										</tbody>
-									</table>
+                                                                if( $file_name ) {
+                                                                    include 'fields/'. $file_name .'.php';
+                                                                }
+                                                                if( isset( $value['description'] ) ) {
+                                                                    ?>
+                                                                    <span><?php echo $value['description']; ?></span>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 									<?php } ?>									
 								</div>
 							</div>

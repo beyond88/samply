@@ -1,11 +1,10 @@
-<div class="wfps_settings_header">
-    <div class="wfps_header_left">
-        <h1><span><?php echo esc_html( 'Samply' ); ?></span> <?php echo esc_html( '- Boost your business!' ); ?></h1>
-    </div>
-    <div class="wfps_header_right">
-        <div class="wfps_version"><?php echo esc_html( SAMPLY_PLUGIN_NAME ); ?>: <span class="wfps_version_blue"><?php echo esc_html( SAMPLY_VERSION); ?></span></div>
-        <?php if( class_exists('Woo_Free_Product_Sample_Pro') ) { ?>
-        <div class="wfps_version"><?php echo esc_html( WFPS_PRO_PLUGIN_NAME ); ?>: <span class="wfps_version_red"><?php echo esc_html( WFPS_PRO_VERSION); ?></span></div>
-        <?php } ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo esc_html( 'Samply' ); ?><?php echo esc_html( ' - Boost your business!' ); ?></h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
     </div>
 </div>

@@ -15,9 +15,6 @@ class PluginMeta {
 
         $links[] = '<a href="' . admin_url( 'admin.php?page=samply' ) . '">' . __( 'Settings', 'samply' ) . '</a>';
 		$links[] = '<a href="#">' . __( 'Docs', 'samply' ) . '</a>';
-		if( !class_exists('Woo_Free_Product_Sample_Pro') ) {
-			$links[] = '<a href="#" style="color: #08bc1d;font-weight: bold;">' . __( 'Get Pro', 'samply' ) . '</a>';
-		}
         return $links;
 
     }

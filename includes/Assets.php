@@ -29,8 +29,8 @@ class Assets {
                 'deps'    => [ 'jquery' ]
             ],
             'samply-admin-script' => [
-                'src'     => SAMPLY_ASSETS . '/js/admin.js',
-                'version' => filemtime( SAMPLY_PATH . '/assets/js/admin.js' ),
+                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
+                'version' => filemtime( SAMPLY_PATH . '/assets/js/frontend.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
             ],
         ];
@@ -48,8 +48,8 @@ class Assets {
                 'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' )
             ],
             'samply-admin-style' => [
-                'src'     => SAMPLY_ASSETS . '/css/admin.css',
-                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' )
+                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' )
             ],
         ];
     }
