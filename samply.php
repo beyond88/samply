@@ -36,7 +36,7 @@ final class Samply {
      *
      * @var string
      */
-    const version = '1.0';
+    const version = '1.0.0';
 
     /**
      * Class constructor
@@ -76,6 +76,8 @@ final class Samply {
         define( 'SAMPLY_URL', plugins_url( '', SAMPLY_FILE ) );
         define( 'SAMPLY_ASSETS', SAMPLY_URL . '/assets' );
         define( 'SAMPLY_BASENAME', plugin_basename( __FILE__ ) );
+        define( 'SAMPLY_PLUGIN_NAME', 'Samply' );
+
     }
 
     /**
@@ -86,6 +88,7 @@ final class Samply {
     public function init_plugin() {
 
         new Samply\Assets();
+        new Samply\Samplyi18n();
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             new Samply\Ajax();
