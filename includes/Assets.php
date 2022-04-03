@@ -48,9 +48,14 @@ class Assets {
                 'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' )
             ],
             'samply-admin-style' => [
-                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
-                'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' )
+                'src'     => SAMPLY_ASSETS . '/css/admin.css',
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' )
             ],
+            'samply-admin-boostrap' => [
+                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' )
+            ],
+
         ];
     }
 
