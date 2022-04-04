@@ -12,14 +12,16 @@ class Installer {
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $this->add_version();
     }
 
     /**
      * Add time and version on DB
      */
-    public function add_version() {
+    public function add_version() 
+    {
         $installed = get_option( 'samply_installed' );
 
         if ( ! $installed ) {

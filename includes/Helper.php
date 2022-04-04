@@ -18,7 +18,7 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    string 
 	 */	
-	public static $_optionGroup = 'woo-free-product-sample-options-group';
+	public static $_optionGroup = 'samply_options_group';
 	
 	/**
 	 * The default option of this plugin.
@@ -38,7 +38,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function samplySettings() {
+	public static function samplySettings() 
+	{
 		return wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );
 	}	
 	
@@ -48,7 +49,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function productIsInStock() {
+	public static function productIsInStock() 
+	{
         global $product;
         return $product->is_in_stock(); 
 	}
@@ -59,7 +61,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function checkIsInCart( $product_id ) { 
+	public static function checkIsInCart( $product_id ) 
+	{ 
 
 		global $woocommerce;
 		$setting_options   = self::samplySettings();
@@ -91,7 +94,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function cartTotal( ) {
+	public static function cartTotal( )
+	{
 
 		global $woocommerce;
 		$total = 0;
@@ -111,7 +115,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function productType() {
+	public static function productType() 
+	{
 		global $product;
 		if( $product->is_type( 'simple' ) ) {
 			return 'simple';
@@ -128,7 +133,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */    
-    public static function requestButton() {
+    public static function requestButton() 
+	{
 
         $button  = '';
         switch ( self::productType() ) {
@@ -150,7 +156,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */	
-	public static function buttonText() {
+	public static function buttonText() 
+	{
 		$setting_options   = self::samplySettings();
 		return isset( $setting_options['button_label'] ) ? esc_html__( $setting_options['button_label'], 'samply' ) : esc_html__( 'Order a Free Sample', 'samply' );
 	}
@@ -161,7 +168,8 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    none
 	 */
-	public static function samplePrice( $product_id ) {		
+	public static function samplePrice( $product_id ) 
+	{		
 		return apply_filters( 'samply_price', 0.00, $product_id );
 	}
 
@@ -172,7 +180,8 @@ class Helper {
 	 * @param    none
      * @return   void
 	 */		
-	public static function sampleQty() { 
+	public static function sampleQty() 
+	{ 
 
 		if ( class_exists( 'SPQ_Smart_Product_Quantity' ) ) {
 			return empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ); 
@@ -188,7 +197,8 @@ class Helper {
 	 * @param    none
      * @return   array
 	 */	
-	public static function products() {
+	public static function products() 
+	{
 		
 		global $wpdb;
 		$table 	= $wpdb->prefix . 'posts'; 
@@ -206,7 +216,8 @@ class Helper {
 	 * @param    none
      * @return   array
 	 */	
-	public static function categories() {
+	public static function categories() 
+	{
 
 		$orderby 	= 'name';
 		$order 		= 'asc';
@@ -236,7 +247,8 @@ class Helper {
 	 * @param    none
      * @return   void
 	 */	
-	public static function shippingClass() {
+	public static function shippingClass() 
+	{
 
 		$data 		= array();
 		$data[-1] 	= __( 'No Shipping Class', 'samply' );
@@ -255,24 +267,25 @@ class Helper {
 	 * @param    none
      * @return   void
 	 */	
-	public static function taxClass() {
+	public static function taxClass() 
+	{
 
 		$data 		= array();
-		// $options = array(
-		// 	'' => __( 'Standard', 'woocommerce' ),
-		// );
+		$options = array(
+			'' => __( 'Standard', 'woocommerce' ),
+		);
 
-		// $tax_classes = \WC_Tax::get_tax_classes();
+		$tax_classes = \WC_Tax::get_tax_classes();
 
-		// if ( ! empty( $tax_classes ) ) {
-		// 	foreach ( $tax_classes as $class ) {
-		// 		$options[ sanitize_title( $class ) ] = esc_html( $class );
-		// 	}
-		// }
+		if ( ! empty( $tax_classes ) ) {
+			foreach ( $tax_classes as $class ) {
+				$options[ sanitize_title( $class ) ] = esc_html( $class );
+			}
+		}
 
-		// foreach ( $options as $key => $value ) {
-		// 	$data[$key] = $value;
-		// }
+		foreach ( $options as $key => $value ) {
+			$data[$key] = $value;
+		}
 		return $data; 
 
 	}

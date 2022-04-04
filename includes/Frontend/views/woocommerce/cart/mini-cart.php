@@ -61,11 +61,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                         if( isset( $cart_item['sample_price'] ) ) {
 
 							if( get_locale() == "ja" ) {
-								$sample =  esc_html__( 'サンプル - ', 'woo-free-product-sample' );
+								$sample =  esc_html__( 'サンプル - ', 'samply' );
 							} else if( get_locale() == 'de_DE' ) {
-								$sample =  esc_html__( 'Testzugang - ', 'woo-free-product-sample' );								
+								$sample =  esc_html__( 'Testzugang - ', 'samply' );								
 							} else {
-								$sample =  esc_html__( 'Sample - ', 'woo-free-product-sample' );
+								$sample =  esc_html__( 'Sample - ', 'samply' );
 							}
 
                         } else {

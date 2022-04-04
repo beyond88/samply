@@ -4,8 +4,8 @@ namespace Samply;
 
 class SamplyMessage {
 
-    public static $_optionName  = 'woo_free_product_sample_settings';
-    public static $_optionGroup = 'woo-free-product-sample-options-group';
+    public static $_optionName  = 'samply_settings';
+    public static $_optionGroup = 'samply_options_group';
     public static $_defaultOptions = array(
 		'button_label'          	=> 'Order a Sample',
 		'max_qty_per_order'			=> 5, 
@@ -18,7 +18,8 @@ class SamplyMessage {
 	 * @since    2.0.0
 	 * @param    none 
 	 */    
-    public static function validation_notice( $product_id ){
+    public static function validation_notice( $product_id )
+    {
 
         $final_msg         = '';
 		$setting_options   = wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );

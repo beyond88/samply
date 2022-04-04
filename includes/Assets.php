@@ -10,7 +10,8 @@ class Assets {
     /**
      * Class constructor
      */
-    function __construct() {
+    function __construct() 
+    {
 
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
@@ -21,7 +22,8 @@ class Assets {
      *
      * @return array
      */
-    public function get_scripts() {
+    public function get_scripts() 
+    {
         return [
             'samply-script' => [
                 'src'     => SAMPLY_ASSETS . '/js/frontend.js',
@@ -41,7 +43,8 @@ class Assets {
      *
      * @return array
      */
-    public function get_styles() {
+    public function get_styles() 
+    {
         return [
             'samply-style' => [
                 'src'     => SAMPLY_ASSETS . '/css/frontend.css',
@@ -64,7 +67,8 @@ class Assets {
      *
      * @return void
      */
-    public function register_assets() {
+    public function register_assets() 
+    {
  
         $scripts = $this->get_scripts();
         $styles  = $this->get_styles();

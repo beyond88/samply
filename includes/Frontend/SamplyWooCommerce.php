@@ -311,7 +311,7 @@ class SamplyWooCommerce
     {
 
 		if ( isset( $values['free_sample'] ) ) {
-			$sample 		= __( 'Sample', 'woo-free-product-sample' );
+			$sample 		= __( 'Sample', 'samply' );
 			if( get_locale() == 'de_DE' ){
 				wc_add_order_item_meta( $itemID, 'Produkt', 'MUSTERBESTELLUNG' );
 				wc_add_order_item_meta( $itemID, 'Preis', 'Wir übernehmen die Kosten für Sie!' );
@@ -414,9 +414,9 @@ class SamplyWooCommerce
 
 					if( ( isset( $val['free_sample'] ) && $product_id == $val['free_sample'] ) && ( $setting_options['max_qty_per_order'] <= $val['quantity'] ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
 						if( get_locale() == 'ja' ) {
-							wc_add_notice( esc_html__( 'この商品を注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'woo-free-product-sample' ), 'error' );
+							wc_add_notice( esc_html__( 'この商品を注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
 						} else {
-							wc_add_notice( esc_html__( 'You can order this product '.$setting_options['max_qty_per_order'].' quantity per order.', 'woo-free-product-sample' ), 'error' );
+							wc_add_notice( esc_html__( 'You can order this product '.$setting_options['max_qty_per_order'].' quantity per order.', 'samply' ), 'error' );
 						}						
 						exit( wp_redirect( get_permalink($product_id) ) );						
 					}	
@@ -425,9 +425,9 @@ class SamplyWooCommerce
 
 					if( ( isset( $val['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
 						if( get_locale() == 'ja' ) {
-							wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'woo-free-product-sample' ), 'error' );
+							wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
 						} else {
-							wc_add_notice( esc_html__( 'You can order sample product maximum '.$setting_options['max_qty_per_order'].' quantity per order.', 'woo-free-product-sample' ), 'error' );
+							wc_add_notice( esc_html__( 'You can order sample product maximum '.$setting_options['max_qty_per_order'].' quantity per order.', 'samply' ), 'error' );
 						}						
 						exit( wp_redirect( get_permalink($product_id) ) );						
 					}
@@ -461,11 +461,11 @@ class SamplyWooCommerce
 				if( ( $values['free_sample'] == $values['product_id'] ) && ( $setting_options['max_qty_per_order'] < $updated_quantity ) ) {						
 					
 					if( get_locale() == "ja" ) {
-						wc_add_notice( esc_html__( '注文できます '.$product->get_name().' 最大 '.$setting_options['max_qty_per_order'].'  注文ごと。', 'woo-free-product-sample' ), 'error' );
+						wc_add_notice( esc_html__( '注文できます '.$product->get_name().' 最大 '.$setting_options['max_qty_per_order'].'  注文ごと。', 'samply' ), 'error' );
 					} else {
 
 						wc_add_notice( sprintf(
-							__( '%1$s.', 'woo-free-product-sample' ),
+							__( '%1$s.', 'samply' ),
 							$message
 						), 'error');
 						
@@ -478,10 +478,10 @@ class SamplyWooCommerce
 
 				if( ( isset( $values['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) ) {
 					if( get_locale() == 'ja' ) {
-						wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'woo-free-product-sample' ), 'error' );
+						wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
 					} else {
 						wc_add_notice( sprintf(
-							__( '%1$s.', 'woo-free-product-sample' ),
+							__( '%1$s.', 'samply' ),
 							$message
 						), 'error');
 					}
@@ -511,11 +511,11 @@ class SamplyWooCommerce
 			$titles = array();
 			foreach ( $products as $product_id => $qty ) {
 				if( get_locale() == "ja" ) {
-					$sample =  esc_html__( 'サンプル - ', 'woo-free-product-sample' );
+					$sample =  esc_html__( 'サンプル - ', 'samply' );
 				} else if( get_locale() == 'de_DE' ) {
-					$sample =  esc_html__( 'Testzugang - ', 'woo-free-product-sample' );					
+					$sample =  esc_html__( 'Testzugang - ', 'samply' );					
 				} else {
-					$sample =  esc_html__( 'Sample - ', 'woo-free-product-sample' );
+					$sample =  esc_html__( 'Sample - ', 'samply' );
 				}
 				
 				$titles[] = apply_filters( 'woocommerce_add_to_cart_qty_html', ( $qty > 1 ? absint( $qty ) . ' &times; ' : '' ), $product_id ) . apply_filters( 'woocommerce_add_to_cart_item_name_in_quotes', sprintf( _x( '&ldquo;%s&rdquo;', 'Item name in quotes', 'woocommerce' ), strip_tags( $sample . get_the_title( $product_id ) ) ), $product_id );
@@ -551,11 +551,11 @@ class SamplyWooCommerce
 		$prod_price 		= str_replace( ",",".", $product->get_price() );	
 		if( $sample_price == $prod_price ) {
 			if( get_locale() == 'ja' ) {
-				$product_name   = esc_html__( 'サンプル - ', 'woo-free-product-sample' ).$product_name;	
+				$product_name   = esc_html__( 'サンプル - ', 'samply' ).$product_name;	
 			} else if( get_locale() == 'de_DE' ) {
-				$product_name   = esc_html__( 'Testzugang - ', 'woo-free-product-sample' ).$product_name;						
+				$product_name   = esc_html__( 'Testzugang - ', 'samply' ).$product_name;						
 			} else {
-				$product_name   = esc_html__( 'Sample - ', 'woo-free-product-sample' ).$product_name;
+				$product_name   = esc_html__( 'Sample - ', 'samply' ).$product_name;
 			}			
 		}
 

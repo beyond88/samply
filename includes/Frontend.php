@@ -10,7 +10,8 @@ class Frontend {
     /**
      * Initialize the class
      */
-    function __construct() {
+    function __construct() 
+    {
         new Frontend\Shortcode();
         new Frontend\SamplyWooCommerce();
     }
