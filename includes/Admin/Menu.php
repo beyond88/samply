@@ -45,6 +45,7 @@ class Menu {
      */
     public function enqueueAssets() 
     {
+        wp_enqueue_style( 'samply-admin-boostrap' );
         wp_enqueue_style( 'samply-admin-style' );
         wp_enqueue_script( 'samply-admin-script' );
     }
