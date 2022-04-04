@@ -100,7 +100,6 @@ final class Samply {
             new Samply\Frontend();
         }
 
-        new Samply\API();
     }
 
     /**

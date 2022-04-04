@@ -14,7 +14,6 @@ class Installer {
      */
     public function run() {
         $this->add_version();
-        $this->create_tables();
     }
 
     /**
@@ -30,12 +29,4 @@ class Installer {
         update_option( 'samply_version', SAMPLY_VERSION );
     }
 
-    /**
-     * Create necessary database tables
-     *
-     * @return void
-     */
-    public function create_tables() {
-
-    }
 }

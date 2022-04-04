@@ -330,7 +330,7 @@ class SamplyWooCommerce
 	 * @since      2.0.0
 	 * @param      none
 	 */
-	public static function wfps_get_plugin_path() 
+	public static function getPluginPath() 
     {		
 		return untrailingslashit( plugin_dir_path( __FILE__ ) );
 	}
@@ -350,7 +350,7 @@ class SamplyWooCommerce
 			$template_path = $woocommerce->template_url;
 		}		
 
-	  	$plugin_path  = self::wfps_get_plugin_path() . '/partials/woocommerce/';
+	  	$plugin_path  = self::getPluginPath() . '/views/woocommerce/';
 	  	$template = locate_template(
 	    	array(
 	      		$template_path . $template_name,
