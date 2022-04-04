@@ -10,7 +10,7 @@ class Helper {
 	 * @since    2.0.0
 	 * @param    string 
 	 */
-	public static $_optionName  = 'woo_free_product_sample_settings';
+	public static $_optionName  = 'samply_settings';
 	
 	/**
 	 * The option group of this plugin.
@@ -162,7 +162,7 @@ class Helper {
 	 * @param    none
 	 */
 	public static function samplePrice( $product_id ) {		
-		return apply_filters( 'woo_free_product_sample_price', 0.00, $product_id );
+		return apply_filters( 'samply_price', 0.00, $product_id );
 	}
 
 	/**
@@ -239,7 +239,7 @@ class Helper {
 	public static function shippingClass() {
 
 		$data 		= array();
-		$data[-1] 	= __( 'No Shipping Class', 'woo-free-product-sample-pro' );
+		$data[-1] 	= __( 'No Shipping Class', 'samply' );
 		$shipping_classes = get_terms( array( 'taxonomy' => 'product_shipping_class', 'hide_empty' => false ) );
 		foreach( $shipping_classes as $sc ) {
 			$data[$sc->term_id]  = $sc->name;
@@ -276,16 +276,4 @@ class Helper {
 		return $data; 
 
 	}
-	
-	/**
-	 * Get pro plugin exists
-	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
-	 */	
-	public static function isPro()
-    {
-        return class_exists('Woo_Free_Product_Sample_Pro');
-    }
 }

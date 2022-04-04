@@ -8,7 +8,7 @@ use Samply\Helper as Helpers;
  */
 class Main {
 
-    public $_optionName  = 'woo_free_product_sample_settings';
+    public $_optionName  = 'samply_settings';
     public $_optionGroup = 'woo-free-product-sample-options-group';
     public $_defaultOptions = array(
 		'button_label'      	=> 'Order a Sample',
@@ -60,23 +60,6 @@ class Main {
 	 */
 	public function setDefaultOptions() 
     {
-		return apply_filters( 'woo_free_product_sample_default_options', $this->_defaultOptions );
+		return apply_filters( 'samply_default_options', $this->_defaultOptions );
 	}
-
-	/**
-	 * Load activation status
-	 * 
-	 * @since    2.0.0
-	 * @param    array
-	 * @return   void
-	 */	
-	public function getLicenseStatus() 
-    {
-		$status = get_option( 'woo-free-product-sample-pro-license-status' );
-		if ( ! $status ) {
-			// User hasn't saved the license to settings yet. No use making the call.
-			return false;
-		}
-		return trim( $status );
-	}    
 }
