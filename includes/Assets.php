@@ -13,8 +13,12 @@ class Assets {
     function __construct() 
     {
 
-        add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
-        add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );  
+        
+        if(isset($_GET['page']) && $_GET['page'] == 'samply'){
+            add_action( 'admin_enqueue_scripts', [ $this, 'register_admin_assets' ] );
+        }      
+        
     }
 
     /**
@@ -28,12 +32,7 @@ class Assets {
             'samply-script' => [
                 'src'     => SAMPLY_ASSETS . '/js/frontend.js',
                 'version' => filemtime( SAMPLY_PATH . '/assets/js/frontend.js' ),
-                'deps'    => [ 'jquery' ]
-            ],
-            'samply-admin-script' => [
-                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
-                'version' => filemtime( SAMPLY_PATH . '/assets/js/frontend.js' ),
-                'deps'    => [ 'jquery', 'wp-util' ]
+                'deps'    => [ 'jquery' ],
             ],
         ];
     }
@@ -44,19 +43,11 @@ class Assets {
      * @return array
      */
     public function get_styles() 
-    {
+    {        
         return [
             'samply-style' => [
                 'src'     => SAMPLY_ASSETS . '/css/frontend.css',
-                'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' )
-            ],
-            'samply-admin-style' => [
-                'src'     => SAMPLY_ASSETS . '/css/admin.css',
-                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' )
-            ],
-            'samply-admin-boostrap' => [
-                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
-                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' )
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/frontend.css' ),
             ],
 
         ];
@@ -75,12 +66,80 @@ class Assets {
 
         foreach ( $scripts as $handle => $script ) {
             $deps = isset( $script['deps'] ) ? $script['deps'] : false;
+            $type = isset( $script['type'] ) ? $script['type'] : '';
+            if( isset( $_GET['page'] ) && $_GET['page'] == 'samply' ) {
 
+            }
             wp_enqueue_script( $handle, $script['src'], $deps, $script['version'], true );
         }
 
         foreach ( $styles as $handle => $style ) {
             $deps = isset( $style['deps'] ) ? $style['deps'] : false;
+            $type = isset( $script['type'] ) ? $script['type'] : '';
+            
+            wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
+        }
+    }
+
+
+    /**
+     * All available scripts
+     *
+     * @return array
+     */
+    public function get_admin_scripts() 
+    {
+        return [
+            'samply-admin-script' => [
+                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
+                'version' => filemtime( SAMPLY_PATH . '/assets/js/frontend.js' ),
+                'deps'    => [ 'jquery', 'wp-util' ],
+            ],
+        ];
+    }
+
+    /**
+     * All available styles
+     *
+     * @return array
+     */
+    public function get_admin_styles() 
+    {        
+        return [
+            'samply-admin-style' => [
+                'src'     => SAMPLY_ASSETS . '/css/admin.css',
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' ),                
+            ],
+            'samply-admin-boostrap' => [
+                'src'     => 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+                'version' => filemtime( SAMPLY_PATH . '/assets/css/admin.css' ),
+            ],
+        ];
+    }
+
+    /**
+     * Register scripts and styles
+     *
+     * @return void
+     */
+    public function register_admin_assets() 
+    {
+ 
+        $scripts = $this->get_admin_scripts();
+        $styles  = $this->get_admin_styles();
+
+        foreach ( $scripts as $handle => $script ) {
+            $deps = isset( $script['deps'] ) ? $script['deps'] : false;
+            $type = isset( $script['type'] ) ? $script['type'] : '';
+            if( isset( $_GET['page'] ) && $_GET['page'] == 'samply' ) {
+
+            }
+            wp_enqueue_script( $handle, $script['src'], $deps, $script['version'], true );
+        }
+
+        foreach ( $styles as $handle => $style ) {
+            $deps = isset( $style['deps'] ) ? $style['deps'] : false;
+            $type = isset( $script['type'] ) ? $script['type'] : '';
             
             wp_enqueue_style( $handle, $style['src'], $deps, $style['version'] );
         }
@@ -90,5 +149,5 @@ class Assets {
             'confirm' => __( 'Are you sure?', 'samply' ),
             'error' => __( 'Something went wrong', 'samply' ),
         ] );
-    }
+    }    
 }
