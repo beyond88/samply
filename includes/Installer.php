@@ -12,15 +12,16 @@ class Installer {
      *
      * @return void
      */
-    public function run() {
+    public function run() 
+    {
         $this->add_version();
-        $this->create_tables();
     }
 
     /**
      * Add time and version on DB
      */
-    public function add_version() {
+    public function add_version() 
+    {
         $installed = get_option( 'samply_installed' );
 
         if ( ! $installed ) {
@@ -30,12 +31,4 @@ class Installer {
         update_option( 'samply_version', SAMPLY_VERSION );
     }
 
-    /**
-     * Create necessary database tables
-     *
-     * @return void
-     */
-    public function create_tables() {
-
-    }
 }

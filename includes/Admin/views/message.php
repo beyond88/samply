@@ -25,7 +25,7 @@
 												</th>
 												<td>
                                                     <input type="text" name ="<?php echo $this->_optionNameMessage."[qty_validation]"; ?>" value ="<?php echo isset( $setting_options['qty_validation'] ) ? $setting_options['qty_validation'] : ''; ?>">
-                                                    <div class="woo-free-product-sample-form-desc">
+                                                    <div class="samply-form-desc">
                                                         <?php echo __( '{product} and {qty} for dynamic content.', 'samply' ); ?>
                                                     </div>
                                                 </td>

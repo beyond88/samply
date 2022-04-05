@@ -21,10 +21,10 @@ The easy way to handle free product sample for WooCommerce. Promote your busines
 
 = POWERED BY WooCommerce =
 
-The easy way to handle free product sample. [Free Product Sample for WooCommerce]() does one thing, and it does it well. It lets you order product as a product sample.
+The easy way to handle free product sample. [Samply]() does one thing, and it does it well. It lets you order product as a product sample.
 
 
-## 🛍️ Supercharge Your business with the Free Product Sample for WooCommerce.
+## 🛍️ Supercharge Your business with the Samply.
 
 Capture compelling and real customer by giving capability to order product sample.
 

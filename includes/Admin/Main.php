@@ -9,7 +9,7 @@ use Samply\Helper as Helpers;
 class Main {
 
     public $_optionName  = 'samply_settings';
-    public $_optionGroup = 'woo-free-product-sample-options-group';
+    public $_optionGroup = 'samply_options_group';
     public $_defaultOptions = array(
 		'button_label'      	=> 'Order a Sample',
 		'max_qty_per_order'		=> 5
