@@ -139,10 +139,10 @@ class Helper {
         $button  = '';
         switch ( self::productType() ) {
             case "simple":
-                $button = '<button type="submit" name="simple-add-to-cart" value="'.get_the_ID().'" id="woo-free-sample-button" class="woo-free-sample-button">'.sprintf( esc_html__( '%s', 'samply' ), self::buttonText() ).'</button>';
+                $button = '<button type="submit" name="simple-add-to-cart" value="'.get_the_ID().'" id="samply-button" class="samply-button">'.sprintf( esc_html__( '%s', 'samply' ), self::buttonText() ).'</button>';
                 break;
             case "variable":
-                $button = '<button type="submit" name="variable-add-to-cart" value="'.get_the_ID().'" id="woo-free-sample-button" class="woo-free-sample-button">'.sprintf( esc_html__( '%s', 'samply' ), self::buttonText() ).'</button>';
+                $button = '<button type="submit" name="variable-add-to-cart" value="'.get_the_ID().'" id="samply-button" class="samply-button">'.sprintf( esc_html__( '%s', 'samply' ), self::buttonText() ).'</button>';
                 break;			
             default:
                 $button = '';

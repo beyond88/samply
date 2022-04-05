@@ -3,7 +3,7 @@
  * included in this file.
  */
 
- .woo-free-sample-button{
+ .samply-button{
     margin-left: 20px;
     border: 0;
     border-radius: 0;
@@ -20,14 +20,14 @@
     -webkit-appearance: none;
 }
 
-.woo-free-sample-button:hover{
+.samply-button:hover{
     background-color: #1a1a1a;
     border-color: #1a1a1a;
     color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {
-    .woo-free-sample-button {
+    .samply-button {
         margin: 20px 0;
     }  
 }
