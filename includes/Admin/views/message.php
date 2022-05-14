@@ -7,9 +7,9 @@
             <!-- main content -->
             <div id="post-body-content">
                 <div class="meta-box-sortables ui-sortable" style="position:relative">
-                    <div class="wfps_settings_outer_left">
+                    <div class="samply_settings_outer_left">
                         <div class="postbox">
-                            <div class="wfps_inside">
+                            <div class="samply_inside">
 								<form method="post" action="options.php" novalidate="novalidate">
 									<?php
 										settings_fields( $this->_optionGroupMessage );

@@ -14,13 +14,13 @@
             $sections = $tab['sections'];
             ?>
             <div data-id="wfps_<?php echo esc_attr($id); ?>">
-                <div class="wfps_setting_tab_heading">
+                <div class="samply_setting_tab_heading">
                     <h2><?php echo $tab['title']; ?></h2>
                 </div>
 
-                <div class="wfps_setting_form_setting_tab">
-                    <div class="wfps_settings_outer_left">
-                        <div class="wfps_inside">
+                <div class="samply_setting_form_setting_tab">
+                    <div class="samply_settings_outer_left">
+                        <div class="samply_inside">
                             <?php
                             foreach( $sections as $sec_id => $section ) {
                                 $fields = $section['fields'];
