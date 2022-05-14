@@ -41,12 +41,14 @@ final class Samply {
     /**
      * Class constructor
      */
-    private function __construct() {
+    private function __construct() 
+    {
         $this->define_constants();
 
         register_activation_hook( __FILE__, [ $this, 'activate' ] );
 
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+
     }
 
     /**
@@ -54,7 +56,8 @@ final class Samply {
      *
      * @return \Samply
      */
-    public static function init() {
+    public static function init() 
+    {
         static $instance = false;
 
         if ( ! $instance ) {
@@ -69,7 +72,8 @@ final class Samply {
      *
      * @return void
      */
-    public function define_constants() {
+    public function define_constants() 
+    {
         define( 'SAMPLY_VERSION', self::version );
         define( 'SAMPLY_FILE', __FILE__ );
         define( 'SAMPLY_PATH', __DIR__ );
@@ -78,6 +82,9 @@ final class Samply {
         define( 'SAMPLY_BASENAME', plugin_basename( __FILE__ ) );
         define( 'SAMPLY_PLUGIN_NAME', 'Samply' );
         define( 'SAMPLY_MIN_WC_VERSION', '3.1' );
+        define( 'SAMPLY_MINIMUM_PHP_VERSION', '5.6.0' );
+        define( 'SAMPLY_MINIMUM_WP_VERSION', '4.4' );
+        define( 'SAMPLY_MINIMUM_WC_VERSION', '3.1' );
 
     }
 
@@ -86,7 +93,8 @@ final class Samply {
      *
      * @return void
      */
-    public function init_plugin() {
+    public function init_plugin() 
+    {
 
         new Samply\Assets();
         new Samply\Samplyi18n();
@@ -108,7 +116,8 @@ final class Samply {
      *
      * @return void
      */
-    public function activate() {
+    public function activate() 
+    {
         $installer = new Samply\Installer();
         $installer->run();
     }
