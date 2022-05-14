@@ -14,7 +14,7 @@ class PluginMeta {
     public function pluginActionLinks( $links ) {
 
         $links[] = '<a href="' . admin_url( 'admin.php?page=samply' ) . '">' . __( 'Settings', 'samply' ) . '</a>';
-		$links[] = '<a href="#">' . __( 'Docs', 'samply' ) . '</a>';
+		$links[] = '<a href="https://ourtechbro.com/docs">' . __( 'Docs', 'samply' ) . '</a>';
         return $links;
 
     }
@@ -25,9 +25,9 @@ class PluginMeta {
 			return $links;
 		}
 
-		$support_link = '<a target="_blank" href="#" title="' . __('Get help', 'samply') . '">' . __('Support', 'samply') . '</a>';
-		$home_link = '<a target="_blank" href="#" title="' . __('Plugin Homepage', 'samply') . '">' . __('Plugin Homepage', 'samply') . '</a>';
-		$rate_link = '<a target="_blank" href="#" title="' . __('Rate the plugin', 'samply') . '">' . __('Rate the plugin ★★★★★', 'samply') . '</a>';
+		$support_link = '<a target="_blank" href="https://ourtechbro.com/support" title="' . __('Get help', 'samply') . '">' . __('Support', 'samply') . '</a>';
+		$home_link = '<a target="_blank" href="https://ourtechbro.com" title="' . __('Plugin Homepage', 'samply') . '">' . __('Plugin Homepage', 'samply') . '</a>';
+		$rate_link = '<a target="_blank" href="https://ourtechbro.com" title="' . __('Rate the plugin', 'samply') . '">' . __('Rate the plugin ★★★★★', 'samply') . '</a>';
 
 		$links[] = $support_link;
 		$links[] = $home_link;

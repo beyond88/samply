@@ -32,6 +32,14 @@ class SamplySettings {
                                     'title'  => __('Settings', 'samply'),
                                     'fields' => array(
                                             array(
+                                                'name'          => 'samply_enable',
+                                                'label'         => __( 'Enable', 'samply' ),
+                                                'type'          => 'checkbox',
+                                                'class'         => 'form-control',
+                                                'description'   => __( '', 'samply' ),
+                                                'placeholder'   => __( '', 'samply' ),
+                                            ),                                        
+                                            array(
                                                 'name'          => 'button_label',
                                                 'label'         => __( 'Button Label', 'samply' ),
                                                 'type'          => 'text',
@@ -69,69 +77,69 @@ class SamplySettings {
                                                 'style'			=> 'class="max_qty_per_order_area"',
                                                 'position'		=> 'tr'                
                                             ),
-                                            array(
-                                                'name'          => 'enable_type',
-                                                'label'         => __( 'Enable Type', 'samply' ),
-                                                'type'          => 'select',
-                                                'class'         => 'form-control',
-                                                'description'   => __( 'Enable Type', 'samply' ),
-                                                'default'       => array(                    
-                                                    'product'     => 'Product wise',
-                                                    'category'    => 'Categories wise',
-                                                )
-                                            ),
-                                            array(
-                                                'name'          => 'enable_product',
-                                                'label'         => __( 'Enable Products', 'samply' ),
-                                                'class'         => 'form-control',
-                                                'type'          => 'multi-select',
-                                                'description'   => __( 'Products', 'samply' ),
-                                                'default'		=> Helpers::Products(),
-                                                'style'			=> 'class="wfps-enable-product-area"',
-                                                'position'		=> 'tr'
-                                            ),	
-                                            array(
-                                                'name'          => 'enable_category',
-                                                'label'         => __( 'Enable Categories', 'samply' ),
-                                                'class'         => 'form-control',
-                                                'type'          => 'multi-select',
-                                                'description'   => __( 'Categories', 'samply' ),
-                                                'default'		=> Helpers::Categories(),
-                                                'style'			=> 'class="wfps-enable-category-area"',
-                                                'position'		=> 'tr'
-                                            ),
-                                            array(
-                                                'name'          => 'sample_price',
-                                                'label'         => __( 'Sample Price', 'samply' ),
-                                                'class'         => 'form-control',
-                                                'type'          => 'number',
-                                                'description'   => __( 'Set Sample Price', 'samply' ),
-                                                'placeholder'   => '0.00',
-                                                'value'			=> 0.00
-                                            ),					
-                                            array(
-                                                'name'          => 'exclude_shop_page',
-                                                'label'         => __( 'Hide in Shop/Categories Page', 'samply' ),
-                                                'type'          => 'checkbox',
-                                                'class'         => 'form-control',
-                                                'description'   => __( 'Hide in Shop/Categories Page', 'samply' )
-                                            ),
-                                            array(
-                                                'name'          => 'shipping_class',
-                                                'label'         => __( 'Shipping Class', 'samply' ),
-                                                'type'          => 'select',
-                                                'class'         => 'form-control',
-                                                'description'   => __( 'Shipping Class', 'samply' ),
-                                                'default'       => Helpers::shippingClass()
-                                            ),
-                                            array(
-                                                'name'          => 'tax_class',
-                                                'label'         => __( 'Tax Class', 'samply' ),
-                                                'type'          => 'select',
-                                                'class'         => 'form-control',
-                                                'description'   => __( 'Tax Class', 'samply' ),
-                                                'default'       => Helpers::taxClass()
-                                            ),                                                                                   
+                                            // array(
+                                            //     'name'          => 'enable_type',
+                                            //     'label'         => __( 'Enable Type', 'samply' ),
+                                            //     'type'          => 'select',
+                                            //     'class'         => 'form-control',
+                                            //     'description'   => __( 'Enable Type', 'samply' ),
+                                            //     'default'       => array(                    
+                                            //         'product'     => 'Product wise',
+                                            //         'category'    => 'Categories wise',
+                                            //     )
+                                            // ),
+                                            // array(
+                                            //     'name'          => 'enable_product',
+                                            //     'label'         => __( 'Enable Products', 'samply' ),
+                                            //     'class'         => 'form-control',
+                                            //     'type'          => 'multi-select',
+                                            //     'description'   => __( 'Products', 'samply' ),
+                                            //     'default'		=> Helpers::Products(),
+                                            //     'style'			=> 'class="wfps-enable-product-area"',
+                                            //     'position'		=> 'tr'
+                                            // ),	
+                                            // array(
+                                            //     'name'          => 'enable_category',
+                                            //     'label'         => __( 'Enable Categories', 'samply' ),
+                                            //     'class'         => 'form-control',
+                                            //     'type'          => 'multi-select',
+                                            //     'description'   => __( 'Categories', 'samply' ),
+                                            //     'default'		=> Helpers::Categories(),
+                                            //     'style'			=> 'class="wfps-enable-category-area"',
+                                            //     'position'		=> 'tr'
+                                            // ),
+                                            // array(
+                                            //     'name'          => 'sample_price',
+                                            //     'label'         => __( 'Sample Price', 'samply' ),
+                                            //     'class'         => 'form-control',
+                                            //     'type'          => 'number',
+                                            //     'description'   => __( 'Set Sample Price', 'samply' ),
+                                            //     'placeholder'   => '0.00',
+                                            //     'value'			=> 0.00
+                                            // ),					
+                                            // array(
+                                            //     'name'          => 'exclude_shop_page',
+                                            //     'label'         => __( 'Hide in Shop/Categories Page', 'samply' ),
+                                            //     'type'          => 'checkbox',
+                                            //     'class'         => 'form-control',
+                                            //     'description'   => __( 'Hide in Shop/Categories Page', 'samply' )
+                                            // ),
+                                            // array(
+                                            //     'name'          => 'shipping_class',
+                                            //     'label'         => __( 'Shipping Class', 'samply' ),
+                                            //     'type'          => 'select',
+                                            //     'class'         => 'form-control',
+                                            //     'description'   => __( 'Shipping Class', 'samply' ),
+                                            //     'default'       => Helpers::shippingClass()
+                                            // ),
+                                            // array(
+                                            //     'name'          => 'tax_class',
+                                            //     'label'         => __( 'Tax Class', 'samply' ),
+                                            //     'type'          => 'select',
+                                            //     'class'         => 'form-control',
+                                            //     'description'   => __( 'Tax Class', 'samply' ),
+                                            //     'default'       => Helpers::taxClass()
+                                            // ),                                                                                   
                                         )                                        
                                     ) 
                                 )

@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Samply
  * Description: A plugin for WooCommerce Product Sample.
- * Plugin URI: https://github.com/beyond88/sample
- * Author: beyond88
- * Author URI: https://github.com/beyond88
+ * Plugin URI: https://ourtechbro.com/plugins/samply
+ * Author: OurTechBro
+ * Author URI: https://ourtechbro.com
  * Version: 1.0.0
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,6 +77,7 @@ final class Samply {
         define( 'SAMPLY_ASSETS', SAMPLY_URL . '/assets' );
         define( 'SAMPLY_BASENAME', plugin_basename( __FILE__ ) );
         define( 'SAMPLY_PLUGIN_NAME', 'Samply' );
+        define( 'SAMPLY_MIN_WC_VERSION', '3.1' );
 
     }
 
