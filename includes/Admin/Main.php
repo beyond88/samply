@@ -19,8 +19,9 @@ class Main {
 	{
 		add_action( 'plugins_loaded', [ $this, 'setDefaultOptions' ] );
 		add_action( 'admin_init', [ $this, 'menuRegisterSettings' ] );
-	}
-    
+
+		SamplySettings::init();
+	}    
     
     /**
      * Plugin page handler

@@ -2393,3 +2393,7 @@ body.betterdocs-dark-mode .betterdocs-listing-table-content .tablenav-pages .pag
     opacity: 1;
     visibility: visible;
 }
+
+.betterdocs-settings-wrap p.submit {
+    margin-left: 40px;
+}
