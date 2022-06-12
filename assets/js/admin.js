@@ -95,10 +95,10 @@
 
         var qVars = $.samplyAdmin.get_query_vars("page");
 		if (qVars != undefined) {
-			if (qVars.indexOf("betterdocs-settings") >= 0) {
+			if (qVars.indexOf("samply-settings") >= 0) {
 				var cSettingsTab = qVars.split("#");
 				$(
-					'.betterdocs-settings-menu li[data-tab="' +
+					'.samply-settings-menu li[data-tab="' +
 						cSettingsTab[1] +
 						'"]'
 				).trigger("click");
@@ -113,11 +113,11 @@
 	};
 
     $.samplyAdmin.bindEvents = function () {
-		$(".betterdocs-settings-menu li").on("click", function (e) {
+		$(".samply-settings-menu li").on("click", function (e) {
 			$.samplyAdmin.settingsTab(this);
 		});
 
-        $('.betterdocs-settings-button').removeClass('button');
+        $('.samply-settings-button').removeClass('button');
     };
 
     $.samplyAdmin.settingsTab = function (button) {
@@ -125,7 +125,7 @@
 			tabToGo = button.data("tab");
 
 		button.addClass("active").siblings().removeClass("active");
-		$("#betterdocs-" + tabToGo)
+		$("#samply-" + tabToGo)
 			.addClass("active")
 			.siblings()
 			.removeClass("active");

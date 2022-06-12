@@ -26,9 +26,9 @@ class SamplySettings {
      */
     public static function headerTemplate(){
         ?>
-            <div class="betterdocs-settings-header">
-                <div class="betterdocs-header-full">
-                    <img src="<?php echo SAMPLY_ASSETS ?>/img/betterdocs-logo.svg" alt="">
+            <div class="samply-settings-header">
+                <div class="samply-header-full">
+                    <img src="<?php echo SAMPLY_ASSETS ?>/img/samply-logo.svg" alt="Samply">
                     <h2 class="title"><?php _e( 'Samply Settings', 'samply' ); ?></h2>
                 </div>
             </div>
@@ -43,54 +43,54 @@ class SamplySettings {
      */
     public static function footerTemplate(){
         ?>
-            <div class="betterdocs-settings-documentation" bis_skin_checked="1">
-                <div class="betterdocs-settings-row" bis_skin_checked="1">
-                    <div class="betterdocs-admin-block betterdocs-admin-block-docs" bis_skin_checked="1">
-                        <header class="betterdocs-admin-block-header">
-                            <div class="betterdocs-admin-block-header-icon" bis_skin_checked="1">
-                                <img src="http://wordpress.test/wp-content/plugins/betterdocs/admin//assets/img/icons/icon-documentation.svg" alt="betterdocs-documentation">
+            <div class="samply-settings-documentation">
+                <div class="samply-settings-row">
+                    <div class="samply-admin-block samply-admin-block-docs">
+                        <header class="samply-admin-block-header">
+                            <div class="samply-admin-block-header-icon">
+                                <img src="<?php echo SAMPLY_ASSETS; ?>/img/icons/icon-documentation.svg" alt="samply-documentation">
                             </div>
-                            <h4 class="betterdocs-admin-title">Documentation</h4>
+                            <h4 class="samply-admin-title"><?php echo __('Documentation', 'samply'); ?> </h4>
                         </header>
-                        <div class="betterdocs-admin-block-content" bis_skin_checked="1">
-                            <p>Get started by spending some time with the documentation to get familiar with BetterDocs. Build an awesome Knowledge Base for your customers with ease.</p>
-                            <a rel="nofollow" href="https://betterdocs.co/docs/" class="betterdocs-button" target="_blank">Documentation</a>
+                        <div class="samply-admin-block-content">
+                            <p><?php echo __('Get started by spending some time with the documentation to get familiar with Samply. Build an awesome Knowledge Base for your customers with ease.', 'samply'); ?></p>
+                            <a rel="nofollow" href="https://samply.co/docs/" class="samply-button" target="_blank"><?php echo __('Documentation', 'samply'); ?></a>
                         </div>
                     </div>
-                    <div class="betterdocs-admin-block betterdocs-admin-block-contribute" bis_skin_checked="1">
-                        <header class="betterdocs-admin-block-header">
-                            <div class="betterdocs-admin-block-header-icon" bis_skin_checked="1">
-                                <img src="http://wordpress.test/wp-content/plugins/betterdocs/admin//assets/img/icons/icon-join-community.svg" alt="betterdocs-contribute">
+                    <div class="samply-admin-block samply-admin-block-contribute">
+                        <header class="samply-admin-block-header">
+                            <div class="samply-admin-block-header-icon">
+                                <img src="<?php echo SAMPLY_ASSETS; ?>/img/icons/icon-join-community.svg" alt="samply-contribute">
                             </div>
-                            <h4 class="betterdocs-admin-title">Join Our Community</h4>
+                            <h4 class="samply-admin-title"><?php echo __('Join Our Community', 'samply'); ?></h4>
                         </header>
-                        <div class="betterdocs-admin-block-content" bis_skin_checked="1">
-                            <p>Join the Facebook community and discuss with fellow developers and users. Best way to connect with people and get feedback on your projects.</p>
-                            <a rel="nofollow" href="https://www.facebook.com/groups/wpdeveloper.net/" class="betterdocs-button" target="_blank">Join Now</a>
+                        <div class="samply-admin-block-content">
+                            <p><?php echo __('Join the Facebook community and discuss with fellow developers and users. Best way to connect with people and get feedback on your projects.', 'samply'); ?></p>
+                            <a rel="nofollow" href="https://www.facebook.com/groups/wpdeveloper.net/" class="samply-button" target="_blank"><?php echo __('Join Now', 'samply'); ?> </a>
                         </div>
                     </div>
-                    <div class="betterdocs-admin-block betterdocs-admin-block-need-help" bis_skin_checked="1">
-                        <header class="betterdocs-admin-block-header">
-                            <div class="betterdocs-admin-block-header-icon" bis_skin_checked="1">
-                                <img src="http://wordpress.test/wp-content/plugins/betterdocs/admin//assets/img/icons/icon-need-help.svg" alt="betterdocs-help">
+                    <div class="samply-admin-block samply-admin-block-need-help">
+                        <header class="samply-admin-block-header">
+                            <div class="samply-admin-block-header-icon">
+                                <img src="<?php echo SAMPLY_ASSETS; ?>/img/icons/icon-need-help.svg" alt="samply-help">
                             </div>
-                            <h4 class="betterdocs-admin-title">Need Help?</h4>
+                            <h4 class="samply-admin-title"><?php echo __('Need Help?', 'samply'); ?></h4>
                         </header>
-                        <div class="betterdocs-admin-block-content" bis_skin_checked="1">
-                            <p>Stuck with something? Get help from live chat or support ticket.</p>
-                            <a rel="nofollow" href="https://wpdeveloper.com/support" class="betterdocs-button" target="_blank">Initiate a Chat</a>
+                        <div class="samply-admin-block-content">
+                            <p><?php echo __('Stuck with something? Get help from live chat or support ticket.', 'samply'); ?></p>
+                            <a rel="nofollow" href="https://wpdeveloper.com/support" class="samply-button" target="_blank"><?php echo __('Initiate a Chat', 'samply'); ?></a>
                         </div>
                     </div>
-                    <div class="betterdocs-admin-block betterdocs-admin-block-community" bis_skin_checked="1">
-                        <header class="betterdocs-admin-block-header">
-                            <div class="betterdocs-admin-block-header-icon" bis_skin_checked="1">
-                                <img src="http://wordpress.test/wp-content/plugins/betterdocs/admin//assets/img/icons/icon-show-love.svg" alt="betterdocs-commuinity">
+                    <div class="samply-admin-block samply-admin-block-community">
+                        <header class="samply-admin-block-header">
+                            <div class="samply-admin-block-header-icon">
+                                <img src="<?php echo SAMPLY_ASSETS; ?>/img/icons/icon-show-love.svg" alt="samply-commuinity">
                             </div>
-                            <h4 class="betterdocs-admin-title">Show Your Love</h4>
+                            <h4 class="samply-admin-title"><?php echo __('Show Your Love', 'samply'); ?></h4>
                         </header>
-                        <div class="betterdocs-admin-block-content" bis_skin_checked="1">
-                            <p>We love to have you in BetterDocs family. We are making it more awesome everyday. Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going.</p>
-                            <a rel="nofollow" href="https://betterdocs.co/wp/review" class="betterdocs-button" target="_blank">Leave a Review</a>
+                        <div class="samply-admin-block-content">
+                            <p><?php echo __('We love to have you in Samply family. We are making it more awesome everyday. Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going.', 'samply'); ?></p>
+                            <a rel="nofollow" href="https://samply.co/wp/review" class="samply-button" target="_blank"><?php echo __('Leave a Review', 'samply'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ class SamplySettings {
                                             'name'          => 'samply_enable',
                                             'label'         => __( 'Enable', 'samply' ),
                                             'type'          => 'checkbox',
-                                            'class'         => 'betterdocs-settings-field',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '', 'samply' ),
                                             'placeholder'   => __( '', 'samply' ),
                                         ),                                        
@@ -128,7 +128,7 @@ class SamplySettings {
                                             'name'          => 'button_label',
                                             'label'         => __( 'Button Label', 'samply' ),
                                             'type'          => 'text',
-                                            'class'         => 'betterdocs-settings-field',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> Set Button Label', 'samply' ),
                                             'placeholder'   => __( 'Set Button Label', 'samply' ),
                                         ),
@@ -136,14 +136,14 @@ class SamplySettings {
                                             'name'          => 'disable_limit_per_order',
                                             'label'         => __( 'Disable Maximum Limit', 'samply' ),
                                             'type'          => 'checkbox',
-                                            'class'         => 'betterdocs-settings-field',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> Disable maximum order limit validation', 'samply' ),
                                         ),            
                                         array(
                                             'name'          => 'limit_per_order',
                                             'label'         => __( 'Maximum Limit Type', 'samply' ),
                                             'type'          => 'select',
-                                            'class'         => 'betterdocs-settings-field',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> Maximum Limit Type', 'samply' ),
                                             'default'       => array(
                                                 'product'   => 'Product',
@@ -156,7 +156,7 @@ class SamplySettings {
                                             'name'          => 'max_qty_per_order',
                                             'label'         => __( 'Maximum Quantity Per Order', 'samply' ),
                                             'type'          => 'number',
-                                            'class'         => 'betterdocs-settings-field',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> Maximum Quantity Per Order', 'samply' ),
                                             'placeholder'   => 5,
                                             'style'			=> 'class="max_qty_per_order_area"',
@@ -166,7 +166,7 @@ class SamplySettings {
                                         //     'name'          => 'enable_type',
                                         //     'label'         => __( 'Enable Type', 'samply' ),
                                         //     'type'          => 'select',
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'description'   => __( 'Enable Type', 'samply' ),
                                         //     'default'       => array(                    
                                         //         'product'     => 'Product wise',
@@ -176,7 +176,7 @@ class SamplySettings {
                                         // array(
                                         //     'name'          => 'enable_product',
                                         //     'label'         => __( 'Enable Products', 'samply' ),
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'type'          => 'multi-select',
                                         //     'description'   => __( 'Products', 'samply' ),
                                         //     'default'		=> Helpers::Products(),
@@ -186,7 +186,7 @@ class SamplySettings {
                                         // array(
                                         //     'name'          => 'enable_category',
                                         //     'label'         => __( 'Enable Categories', 'samply' ),
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'type'          => 'multi-select',
                                         //     'description'   => __( 'Categories', 'samply' ),
                                         //     'default'		=> Helpers::Categories(),
@@ -196,7 +196,7 @@ class SamplySettings {
                                         // array(
                                         //     'name'          => 'sample_price',
                                         //     'label'         => __( 'Sample Price', 'samply' ),
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'type'          => 'number',
                                         //     'description'   => __( 'Set Sample Price', 'samply' ),
                                         //     'placeholder'   => '0.00',
@@ -206,14 +206,14 @@ class SamplySettings {
                                         //     'name'          => 'exclude_shop_page',
                                         //     'label'         => __( 'Hide in Shop/Categories Page', 'samply' ),
                                         //     'type'          => 'checkbox',
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'description'   => __( 'Hide in Shop/Categories Page', 'samply' )
                                         // ),
                                         // array(
                                         //     'name'          => 'shipping_class',
                                         //     'label'         => __( 'Shipping Class', 'samply' ),
                                         //     'type'          => 'select',
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'description'   => __( 'Shipping Class', 'samply' ),
                                         //     'default'       => Helpers::shippingClass()
                                         // ),
@@ -221,7 +221,7 @@ class SamplySettings {
                                         //     'name'          => 'tax_class',
                                         //     'label'         => __( 'Tax Class', 'samply' ),
                                         //     'type'          => 'select',
-                                        //     'class'         => 'betterdocs-settings-field',
+                                        //     'class'         => 'samply-settings-field',
                                         //     'description'   => __( 'Tax Class', 'samply' ),
                                         //     'default'       => Helpers::taxClass()
                                         // ),                                                                                   
