@@ -766,7 +766,7 @@ label.samply-adv-checkbox-label:hover {
 
 .samply-settings-menu ul li.active a {
   background-color: #fff;
-  border-top: 2px solid #17c9a2;
+  border-top: 2px solid #a36597;
 }
 
 .samply-settings-tab {
@@ -974,8 +974,8 @@ input.samply-settings-field[type="checkbox"] {
 }
 
 .samply-control input[type="checkbox"]:checked {
-  background-color: #36d692;
-  border-color: #36d692;
+  background-color: #bb77ae;
+  border-color: #a36597;
 }
 
 .samply-control input[type="checkbox"]:checked::before {
@@ -1405,7 +1405,7 @@ body.wp-admin.rtl .ui-datepicker {
 .samply-meta-next,
 .samply-settings-button {
   background-color: rgb(102, 72, 254);
-  background-image: -webkit-linear-gradient(-169deg, #15c7a4 0%, #37de89 100%);
+  background-image: -webkit-linear-gradient(-169deg, #a36597 0%, #bb77ae 100%);
   color: rgb(255, 255, 255);
   letter-spacing: 1px;
   font-weight: 600;
@@ -1522,6 +1522,10 @@ header.samply-admin-block-header {
   width: 35px;
 }
 
+.samply-admin-block-header-icon svg{
+  color : "red";
+}
+
 h4.samply-admin-title {
   margin: 0 15px;
   font-size: 17px;
@@ -1533,8 +1537,8 @@ h4.samply-admin-title {
 
 .samply-admin-block-content > a.samply-button {
   background-color: #fff;
-  color: #15c7a4;
-  border: 1px solid #15c7a4;
+  color: #bb77ae;
+  border: 1px solid #a36597;
   font-size: 12px;
   display: inline-block;
   padding: 10px 20px;
@@ -1542,7 +1546,7 @@ h4.samply-admin-title {
   text-decoration: none;
 }
 .samply-admin-block-content > a:hover {
-  background-image: -webkit-linear-gradient(-169deg, #31da8d 0%, #1ecd9d 100%);
+  background-image: -webkit-linear-gradient(-169deg, #bb77ae 0%, #a36597 100%);
   color: #fff;
 }
 .samply-save-now {
