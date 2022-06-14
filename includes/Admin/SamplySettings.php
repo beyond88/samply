@@ -270,7 +270,7 @@ class SamplySettings {
                                             'name'          => 'maximum_qty_message',
                                             'label'         => __( 'Maximum quantity message', 'samply' ),
                                             'type'          => 'text',
-                                            'class'         => 'widefat',
+                                            'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> {product} and {qty} for dynamic content.', 'samply' ),
                                             'placeholder'   => __( '', 'samply' ),
                                         ),

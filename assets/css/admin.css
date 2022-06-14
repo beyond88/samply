@@ -963,6 +963,18 @@ select.samply-settings-field + span.select2-container {
 }
 input.samply-settings-field[type="number"] {
   height: auto;
+  width: 82%;
+  max-width: 300px;
+}
+select.samply-settings-field{
+  height: auto;
+  width: 82%;
+  max-width: 300px;
+  padding: 7px;
+  background-color: #f2f2f2;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
 input.samply-settings-field[type="checkbox"] {
@@ -1522,8 +1534,8 @@ header.samply-admin-block-header {
   width: 35px;
 }
 
-.samply-admin-block-header-icon svg{
-  color : "red";
+.samply-admin-block-header-icon svg {
+  color: "red";
 }
 
 h4.samply-admin-title {
@@ -2505,4 +2517,9 @@ body.samply-dark-mode
 
 .samply-settings-wrap p.submit {
   margin-left: 40px;
+}
+
+#maximum_qty_message{
+  width: 100%;
+  max-width: 100%;
 }
