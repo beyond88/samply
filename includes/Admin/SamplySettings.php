@@ -158,8 +158,8 @@ class SamplySettings {
                                             'label'         => __( 'Button Label', 'samply' ),
                                             'type'          => 'text',
                                             'class'         => 'samply-settings-field',
-                                            'description'   => __( '<strong>Note:</strong> Set Button Label', 'samply' ),
-                                            'placeholder'   => __( 'Set Button Label', 'samply' ),
+                                            'description'   => __( '<strong>Note:</strong> Set button label', 'samply' ),
+                                            'placeholder'   => __( 'Set button label', 'samply' ),
                                         ),
                                         array(
                                             'name'          => 'disable_limit_per_order',
@@ -173,7 +173,7 @@ class SamplySettings {
                                             'label'         => __( 'Maximum Limit Type', 'samply' ),
                                             'type'          => 'select',
                                             'class'         => 'samply-settings-field',
-                                            'description'   => __( '<strong>Note:</strong> Maximum Limit Type', 'samply' ),
+                                            'description'   => __( '<strong>Note:</strong> Maximum limit type', 'samply' ),
                                             'default'       => array(
                                                 'product'   => 'Product',
                                                 'all'       => 'Order',
@@ -186,7 +186,7 @@ class SamplySettings {
                                             'label'         => __( 'Maximum Quantity Per Order', 'samply' ),
                                             'type'          => 'number',
                                             'class'         => 'samply-settings-field',
-                                            'description'   => __( '<strong>Note:</strong> Maximum Quantity Per Order', 'samply' ),
+                                            'description'   => __( '<strong>Note:</strong> Maximum quantity per order', 'samply' ),
                                             'placeholder'   => 5,
                                             'style'			=> 'class="max_qty_per_order_area"',
                                             'position'		=> 'tr'                
