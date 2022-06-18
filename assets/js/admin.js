@@ -129,6 +129,8 @@
 			.addClass("active")
 			.siblings()
 			.removeClass("active");
+
+		$('#samply_builder_id').val(tabToGo);	
 	};
 
     $.samplyAdmin.get_query_vars = function (name) {

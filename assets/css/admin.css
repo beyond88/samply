@@ -266,9 +266,7 @@ label.light {
   padding-bottom: 20px;
 }
 
-#betterdocs_metabox_wrapper
-  .samply-metatab-content
-  h2.samply-meta-section-title {
+#samply_metabox_wrapper .samply-metatab-content h2.samply-meta-section-title {
   display: block;
   color: #516378;
   margin-bottom: 20px;
@@ -550,7 +548,7 @@ label.samply-adv-checkbox-label:hover {
   border: 1px solid #73d16f;
 }
 
-.samply-adv-checkbox-wrap #betterdocs_meta_advance_edit,
+.samply-adv-checkbox-wrap #samply_meta_advance_edit,
 .samply-adv-checkbox-wrap > input {
   visibility: hidden;
   width: 0;
@@ -564,7 +562,7 @@ label.samply-adv-checkbox-label:hover {
 
 .samply-adv-checkbox-wrap > input:checked + label.samply-adv-checkbox-label,
 .samply-adv-checkbox-wrap
-  #betterdocs_meta_advance_edit:checked
+  #samply_meta_advance_edit:checked
   + label.samply-adv-checkbox-label {
   background-color: #73d16f;
   color: #fff;
@@ -865,8 +863,8 @@ span.wp-picker-input-wrap {
   text-align: left;
   vertical-align: top;
 }
-#betterdocs_cross_domain_settings th,
-#betterdocs_cross_domain_settings td {
+#samply_cross_domain_settings th,
+#samply_cross_domain_settings td {
   display: block;
 }
 #samply-settings-general_settings tr th,
@@ -966,7 +964,7 @@ input.samply-settings-field[type="number"] {
   width: 82%;
   max-width: 300px;
 }
-select.samply-settings-field{
+select.samply-settings-field {
   height: auto;
   width: 82%;
   max-width: 300px;
@@ -1633,7 +1631,7 @@ h4.samply-admin-title {
   margin: 0 -15px;
 }
 
-body.toplevel_page_betterdocs-admin {
+body.toplevel_page_samply-admin {
   background-color: #f5f6fb;
 }
 .samply-single-listing {
@@ -2180,7 +2178,7 @@ input[type="checkbox"].samply-mode-toggle {
   background-color: #fff;
   border-radius: 5px;
 }
-.samply-listing-table-content td.column-betterdocs_views {
+.samply-listing-table-content td.column-samply_views {
   padding-left: 34px;
   padding-top: 25px !important;
   background-image: url("../img/view.png");
@@ -2327,36 +2325,35 @@ input[type="checkbox"].samply-mode-toggle {
 
 /* Dark Mode */
 
-body.toplevel_page_betterdocs-admin {
+body.toplevel_page_samply-admin {
   -webkit-transition: background-color 150ms ease-out !important;
   transition: background-color 150ms ease-out !important;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode {
+body.toplevel_page_samply-admin.samply-dark-mode {
   background-color: #36405a;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
+body.toplevel_page_samply-admin.samply-dark-mode
   ul#adminmenu
   a.wp-has-current-submenu::after {
   border-right-color: #36405a;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode #wpfooter {
+body.toplevel_page_samply-admin.samply-dark-mode #wpfooter {
   color: #f9fafa;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode .samply-single-listing {
+body.toplevel_page_samply-admin.samply-dark-mode .samply-single-listing {
   background-color: #1f283d;
   background-image: -webkit-linear-gradient(-169deg, #20283e 0%, #29344e 100%);
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
-  .samply-single-listing-title {
+body.toplevel_page_samply-admin.samply-dark-mode .samply-single-listing-title {
   color: #fdfdfe;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
+body.toplevel_page_samply-admin.samply-dark-mode
   .samply-single-listing
   li:not(.samply-no-docs) {
   background-color: #36405a;
   border: 1px dashed #aab3ca;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
+body.toplevel_page_samply-admin.samply-dark-mode
   .samply-single-listing
   li
   .samply-single-list-content {
@@ -2364,27 +2361,23 @@ body.toplevel_page_betterdocs-admin.samply-dark-mode
   color: #c6c8d0;
   box-shadow: 0 1px 3px rgba(16, 22, 37, 0.5);
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
-  .samply-single-listing
-  li
-  a {
+body.toplevel_page_samply-admin.samply-dark-mode .samply-single-listing li a {
   color: #c6c8d0;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
+body.toplevel_page_samply-admin.samply-dark-mode
   .samply-single-listing
   li
   a:hover {
   color: #fff;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode .samply-settings-header {
+body.toplevel_page_samply-admin.samply-dark-mode .samply-settings-header {
   background: #2c3650;
   border: none;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
-  .samply-single-listing-title {
+body.toplevel_page_samply-admin.samply-dark-mode .samply-single-listing-title {
   color: #d7d9dd;
 }
-body.toplevel_page_betterdocs-admin.samply-dark-mode
+body.toplevel_page_samply-admin.samply-dark-mode
   .samply-settings-header
   .samply-header-full
   .title {
@@ -2519,7 +2512,7 @@ body.samply-dark-mode
   margin-left: 40px;
 }
 
-#maximum_qty_message{
+#maximum_qty_message {
   width: 100%;
   max-width: 100%;
 }

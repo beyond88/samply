@@ -13,7 +13,7 @@ class PluginMeta {
 
     public function pluginActionLinks( $links ) {
 
-        $links[] = '<a href="' . admin_url( 'admin.php?page=samply' ) . '">' . __( 'Settings', 'samply' ) . '</a>';
+        $links[] = '<a href="' . admin_url( 'admin.php?page=samply#general_settings' ) . '">' . __( 'Settings', 'samply' ) . '</a>';
 		$links[] = '<a href="https://ourtechbro.com/docs">' . __( 'Docs', 'samply' ) . '</a>';
         return $links;
 

@@ -1,6 +1,11 @@
 <?php 
 	settings_errors(); 
-	$setting_options = wp_parse_args( get_option($this->_optionName), $this->_defaultOptions );
+	$setting_options = wp_parse_args( get_option( $this->_optionName ), $this->_defaultOptions );
+    if( ! isset( $setting_options['builder_id'] ) ) {
+        $current_tab = 'wfps_settings_tab';
+    } else {
+		$current_tab = $setting_options['builder_id'];
+	}
 ?>
 <div class="samply-settings-wrap">
     <?php do_action( 'samply_settings_header' ); ?>
@@ -12,7 +17,8 @@
                     <?php
                         $i = 1;
                         foreach( $settings['tabs'] as $key => $setting ) {
-                            $active = $i++ === 1 ? 'active ' : '';
+                            // $active = $i++ === 1 ? 'active ' : '';
+                            $active = $current_tab == $key ? 'active' : '';	
                             echo '<li class="'. $active .'" data-tab="'. $key .'"><a href="#'. $key .'">'. $setting['title'] .'</a></li>';
                         }
                     ?>
@@ -20,14 +26,16 @@
             </div>
             <div class="samply-settings-content">
                 <div class="samply-settings-form-wrapper">
-                    <form method="post" id="samply-settings-form" action="#">
+                    <form method="post" id="samply-settings-form" action="options.php" novalidate="novalidate">
+                    <input id="samply_builder_id" type="hidden" name="samply_settings[builder_id]" value="<?php echo esc_attr($current_tab); ?>">
+                    <?php settings_fields( $this->_optionGroup ); ?>
                     <?php
                         $i = 1;
                         foreach( $settings ['tabs'] as $sec_id => $section ) :
                             $active = $i++ === 1 ? 'active ' : '';
                             $child_sections = $section['sections'];
                         ?>
-                        <div id="samply-<?php echo $sec_id; ?>" class="samply-settings-tab samply-settings-betterdocs_instant_answer <?php echo $active; ?>">
+                        <div id="samply-<?php echo $sec_id; ?>" class="samply-settings-tab samply-settings-samply_instant_answer <?php echo $active; ?>">
                             <div id="samply-settings-general_settings" class="samply-settings-section samply-<?php echo $sec_id; ?>">
                             <?php
                             foreach( $child_sections as $sec_id => $grand_child_section ) :
@@ -65,7 +73,7 @@
                         </div>
                     <?php endforeach; ?>
                     <?php do_settings_fields( $this->_optionGroup, 'default' ); ?>
-                    <?php do_settings_sections($this->_optionGroup, 'default'); ?>
+                    <?php do_settings_sections( $this->_optionGroup, 'default' ); ?>
                     <?php submit_button('Save Settings', 'btn-settings samply-settings-button'); ?>
                     </form>
                 </div>
