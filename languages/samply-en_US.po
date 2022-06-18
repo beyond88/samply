@@ -1,0 +1,276 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Samply\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-18 15:13+0000\n"
+"PO-Revision-Date: 2022-06-18 15:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.2; wp-5.9.3\n"
+"X-Domain: samply"
+
+#: includes/Frontend/SamplyWooCommerce.php:464
+msgid "  注文ごと。"
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:419
+#: includes/Frontend/SamplyWooCommerce.php:430
+msgid " quantity per order."
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:417
+#: includes/Frontend/SamplyWooCommerce.php:428
+#: includes/Frontend/SamplyWooCommerce.php:481
+msgid " 注文あたりの数量。"
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:468
+#: includes/Frontend/SamplyWooCommerce.php:484
+#, php-format
+msgid "%1$s."
+msgstr ""
+
+#: includes/Helper.php:142 includes/Helper.php:145
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:173
+msgid "<strong>Note:</strong> Disable maximum order limit validation"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:180
+msgid "<strong>Note:</strong> Maximum limit type"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:193
+msgid "<strong>Note:</strong> Maximum quantity per order"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:165
+msgid "<strong>Note:</strong> Set button label"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:215
+msgid "<strong>Note:</strong> {product} and {qty} for dynamic content."
+msgstr ""
+
+#. Description of the plugin
+msgid "A plugin for WooCommerce Product Sample."
+msgstr ""
+
+#: includes/Admin/views/fields/double-repeater.php:34
+msgid "Add Sample Price"
+msgstr ""
+
+#: includes/Admin/views/fields/multi-select.php:3
+msgid "All"
+msgstr ""
+
+#: includes/Assets.php:145
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:162
+msgid "Button Label"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:170
+msgid "Disable Maximum Limit"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:17
+msgid "Docs"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:56 includes/Admin/SamplySettings.php:60
+msgid "Documentation"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:154
+msgid "Enable"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:146
+msgid "General"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:28
+msgid "Get help"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:59
+msgid ""
+"Get started by spending some time with the documentation to get familiar "
+"with Samply. Build an awesome Knowledge Base for your customers with ease."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ourtechbro.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://ourtechbro.com/plugins/samply"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:113
+msgid "Initiate a Chat"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:101
+msgid "Join Now"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:97
+msgid "Join Our Community"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:100
+msgid ""
+"Join the Facebook community and discuss with fellow developers and users. "
+"Best way to connect with people and get feedback on your projects."
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:125
+msgid "Leave a Review"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:177
+msgid "Maximum Limit Type"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:212
+msgid "Maximum Quantity Message"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:190
+msgid "Maximum Quantity Per Order"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:204 includes/Admin/SamplySettings.php:208
+msgid "Message"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:109
+msgid "Need Help?"
+msgstr ""
+
+#: includes/Helper.php:254
+msgid "No Shipping Class"
+msgstr ""
+
+#: includes/Helper.php:162
+msgid "Order a Free Sample"
+msgstr ""
+
+#. Author of the plugin
+msgid "OurTechBro"
+msgstr ""
+
+#: includes/functions.php:47
+msgid "Please click on this link and install WooCommerce"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:29
+msgid "Plugin Homepage"
+msgstr ""
+
+#: includes/Admin/views/fields/double-repeater.php:11
+#: includes/Admin/views/fields/double-repeater.php:20
+msgid "Price"
+msgstr ""
+
+#: includes/Admin/views/fields/double-repeater.php:10
+#: includes/Admin/views/fields/double-repeater.php:19
+msgid "Quantity"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:30
+msgid "Rate the plugin"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:30
+msgid "Rate the plugin ★★★★★"
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:314
+msgid "Sample"
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:518
+#: includes/Frontend/SamplyWooCommerce.php:558
+#: includes/Frontend/views/woocommerce/order/order-details-item.php:54
+#: includes/Frontend/views/woocommerce/cart/mini-cart.php:68
+msgid "Sample - "
+msgstr ""
+
+#. Name of the plugin
+#: includes/Admin/Menu.php:35
+msgid "Samply"
+msgstr ""
+
+#: includes/functions.php:46
+#, php-format
+msgid ""
+"samply requires WooCommerce to be installed and active to working properly. "
+"%s"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:34 includes/Admin/Menu.php:35
+msgid "Samply Settings"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:166
+msgid "Set button label"
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:16 includes/Admin/SamplySettings.php:150
+msgid "Settings"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:121
+msgid "Show Your Love"
+msgstr ""
+
+#: includes/Assets.php:146
+msgid "Something went wrong"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:112
+msgid "Stuck with something? Get help from live chat or support ticket."
+msgstr ""
+
+#: includes/Admin/PluginMeta.php:28
+msgid "Support"
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:516
+#: includes/Frontend/SamplyWooCommerce.php:556
+#: includes/Frontend/views/woocommerce/order/order-details-item.php:52
+#: includes/Frontend/views/woocommerce/cart/mini-cart.php:66
+msgid "Testzugang - "
+msgstr ""
+
+#: includes/Admin/views/samply-settings.php:88
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/Admin/SamplySettings.php:124
+msgid ""
+"We love to have you in Samply family. We are making it more awesome everyday."
+" Take your 2 minutes to review the plugin and spread the love to encourage "
+"us to keep it going."
+msgstr ""
+
+#: includes/Frontend/SamplyWooCommerce.php:514
+#: includes/Frontend/SamplyWooCommerce.php:554
+#: includes/Frontend/views/woocommerce/order/order-details-item.php:50
+#: includes/Frontend/views/woocommerce/cart/mini-cart.php:64
+msgid "サンプル - "
+msgstr ""
