@@ -33,8 +33,6 @@ class Menu {
         $capability = 'manage_options';
 
         $hook = add_menu_page( __( 'Samply Settings', 'samply' ), __( 'Samply', 'samply' ), $capability, $parent_slug, [ $this->main, 'plugin_page' ], 'dashicons-yes-alt', 60 );
-        //add_submenu_page( $parent_slug, __( 'Licence', 'samply' ), __( 'Licence', 'samply' ), $capability, 'samply-licence', [ $this->licence, 'licence_page' ] );
-
         add_action( 'admin_head-' . $hook, [ $this, 'enqueueAssets' ] );
     }
 

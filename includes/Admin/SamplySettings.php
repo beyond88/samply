@@ -13,7 +13,8 @@ class SamplySettings {
 	 */
     public function __construct() {}
 
-    public static function init(){
+    public static function init()
+    {
         add_action( 'samply_settings_header', array( __CLASS__, 'headerTemplate' ), 10 );
         add_action( 'samply_settings_footer', array( __CLASS__, 'footerTemplate' ), 10 );
     }
@@ -24,7 +25,8 @@ class SamplySettings {
      * @hooked samply_settings_header
      * @return void
      */
-    public static function headerTemplate(){
+    public static function headerTemplate()
+    {
         ?>
             <div class="samply-settings-header">
                 <div class="samply-header-full">
@@ -41,7 +43,8 @@ class SamplySettings {
      * @hooked samply_settings_header
      * @return void
      */
-    public static function footerTemplate(){
+    public static function footerTemplate()
+    {
         ?>
             <div class="samply-settings-documentation">
                 <div class="samply-settings-row">
@@ -54,7 +57,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Get started by spending some time with the documentation to get familiar with Samply. Build an awesome Knowledge Base for your customers with ease.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://samply.co/docs/" class="samply-button" target="_blank"><?php echo __('Documentation', 'samply'); ?></a>
+                            <a rel="nofollow" href="https://ourtechbro.com/docs/" class="samply-button" target="_blank"><?php echo __('Documentation', 'samply'); ?></a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-contribute">
@@ -69,20 +72,20 @@ class SamplySettings {
                                 </g>
                                 <defs>
                                 <linearGradient id="paint0_linear_60_29" x1="-6.15982e-05" y1="20.3942" x2="35.0119" y2="20.3942" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#cc99c2"/>
-                                <stop offset="1" stop-color="#a36597"/>
+                                    <stop stop-color="#cc99c2"/>
+                                    <stop offset="1" stop-color="#a36597"/>
                                 </linearGradient>
                                 <linearGradient id="paint1_linear_60_29" x1="16.415" y1="2.3869" x2="18.5709" y2="2.3869" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#cc99c2"/>
-                                <stop offset="1" stop-color="#a36597"/>
+                                    <stop stop-color="#cc99c2"/>
+                                    <stop offset="1" stop-color="#a36597"/>
                                 </linearGradient>
                                 <linearGradient id="paint2_linear_60_29" x1="10.5771" y1="4.21368" x2="13.853" y2="4.21368" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#cc99c2"/>
-                                <stop offset="1" stop-color="#a36597"/>
+                                    <stop stop-color="#cc99c2"/>
+                                    <stop offset="1" stop-color="#a36597"/>
                                 </linearGradient>
                                 <linearGradient id="paint3_linear_60_29" x1="21.126" y1="4.2385" x2="24.3948" y2="4.2385" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#cc99c2"/>
-                                <stop offset="1" stop-color="#a36597"/>
+                                    <stop stop-color="#cc99c2"/>
+                                    <stop offset="1" stop-color="#a36597"/>
                                 </linearGradient>
                                 <clipPath id="clip0_60_29">
                                 <rect width="35" height="35" fill="white"/>
@@ -95,7 +98,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Join the Facebook community and discuss with fellow developers and users. Best way to connect with people and get feedback on your projects.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://www.facebook.com/groups/wpdeveloper.net/" class="samply-button" target="_blank"><?php echo __('Join Now', 'samply'); ?> </a>
+                            <a rel="nofollow" href="#" class="samply-button" target="_blank"><?php echo __('Join Now', 'samply'); ?> </a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-need-help">
@@ -107,7 +110,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Stuck with something? Get help from live chat or support ticket.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://wpdeveloper.com/support" class="samply-button" target="_blank"><?php echo __('Initiate a Chat', 'samply'); ?></a>
+                            <a rel="nofollow" href="https://ourtechbro.com/support" class="samply-button" target="_blank"><?php echo __('Initiate a Chat', 'samply'); ?></a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-community">
@@ -119,7 +122,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('We love to have you in Samply family. We are making it more awesome everyday. Take your 2 minutes to review the plugin and spread the love to encourage us to keep it going.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://samply.co/wp/review" class="samply-button" target="_blank"><?php echo __('Leave a Review', 'samply'); ?></a>
+                            <a rel="nofollow" href="#" class="samply-button" target="_blank"><?php echo __('Leave a Review', 'samply'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +137,8 @@ class SamplySettings {
 	 * @param    none
      * @return   array 
 	 */
-    public static function settingFields() {
+    public static function settingFields() 
+    {
 
         $setting_fields = array(  
                 'tabs' => apply_filters( 'wfps_builder_tabs', array(
@@ -178,7 +182,7 @@ class SamplySettings {
                                                 'product'   => 'Product',
                                                 'all'       => 'Order',
                                             ),
-                                            'style'			=> 'class="limit_per_order_area"',
+                                            'style'			=> 'limit_per_order_area',
                                             'position'		=> 'tr'                
                                         ),            
                                         array(
@@ -188,72 +192,9 @@ class SamplySettings {
                                             'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> Maximum quantity per order', 'samply' ),
                                             'placeholder'   => 5,
-                                            'style'			=> 'class="max_qty_per_order_area"',
+                                            'style'			=> 'max_qty_per_order_area',
                                             'position'		=> 'tr'                
-                                        ),
-                                        // array(
-                                        //     'name'          => 'enable_type',
-                                        //     'label'         => __( 'Enable Type', 'samply' ),
-                                        //     'type'          => 'select',
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'description'   => __( 'Enable Type', 'samply' ),
-                                        //     'default'       => array(                    
-                                        //         'product'     => 'Product wise',
-                                        //         'category'    => 'Categories wise',
-                                        //     )
-                                        // ),
-                                        // array(
-                                        //     'name'          => 'enable_product',
-                                        //     'label'         => __( 'Enable Products', 'samply' ),
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'type'          => 'multi-select',
-                                        //     'description'   => __( 'Products', 'samply' ),
-                                        //     'default'		=> Helpers::Products(),
-                                        //     'style'			=> 'class="wfps-enable-product-area"',
-                                        //     'position'		=> 'tr'
-                                        // ),	
-                                        // array(
-                                        //     'name'          => 'enable_category',
-                                        //     'label'         => __( 'Enable Categories', 'samply' ),
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'type'          => 'multi-select',
-                                        //     'description'   => __( 'Categories', 'samply' ),
-                                        //     'default'		=> Helpers::Categories(),
-                                        //     'style'			=> 'class="wfps-enable-category-area"',
-                                        //     'position'		=> 'tr'
-                                        // ),
-                                        // array(
-                                        //     'name'          => 'sample_price',
-                                        //     'label'         => __( 'Sample Price', 'samply' ),
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'type'          => 'number',
-                                        //     'description'   => __( 'Set Sample Price', 'samply' ),
-                                        //     'placeholder'   => '0.00',
-                                        //     'value'			=> 0.00
-                                        // ),					
-                                        // array(
-                                        //     'name'          => 'exclude_shop_page',
-                                        //     'label'         => __( 'Hide in Shop/Categories Page', 'samply' ),
-                                        //     'type'          => 'checkbox',
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'description'   => __( 'Hide in Shop/Categories Page', 'samply' )
-                                        // ),
-                                        // array(
-                                        //     'name'          => 'shipping_class',
-                                        //     'label'         => __( 'Shipping Class', 'samply' ),
-                                        //     'type'          => 'select',
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'description'   => __( 'Shipping Class', 'samply' ),
-                                        //     'default'       => Helpers::shippingClass()
-                                        // ),
-                                        // array(
-                                        //     'name'          => 'tax_class',
-                                        //     'label'         => __( 'Tax Class', 'samply' ),
-                                        //     'type'          => 'select',
-                                        //     'class'         => 'samply-settings-field',
-                                        //     'description'   => __( 'Tax Class', 'samply' ),
-                                        //     'default'       => Helpers::taxClass()
-                                        // ),                                                                                   
+                                        ),                                                                                  
                                     )                                        
                                 ) 
                             )
@@ -268,7 +209,7 @@ class SamplySettings {
                                     'fields' => array(
                                         array(
                                             'name'          => 'maximum_qty_message',
-                                            'label'         => __( 'Maximum quantity message', 'samply' ),
+                                            'label'         => __( 'Maximum Quantity Message', 'samply' ),
                                             'type'          => 'text',
                                             'class'         => 'samply-settings-field',
                                             'description'   => __( '<strong>Note:</strong> {product} and {qty} for dynamic content.', 'samply' ),
