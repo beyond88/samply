@@ -44,16 +44,16 @@
                                 <table>
                                     <tbody>
                                         <?php foreach( $fields as  $key => $value ) : ?>
-                                        <?php $file_name = isset( $value['type'] ) ? $value['type'] : 'text'; ?>    
-                                        <tr data-id="<?php echo $value['name']; ?>" id="samply-meta-<?php echo $value['name']; ?>" class="samply-field samply-meta-<?php echo $file_name; ?> type-<?php echo $file_name; ?>">
+                                        <?php $file_name = isset( $value['type'] ) ? $value['type'] : 'text'; ?> 
+                                        <?php $style = isset( $value['style'] ) ? $value['style'] : ''; ?>    
+                                        <tr data-id="<?php echo $value['name']; ?>" id="samply-meta-<?php echo $value['name']; ?>" class="samply-field samply-meta-<?php echo $file_name; ?> type-<?php echo $file_name; ?> <?php echo $style; ?>">
                                             <th class="samply-label">
                                                 <label for="<?php echo $value['name']; ?>">
                                                     <?php echo $value['label']; ?>
                                                 </label>
                                             </th>
                                             <td class="samply-control">
-                                                <div class="samply-control-wrapper">
-                                                    
+                                                <div class="samply-control-wrapper">                                                    
                                                     <?php 
                                                         if( $file_name ) {
                                                             include 'fields/'. $file_name .'.php';

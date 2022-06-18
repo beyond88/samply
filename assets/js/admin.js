@@ -104,6 +104,12 @@
 				).trigger("click");
 			}
 		}
+
+		if( $('#disable_limit_per_order').is( ':checked' ) ) {
+			$('.limit_per_order_area').hide();
+			$('.max_qty_per_order_area').hide();
+    	}
+
 	});
 
     $.samplyAdmin.init = function () {
@@ -118,6 +124,16 @@
 		});
 
         $('.samply-settings-button').removeClass('button');
+
+		$(document).on( 'click', '#disable_limit_per_order', function(){
+			if( $('#disable_limit_per_order').is( ':checked' ) ) {
+				$('.limit_per_order_area').hide();
+				$('.max_qty_per_order_area').hide();
+			} else {
+				$('.limit_per_order_area').show();
+				$('.max_qty_per_order_area').show();
+			}   
+    	});		
     };
 
     $.samplyAdmin.settingsTab = function (button) {
