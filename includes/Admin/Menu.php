@@ -32,8 +32,9 @@ class Menu
     {
         $parent_slug = 'samply';
         $capability = 'manage_options';
+        $icon_url = SAMPLY_ASSETS . '/img/samply-icon.svg';
 
-        $hook = add_menu_page( __( 'Samply Settings', 'samply' ), __( 'Samply', 'samply' ), $capability, $parent_slug, [ $this->main, 'plugin_page' ], 'dashicons-yes-alt', 60 );
+        $hook = add_menu_page( __( 'Samply Settings', 'samply' ), __( 'Samply', 'samply' ), $capability, $parent_slug, [ $this->main, 'plugin_page' ], $icon_url, 50 );
         add_action( 'admin_head-' . $hook, [ $this, 'enqueueAssets' ] );
     }
 
