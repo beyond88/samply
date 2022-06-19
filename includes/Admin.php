@@ -5,7 +5,8 @@ namespace Samply;
 /**
  * The admin class
  */
-class Admin {
+class Admin 
+{
 
     /**
      * Initialize the class

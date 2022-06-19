@@ -473,6 +473,8 @@ input[type="number"].samply-settings-field,
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: border linear 0.2s, box-shadow linear 0.2s;
+  font-size: 14px;
+  color: #2c3338;
 }
 
 input[type="text"].samply-meta-field:focus,

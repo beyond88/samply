@@ -22,7 +22,7 @@ class SamplyWooCommerce
 		add_filter( 'woocommerce_locate_template', [ $this, 'setLocateTemplate' ], 10, 3 );	
 		add_filter( 'woocommerce_cart_item_name', [ $this, 'alterItemName' ], 10, 3 );	
 		add_filter( 'woocommerce_cart_item_price', [ $this, 'cartItemPriceFilter' ], 10, 3 );
-		add_filter( 'woocommerce_update_cart_validation', [ $this, 'cartUpdateLimitOrder' ], 10, 4 );		
+		add_filter( 'woocommerce_update_cart_validation', [ $this, 'cartUpdateLimitOrder' ], PHP_INT_MAX, 4 );		
 		add_filter( 'woocommerce_cart_item_subtotal',  [ $this, 'itemSubtotal' ], 99, 3 );
 		
 		// filter for Minimum/Maximum plugin override overriding
@@ -71,10 +71,7 @@ class SamplyWooCommerce
 
 		if ( Helper::productIsInStock() && Helper::checkIsInCart( get_the_ID() ) ) {
 			$button = Helper::requestButton(); 
-			echo apply_filters( 
-						'woo_free_product_sample_button',
-						$button
-				);								
+			echo apply_filters( 'samply_sample_button', $button );								
 		}
 
 	}	
@@ -452,8 +449,8 @@ class SamplyWooCommerce
 		$setting_options   = Helper::samplySettings();
 		$notice_type 	   = isset( $setting_options['limit_per_order'] ) ? $setting_options['limit_per_order'] : 'all';
 		$disable_limit 	   = isset( $setting_options['disable_limit_per_order'] ) ? $setting_options['disable_limit_per_order'] : null;
-		$message 		   = \Message::validation_notice( $product->get_id() );
-
+		$message 		   = Message::validationNotice( $product->get_id() );
+		
 		if( ! isset( $disable_limit ) ) :
 
 			if( 'product' == $notice_type ) {
@@ -470,7 +467,6 @@ class SamplyWooCommerce
 						), 'error');
 						
 					}
-					
 					$passed = false;
 				}
 

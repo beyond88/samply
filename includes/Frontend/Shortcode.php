@@ -10,7 +10,8 @@ class Shortcode {
     /**
      * Initializes the class
      */
-    function __construct() {
+    function __construct() 
+    {
         add_shortcode( 'samply', [ $this, 'render_shortcode' ] );
     }
 
@@ -22,10 +23,11 @@ class Shortcode {
      *
      * @return string
      */
-    public function render_shortcode( $atts, $content = '' ) {
+    public function render_shortcode( $atts, $content = '' ) 
+    {
         wp_enqueue_script( 'samply-script' );
         wp_enqueue_style( 'samply-style' );
 
-        return '<div class="samply-shortcode">Hello from Shortcode</div>';
+        return '<div class="samply-shortcode">Hola!</div>';
     }
 }

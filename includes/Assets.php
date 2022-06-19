@@ -5,7 +5,8 @@ namespace Samply;
 /**
  * Assets handlers class
  */
-class Assets {
+class Assets 
+{
 
     /**
      * Class constructor

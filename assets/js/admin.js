@@ -11,13 +11,13 @@
 
         var qVars = $.samplyAdmin.get_query_vars("page");
 		if (qVars != undefined) {
-			if (qVars.indexOf("samply-settings") >= 0) {
+			if (qVars.indexOf("samply") >= 0) {
 				var cSettingsTab = qVars.split("#");
 				$(
 					'.samply-settings-menu li[data-tab="' +
 						cSettingsTab[1] +
 						'"]'
-				).trigger("click");
+				).trigger("click");				
 			}
 		}
 
@@ -61,7 +61,6 @@
 			.addClass("active")
 			.siblings()
 			.removeClass("active");
-
 		$('#samply_builder_id').val(tabToGo);	
 	};
 

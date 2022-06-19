@@ -5,7 +5,8 @@ namespace Samply;
 /**
  * Frontend handler class
  */
-class Frontend {
+class Frontend 
+{
 
     /**
      * Initialize the class

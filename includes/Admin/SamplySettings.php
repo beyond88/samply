@@ -3,7 +3,8 @@
 namespace Samply\Admin;
 use Samply\Helper as Helpers;
 
-class SamplySettings {
+class SamplySettings 
+{
 
     /**
 	 * Initialize the class and set its settings options.

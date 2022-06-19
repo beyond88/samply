@@ -2,9 +2,11 @@
 
 namespace Samply\Admin;
 
-class PluginMeta {
+class PluginMeta 
+{
 
-    public function __construct(){
+    public function __construct()
+    {
 
         add_filter( 'plugin_action_links_' . SAMPLY_BASENAME, [$this, 'pluginActionLinks'] );
         add_filter('plugin_row_meta', [$this, 'pluginMetaLinks'], 10, 2);

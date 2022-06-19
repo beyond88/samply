@@ -5,7 +5,8 @@ namespace Samply;
 /**
  * Installer class
  */
-class Installer {
+class Installer 
+{
 
     /**
      * Run the installer
