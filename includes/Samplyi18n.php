@@ -2,7 +2,8 @@
 
 namespace Samply;
 
-class Samplyi18n {
+class Samplyi18n 
+{
 
     public function __construct()
     {

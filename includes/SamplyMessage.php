@@ -2,7 +2,8 @@
 
 namespace Samply;
 
-class SamplyMessage {
+class SamplyMessage 
+{
 
     public static $_optionName  = 'samply_settings';
     public static $_optionGroup = 'samply_options_group';

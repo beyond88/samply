@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Samply
- * Description: A plugin for WooCommerce Product Sample.
+ * Description: An ultimate plugin to replicate an actual product with custom prices to order as a sample product.
  * Plugin URI: https://ourtechbro.com/plugins/samply
  * Author: OurTechBro
  * Author URI: https://ourtechbro.com

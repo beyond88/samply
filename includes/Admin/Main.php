@@ -6,7 +6,8 @@ use Samply\Helper as Helpers;
 /**
  * Settings Handler class
  */
-class Main {
+class Main 
+{
 
     public $_optionName  = 'samply_settings';
     public $_optionGroup = 'samply_options_group';

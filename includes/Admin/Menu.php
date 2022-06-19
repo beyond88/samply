@@ -5,7 +5,8 @@ namespace Samply\Admin;
 /**
  * The Menu handler class
  */
-class Menu {
+class Menu 
+{
 
     public $licence;
     public $main;
