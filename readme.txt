@@ -1,6 +1,6 @@
 === Samply ===
 Contributors: samply
-Donate Link: http://samply.com
+Donate Link: http://ourtechbro.com
 Tags: free, product, sample, free-sample, free-product-sample, free-sample-product, woocommerce, dokan, e-commerce, ecommerce
 Requires at least: 4.4
 Tested up to: 5.7
@@ -11,13 +11,13 @@ Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The easy way to handle free product sample for WooCommerce. Promote your business in minutes!
+An ultimate plugin to replicate an actual product with custom prices to order as a sample product.
 
 == Description ==
 
 = SAMPLY =
 
-👉 Official Demo Link: [Official Demo]()
+👉 Official Demo Link: [Official Demo](https://samply.ourtechbro.com)
 
 = POWERED BY WooCommerce =
 
@@ -28,7 +28,7 @@ The easy way to handle free product sample. [Samply]() does one thing, and it do
 
 Capture compelling and real customer by giving capability to order product sample.
 
-**🔥 Button for Simple and Variable Product both:** Give access to order variable product as a sample.
+**🔥 Button for Simple and Variable Products both:** Give access to order variable product as a sample.
 
 ## 🚀 Backed By A Trusted Team ##
 
@@ -36,8 +36,8 @@ This plugin is brought to you by the team behind [Samply](), a dedicated platfor
 
 ## 👨‍💻 DOCUMENTATION AND SUPPORT ##
 
-- 👨‍💻 [Contact Our Support]()
-- 📜 [Check Documentation]()
+- 👨‍💻 [Contact Our Support](https://ourtechbro.com/support)
+- 📜 [Check Documentation](https://ourtechbro.com/docs)
 
 == Screenshots ==
 
