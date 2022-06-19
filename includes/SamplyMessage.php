@@ -18,9 +18,8 @@ class SamplyMessage {
 	 * @since    2.0.0
 	 * @param    none 
 	 */    
-    public static function validation_notice( $product_id )
+    public static function validationNotice( $product_id )
     {
-
         $final_msg         = '';
 		$setting_options   = wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );
 		$message 		   = isset( $setting_options['maximum_qty_message'] ) ? $setting_options['maximum_qty_message'] : '';

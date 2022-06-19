@@ -16,7 +16,7 @@
                 <ul>
                     <?php
                         $i = 1;
-                        foreach( $settings['tabs'] as $key => $setting ) {
+                        foreach( $settings['tabs'] as $key => $setting ) {                            
                             // $active = $i++ === 1 ? 'active ' : '';
                             $active = $current_tab == $key ? 'active' : '';	
                             echo '<li class="'. $active .'" data-tab="'. $key .'"><a href="#'. $key .'">'. $setting['title'] .'</a></li>';
@@ -32,7 +32,8 @@
                     <?php
                         $i = 1;
                         foreach( $settings ['tabs'] as $sec_id => $section ) :
-                            $active = $i++ === 1 ? 'active ' : '';
+                            // $active = $i++ === 1 ? 'active ' : '';
+                            $active = $current_tab == $sec_id ? 'active' : '';
                             $child_sections = $section['sections'];
                         ?>
                         <div id="samply-<?php echo $sec_id; ?>" class="samply-settings-tab samply-settings-samply_instant_answer <?php echo $active; ?>">
