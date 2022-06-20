@@ -96,11 +96,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 							<?php
-								if( isset( $cart_item['sample_price'] ) ) {
-									echo wc_price($cart_item['sample_price']);
-								} else {
-									echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.								
-								}	
+							if ( isset( $cart_item['sample_price'] ) ) {
+								echo wc_price( $cart_item['sample_price'] );
+							} else {
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+							}
 							?>
 						</td>
 

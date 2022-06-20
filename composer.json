@@ -10,11 +10,24 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require-dev": {
+        "wp-coding-standards/wpcs": "dev-master",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "tareq1988/wp-php-cs-fixer": "dev-master",
+        "phpcompatibility/phpcompatibility-wp": "dev-master"
+    },
+    "scripts": {
+        "phpcs": [
+            "phpcs -p -s"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Samply\\": "includes/"
         },
         "files": [ "includes/functions.php" ]
+    },
+    "config": {
+        "allow-plugins": {}
     }
 }

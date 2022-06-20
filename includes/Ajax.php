@@ -5,13 +5,13 @@ namespace Samply;
 /**
  * Ajax handler class
  */
-class Ajax 
-{
+class Ajax {
 
-    /**
-     * Class constructor
-     */
-    function __construct() {
 
-    }
+	/**
+	 * Class constructor
+	 */
+	function __construct() {
+
+	}
 }

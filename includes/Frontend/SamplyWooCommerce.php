@@ -1,80 +1,76 @@
 <?php
 
 namespace Samply\Frontend;
+
 use Samply\Helper;
-use Samply\SamplyMessage as Message; 
+use Samply\SamplyMessage as Message;
 
-class SamplyWooCommerce 
-{
+class SamplyWooCommerce {
 
-    public function __construct() 
-    {
-        add_action( 'woocommerce_init', [ $this, 'init' ] );
-		// add_filter( 'plugins_loaded', [ $this, 'samplePrice' ] );	
-		add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'sampleButton' ], 5 );	
-		add_action( 'wp_loaded', [ $this, 'addToCartAction' ], 10 );	
-		add_filter( 'woocommerce_before_calculate_totals', [ $this, 'applySamplePriceToCartItem' ], 10 );			
-		add_filter( 'woocommerce_add_cart_item_data', [ $this, 'storeId' ], 10, 2 );
-		add_filter( 'wc_add_to_cart_message_html', [ $this, 'addToCartMessage' ], 99, 4 );
-		add_filter( 'woocommerce_add_to_cart_validation', [ $this, 'setLimitPerOrder' ], 99, 4 );
-		add_filter( 'woocommerce_get_cart_item_from_session', [ $this, 'getCartItemsFromSession' ], 10, 2 );
-		add_action( 'woocommerce_add_order_item_meta', [ $this, 'savePostedDataIntoOrder' ], 10, 2 );
-		add_filter( 'woocommerce_locate_template', [ $this, 'setLocateTemplate' ], 10, 3 );	
-		add_filter( 'woocommerce_cart_item_name', [ $this, 'alterItemName' ], 10, 3 );	
-		add_filter( 'woocommerce_cart_item_price', [ $this, 'cartItemPriceFilter' ], 10, 3 );
-		add_filter( 'woocommerce_update_cart_validation', [ $this, 'cartUpdateLimitOrder' ], PHP_INT_MAX, 4 );		
-		add_filter( 'woocommerce_cart_item_subtotal',  [ $this, 'itemSubtotal' ], 99, 3 );
-		
+
+	public function __construct() {
+		 add_action( 'woocommerce_init', array( $this, 'init' ) );
+		// add_filter( 'plugins_loaded', [ $this, 'samplePrice' ] );
+		add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'sampleButton' ), 5 );
+		add_action( 'wp_loaded', array( $this, 'addToCartAction' ), 10 );
+		add_filter( 'woocommerce_before_calculate_totals', array( $this, 'applySamplePriceToCartItem' ), 10 );
+		add_filter( 'woocommerce_add_cart_item_data', array( $this, 'storeId' ), 10, 2 );
+		add_filter( 'wc_add_to_cart_message_html', array( $this, 'addToCartMessage' ), 99, 4 );
+		add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'setLimitPerOrder' ), 99, 4 );
+		add_filter( 'woocommerce_get_cart_item_from_session', array( $this, 'getCartItemsFromSession' ), 10, 2 );
+		add_action( 'woocommerce_add_order_item_meta', array( $this, 'savePostedDataIntoOrder' ), 10, 2 );
+		add_filter( 'woocommerce_locate_template', array( $this, 'setLocateTemplate' ), 10, 3 );
+		add_filter( 'woocommerce_cart_item_name', array( $this, 'alterItemName' ), 10, 3 );
+		add_filter( 'woocommerce_cart_item_price', array( $this, 'cartItemPriceFilter' ), 10, 3 );
+		add_filter( 'woocommerce_update_cart_validation', array( $this, 'cartUpdateLimitOrder' ), PHP_INT_MAX, 4 );
+		add_filter( 'woocommerce_cart_item_subtotal', array( $this, 'itemSubtotal' ), 99, 3 );
+
 		// filter for Minimum/Maximum plugin override overriding
-		add_action( 'woocommerce_before_template_part', [ $this, 'checkCartItems' ] );
-		add_action( 'woocommerce_check_cart_items', [ $this, 'checkCartItems' ] );
-		add_filter( 'wc_min_max_quantity_minmax_do_not_count', [ $this, 'cartExclude' ], 10, 4 );
-		add_filter( 'wc_min_max_quantity_minmax_cart_exclude', [ $this, 'cartExclude' ], 10, 4 );
-    }
+		add_action( 'woocommerce_before_template_part', array( $this, 'checkCartItems' ) );
+		add_action( 'woocommerce_check_cart_items', array( $this, 'checkCartItems' ) );
+		add_filter( 'wc_min_max_quantity_minmax_do_not_count', array( $this, 'cartExclude' ), 10, 4 );
+		add_filter( 'wc_min_max_quantity_minmax_cart_exclude', array( $this, 'cartExclude' ), 10, 4 );
+	}
 
-/**
+	/**
 	 *
 	 * @since    2.1.4
 	 */
-	public function init() 
-    {
-		
+	public function init() {
 		// filter for Measurement Price Calculator plugin override overriding
-		if (in_array('woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_filter('wc_measurement_price_calculator_add_to_cart_validation', [ $this, 'measurementPriceCalculatorAddToCartValidation' ], 10, 4 );
+		if ( in_array( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			add_filter( 'wc_measurement_price_calculator_add_to_cart_validation', array( $this, 'measurementPriceCalculatorAddToCartValidation' ), 10, 4 );
 		}
 
 		// filter for Minimum/Maximum plugin override overriding
-		if (in_array('woocommerce-min-max-quantities/min-max-quantities.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_filter('wc_min_max_quantity_minimum_allowed_quantity', [ $this, 'minimumQuantity' ], 10, 4 );
-			add_filter('wc_min_max_quantity_maximum_allowed_quantity', [ $this, 'maximumQuantity' ], 10, 4 );
-			add_filter('wc_min_max_quantity_group_of_quantity', [ $this, 'groupOfQuantity' ], 10, 4 );			
-			// Check items.			
+		if ( in_array( 'woocommerce-min-max-quantities/min-max-quantities.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			add_filter( 'wc_min_max_quantity_minimum_allowed_quantity', array( $this, 'minimumQuantity' ), 10, 4 );
+			add_filter( 'wc_min_max_quantity_maximum_allowed_quantity', array( $this, 'maximumQuantity' ), 10, 4 );
+			add_filter( 'wc_min_max_quantity_group_of_quantity', array( $this, 'groupOfQuantity' ), 10, 4 );
+			// Check items.
 		}
 
 		// filter for WooCommerce Chained Products plugin override overriding
-		if (in_array('woocommerce-chained-products/woocommerce-chained-products.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_action( 'wc_after_chained_add_to_cart', [ $this, 'removeChainedProducts' ], 20, 6 );
+		if ( in_array( 'woocommerce-chained-products/woocommerce-chained-products.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+			add_action( 'wc_after_chained_add_to_cart', array( $this, 'removeChainedProducts' ), 20, 6 );
 		}
 
-	}	
+	}
 
 	/**
 	 * Display sample button
-	 * 
-	 * @since  	2.0.0
-	 * @param  	none  
-	 * @return 	html
+	 *
+	 * @since   2.0.0
+	 * @param   none
+	 * @return  html
 	 */
-	public function sampleButton() 
-    {
-
+	public function sampleButton() {
 		if ( Helper::productIsInStock() && Helper::checkIsInCart( get_the_ID() ) ) {
-			$button = Helper::requestButton(); 
-			echo apply_filters( 'samply_sample_button', $button );								
+			$button = Helper::requestButton();
+			echo apply_filters( 'samply_sample_button', $button );
 		}
 
-	}	
+	}
 
 	/**
 	 * Handle add to cart
@@ -82,11 +78,8 @@ class SamplyWooCommerce
 	 * @since 2.0.0
 	 * @param string
 	 */
-	public static function addToCartAction( $url = false ) 
-    {
-
-		if ( ! isset( $_REQUEST['simple-add-to-cart'] ) || ! is_numeric( wp_unslash( $_REQUEST['simple-add-to-cart'] ) ) )			 
-		{
+	public static function addToCartAction( $url = false ) {
+		if ( ! isset( $_REQUEST['simple-add-to-cart'] ) || ! is_numeric( wp_unslash( $_REQUEST['simple-add-to-cart'] ) ) ) {
 			return;
 		}
 
@@ -99,7 +92,7 @@ class SamplyWooCommerce
 		if ( ! $adding_to_cart ) {
 			return;
 		}
-		
+
 		$add_to_cart_handler = apply_filters( 'woocommerce_add_to_cart_handler', $adding_to_cart->get_type(), $adding_to_cart );
 
 		if ( 'variable' === $add_to_cart_handler || 'variation' === $add_to_cart_handler ) {
@@ -129,11 +122,9 @@ class SamplyWooCommerce
 	 * @param int $product_id Product ID to add to the cart.
 	 * @return bool success or not
 	 */
-	private static function addToCartHandlerSimple( $product_id ) 
-    {
-
+	private static function addToCartHandlerSimple( $product_id ) {
 		$quantity          = Helper::sampleQty(); // phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
-		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );	
+		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );
 
 		if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity ) ) {
 			wc_add_to_cart_message( array( $product_id => $quantity ), true );
@@ -141,7 +132,7 @@ class SamplyWooCommerce
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Handle adding variable products to the cart.
 	 *
@@ -150,8 +141,7 @@ class SamplyWooCommerce
 	 * @param int $product_id Product ID to add to the cart.
 	 * @return bool success or not
 	 */
-	private static function addToCartHandlerVariable( $product_id ) 
-    {
+	private static function addToCartHandlerVariable( $product_id ) {
 		try {
 			$variation_id       = empty( $_REQUEST['variation_id'] ) ? '' : absint( wp_unslash( $_REQUEST['variation_id'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 			$quantity           = empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
@@ -161,7 +151,7 @@ class SamplyWooCommerce
 
 			if ( ! $adding_to_cart ) {
 				return false;
-			}				
+			}
 
 			// If the $product_id was in fact a variation ID, update the variables.
 			if ( $adding_to_cart->is_type( 'variation' ) ) {
@@ -177,8 +167,7 @@ class SamplyWooCommerce
 			// Gather posted attributes.
 			$posted_attributes = array();
 
-			foreach ( $adding_to_cart->get_attributes() as $attribute ) 
-            {
+			foreach ( $adding_to_cart->get_attributes() as $attribute ) {
 				if ( ! $attribute['is_variation'] ) {
 					continue;
 				}
@@ -258,356 +247,337 @@ class SamplyWooCommerce
 		}
 
 		return false;
-	}	
-	 
+	}
+
 	/**
 	 * Set sample price in the cart
-	 * 
-	 * @since      2.0.0     
-	 * @param      string, string    	 
+	 *
+	 * @since      2.0.0
+	 * @param      string, string
 	 */
-	public function storeId( $cart_item ) 
-    {
-
-		if( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) {
-			$cart_item['free_sample']  = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
-			$product_id = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
-			$cart_item['sample_price'] = (float)Helper::samplePrice( $product_id );
-			$cart_item['line_subtotal']= (float)Helper::samplePrice( $product_id );
-			$cart_item['line_total']   = (float)Helper::samplePrice( $product_id );				
-		}			
-		return $cart_item; 
-	}	
+	public function storeId( $cart_item ) {
+		if ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) {
+			$cart_item['free_sample']   = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
+			$product_id                 = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
+			$cart_item['sample_price']  = (float) Helper::samplePrice( $product_id );
+			$cart_item['line_subtotal'] = (float) Helper::samplePrice( $product_id );
+			$cart_item['line_total']    = (float) Helper::samplePrice( $product_id );
+		}
+		return $cart_item;
+	}
 
 	/**
 	 * Set sample price in session
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      array, array    
+	 * @param      array, array
 	 */
-	public function getCartItemsFromSession( $cart_item, $values ) 
-    {
-	
+	public function getCartItemsFromSession( $cart_item, $values ) {
 		if ( isset( $values['simple-add-to-cart'] ) || isset( $values['variable-add-to-cart'] ) ) {
-			$product_id 					= isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
-			$cart_item['free_sample'] 		= isset( $values['simple-add-to-cart'] ) ? $values['simple-add-to-cart'] : $values['variable-add-to-cart'];			
-			$cart_item['line_subtotal'] 	= (float)Helper::samplePrice( $product_id );
-			$cart_item['line_total'] 	  	= (float)Helper::samplePrice( $product_id );	
-		}    
+			$product_id                 = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
+			$cart_item['free_sample']   = isset( $values['simple-add-to-cart'] ) ? $values['simple-add-to-cart'] : $values['variable-add-to-cart'];
+			$cart_item['line_subtotal'] = (float) Helper::samplePrice( $product_id );
+			$cart_item['line_total']    = (float) Helper::samplePrice( $product_id );
+		}
 
 		return $cart_item;
 	}
-	 
+
 	/**
 	 * Add product meta for sample to indentity in the admin order details
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      int, array    	 
+	 * @param      int, array
 	 */
-	public function savePostedDataIntoOrder( $itemID, $values ) 
-    {
-
+	public function savePostedDataIntoOrder( $itemID, $values ) {
 		if ( isset( $values['free_sample'] ) ) {
-			$sample 		= __( 'Sample', 'samply' );
-			if( get_locale() == 'de_DE' ){
+			$sample = __( 'Sample', 'samply' );
+			if ( get_locale() == 'de_DE' ) {
 				wc_add_order_item_meta( $itemID, 'Produkt', 'MUSTERBESTELLUNG' );
 				wc_add_order_item_meta( $itemID, 'Preis', 'Wir übernehmen die Kosten für Sie!' );
 			} else {
 				wc_add_order_item_meta( $itemID, 'PRODUCT_TYPE', $sample );
-				wc_add_order_item_meta( $itemID, 'SAMPLE_PRICE', (float)$values["sample_price"] );
+				wc_add_order_item_meta( $itemID, 'SAMPLE_PRICE', (float) $values['sample_price'] );
 			}
-			
 		}
-		
+
 	}
-	
+
 	/**
 	 * Return plugin directory
 	 *
 	 * @since      2.0.0
 	 * @param      none
 	 */
-	public static function getPluginPath() 
-    {		
+	public static function getPluginPath() {
 		return untrailingslashit( plugin_dir_path( __FILE__ ) );
 	}
 
 	/**
 	 * Return WooCommerce template path
-	 * 
+	 *
 	 * @since      2.0.0
 	 * @param      none
 	 */
-	public function setLocateTemplate( $template, $template_name, $template_path ) 
-    {
-
+	public function setLocateTemplate( $template, $template_name, $template_path ) {
 		global $woocommerce;
 		$_template = $template;
 		if ( ! $template_path ) {
 			$template_path = $woocommerce->template_url;
-		}		
+		}
 
-	  	$plugin_path  = self::getPluginPath() . '/views/woocommerce/';
-	  	$template = locate_template(
-	    	array(
-	      		$template_path . $template_name,
-	      		$template_name
-	    	)
-	  	);
+		$plugin_path = self::getPluginPath() . '/views/woocommerce/';
+		$template    = locate_template(
+			array(
+				$template_path . $template_name,
+				$template_name,
+			)
+		);
 
-	  	if ( ! $template && file_exists( $plugin_path . $template_name ) )
-	    	$template = $plugin_path . $template_name;
+		if ( ! $template && file_exists( $plugin_path . $template_name ) ) {
+			$template = $plugin_path . $template_name;
+		}
 
-	  	if ( ! $template )
-	    	$template = $_template;
+		if ( ! $template ) {
+			$template = $_template;
+		}
 
-		return $template;		
-		  
+		return $template;
+
 	}
 
 	/**
 	 * Set sample price in the order meta
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      object, array     	 
+	 * @param      object, array
 	 */
-    public function applySamplePriceToCartItem( $cart ) 
-    {
-
-		if ( is_admin() && ! defined( 'DOING_AJAX' ) )
-		return;
+	public function applySamplePriceToCartItem( $cart ) {
+		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
+			return;
+		}
 
 		// Avoiding hook repetition (when using price calculations for example)
-		if ( did_action( 'woocommerce_before_calculate_totals' ) >= 2 )
-		return;	
-	
-		foreach ( $cart->get_cart() as $key => $value ) {
-			if( isset( $value["sample_price"] ) ) {	
-				$product = $value['data'];
-				method_exists( $product, 'set_price' ) ? $product->set_price( (float)$value["sample_price"] ) : $product->price = $value["sample_price"];			
-			}			
+		if ( did_action( 'woocommerce_before_calculate_totals' ) >= 2 ) {
+			return;
+		}
 
-		}   
+		foreach ( $cart->get_cart() as $key => $value ) {
+			if ( isset( $value['sample_price'] ) ) {
+				$product = $value['data'];
+				method_exists( $product, 'set_price' ) ? $product->set_price( (float) $value['sample_price'] ) : $product->price = $value['sample_price'];
+			}
+		}
 	}
 
 	/**
-	 * Display validation message when order a product sample 
+	 * Display validation message when order a product sample
 	 *
 	 * @since      2.0.0
-	 * @param      int, array 
-	 */		
-	public function setLimitPerOrder( $valid, $product_id ) 
-    {
-	
+	 * @param      int, array
+	 */
+	public function setLimitPerOrder( $valid, $product_id ) {
 		global $woocommerce;
-		$setting_options   = Helper::samplySettings();
-		$notice_type 	   = isset( $setting_options['limit_per_order'] ) ? $setting_options['limit_per_order'] : null;
-		$disable_limit 	   = isset( $setting_options['disable_limit_per_order'] ) ? $setting_options['disable_limit_per_order'] : null;
+		$setting_options = Helper::samplySettings();
+		$notice_type     = isset( $setting_options['limit_per_order'] ) ? $setting_options['limit_per_order'] : null;
+		$disable_limit   = isset( $setting_options['disable_limit_per_order'] ) ? $setting_options['disable_limit_per_order'] : null;
 
-		if( ! isset( $disable_limit ) ) :
-			foreach( $woocommerce->cart->get_cart() as $key => $val ) :
-				
-				if( 'product' == $notice_type ) {
+		if ( ! isset( $disable_limit ) ) :
+			foreach ( $woocommerce->cart->get_cart() as $key => $val ) :
 
-					if( ( isset( $val['free_sample'] ) && $product_id == $val['free_sample'] ) && ( $setting_options['max_qty_per_order'] <= $val['quantity'] ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
-						if( get_locale() == 'ja' ) {
-							wc_add_notice( esc_html__( 'この商品を注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
+				if ( 'product' == $notice_type ) {
+
+					if ( ( isset( $val['free_sample'] ) && $product_id == $val['free_sample'] ) && ( $setting_options['max_qty_per_order'] <= $val['quantity'] ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
+						if ( get_locale() == 'ja' ) {
+							wc_add_notice( esc_html__( 'この商品を注文できます ' . $setting_options['max_qty_per_order'] . ' 注文あたりの数量。', 'samply' ), 'error' );
 						} else {
-							wc_add_notice( esc_html__( 'You can order this product '.$setting_options['max_qty_per_order'].' quantity per order.', 'samply' ), 'error' );
-						}						
-						exit( wp_redirect( get_permalink($product_id) ) );						
-					}	
-
-				} else if( 'all' == $notice_type ) {
-
-					if( ( isset( $val['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
-						if( get_locale() == 'ja' ) {
-							wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
-						} else {
-							wc_add_notice( esc_html__( 'You can order sample product maximum '.$setting_options['max_qty_per_order'].' quantity per order.', 'samply' ), 'error' );
-						}						
-						exit( wp_redirect( get_permalink($product_id) ) );						
+							wc_add_notice( esc_html__( 'You can order this product ' . $setting_options['max_qty_per_order'] . ' quantity per order.', 'samply' ), 'error' );
+						}
+						exit( wp_redirect( get_permalink( $product_id ) ) );
 					}
+				} elseif ( 'all' == $notice_type ) {
 
+					if ( ( isset( $val['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) && ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) ) {
+						if ( get_locale() == 'ja' ) {
+							wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます ' . $setting_options['max_qty_per_order'] . ' 注文あたりの数量。', 'samply' ), 'error' );
+						} else {
+							wc_add_notice( esc_html__( 'You can order sample product maximum ' . $setting_options['max_qty_per_order'] . ' quantity per order.', 'samply' ), 'error' );
+						}
+						exit( wp_redirect( get_permalink( $product_id ) ) );
+					}
 				}
-			endforeach; 
-		endif; 
+			endforeach;
+		endif;
 		return $valid;
 
-	}	
+	}
 
 	/**
 	 * Show validation message in the cart page for maximum order
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      boolean, array, array, int 
+	 * @param      boolean, array, array, int
 	 */
-	public function cartUpdateLimitOrder( $passed, $cart_item_key, $values, $updated_quantity ) 
-    {
+	public function cartUpdateLimitOrder( $passed, $cart_item_key, $values, $updated_quantity ) {
+		$product         = wc_get_product( $values['product_id'] );
+		$setting_options = Helper::samplySettings();
+		$notice_type     = isset( $setting_options['limit_per_order'] ) ? $setting_options['limit_per_order'] : 'all';
+		$disable_limit   = isset( $setting_options['disable_limit_per_order'] ) ? $setting_options['disable_limit_per_order'] : null;
+		$message         = Message::validationNotice( $product->get_id() );
 
-		$product 		   = wc_get_product( $values['product_id'] );	
-		$setting_options   = Helper::samplySettings();
-		$notice_type 	   = isset( $setting_options['limit_per_order'] ) ? $setting_options['limit_per_order'] : 'all';
-		$disable_limit 	   = isset( $setting_options['disable_limit_per_order'] ) ? $setting_options['disable_limit_per_order'] : null;
-		$message 		   = Message::validationNotice( $product->get_id() );
-		
-		if( ! isset( $disable_limit ) ) :
+		if ( ! isset( $disable_limit ) ) :
 
-			if( 'product' == $notice_type ) {
+			if ( 'product' == $notice_type ) {
 
-				if( ( $values['free_sample'] == $values['product_id'] ) && ( $setting_options['max_qty_per_order'] < $updated_quantity ) ) {						
-					
-					if( get_locale() == "ja" ) {
-						wc_add_notice( esc_html__( '注文できます '.$product->get_name().' 最大 '.$setting_options['max_qty_per_order'].'  注文ごと。', 'samply' ), 'error' );
+				if ( ( $values['free_sample'] == $values['product_id'] ) && ( $setting_options['max_qty_per_order'] < $updated_quantity ) ) {
+
+					if ( get_locale() == 'ja' ) {
+						wc_add_notice( esc_html__( '注文できます ' . $product->get_name() . ' 最大 ' . $setting_options['max_qty_per_order'] . '  注文ごと。', 'samply' ), 'error' );
 					} else {
 
-						wc_add_notice( sprintf(
-							__( '%1$s.', 'samply' ),
-							$message
-						), 'error');
-						
+						wc_add_notice(
+							sprintf(
+								__( '%1$s.', 'samply' ),
+								$message
+							),
+							'error'
+						);
+
 					}
 					$passed = false;
 				}
+			} elseif ( 'all' == $notice_type ) {
 
-			} else if( 'all' == $notice_type ) {
-
-				if( ( isset( $values['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) ) {
-					if( get_locale() == 'ja' ) {
-						wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます '.$setting_options['max_qty_per_order'].' 注文あたりの数量。', 'samply' ), 'error' );
+				if ( ( isset( $values['free_sample'] ) ) && ( $setting_options['max_qty_per_order'] <= Helper::cartTotal() ) ) {
+					if ( get_locale() == 'ja' ) {
+						wc_add_notice( esc_html__( 'サンプル商品を最大で注文できます ' . $setting_options['max_qty_per_order'] . ' 注文あたりの数量。', 'samply' ), 'error' );
 					} else {
-						wc_add_notice( sprintf(
-							__( '%1$s.', 'samply' ),
-							$message
-						), 'error');
+						wc_add_notice(
+							sprintf(
+								__( '%1$s.', 'samply' ),
+								$message
+							),
+							'error'
+						);
 					}
-						
-					$passed = false;				
+
+					$passed = false;
 				}
 			}
 
-		endif; 
+		endif;
 		return $passed;
 
-	}		
+	}
 
 	/**
 	 * Sample product added in the cart message
 	 *
 	 * @since      2.0.0
-	 * @param      int, array 
-	 */	
-	public function addToCartMessage ( $message, $products ) 
-    {
-
+	 * @param      int, array
+	 */
+	public function addToCartMessage( $message, $products ) {
 		$titles = '';
-		if( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) {
-			
-			$count = 0;
+		if ( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) {
+
+			$count  = 0;
 			$titles = array();
 			foreach ( $products as $product_id => $qty ) {
-				if( get_locale() == "ja" ) {
-					$sample =  esc_html__( 'サンプル - ', 'samply' );
-				} else if( get_locale() == 'de_DE' ) {
-					$sample =  esc_html__( 'Testzugang - ', 'samply' );					
+				if ( get_locale() == 'ja' ) {
+					$sample = esc_html__( 'サンプル - ', 'samply' );
+				} elseif ( get_locale() == 'de_DE' ) {
+					$sample = esc_html__( 'Testzugang - ', 'samply' );
 				} else {
-					$sample =  esc_html__( 'Sample - ', 'samply' );
+					$sample = esc_html__( 'Sample - ', 'samply' );
 				}
-				
+
 				$titles[] = apply_filters( 'woocommerce_add_to_cart_qty_html', ( $qty > 1 ? absint( $qty ) . ' &times; ' : '' ), $product_id ) . apply_filters( 'woocommerce_add_to_cart_item_name_in_quotes', sprintf( _x( '&ldquo;%s&rdquo;', 'Item name in quotes', 'woocommerce' ), strip_tags( $sample . get_the_title( $product_id ) ) ), $product_id );
 				$count   += $qty;
 			}
-			
+
 			$titles = array_filter( $titles );
 			/* translators: %s: product name */
-			$added_text = sprintf( _n( '%s has been added to your cart.', '%s have been added to your cart.', $count, 'woocommerce' ), wc_format_list_of_items( $titles ) );		
-	
+			$added_text = sprintf( _n( '%s has been added to your cart.', '%s have been added to your cart.', $count, 'woocommerce' ), wc_format_list_of_items( $titles ) );
+
 			// Output success messages.
 			$message = sprintf( '<a href="%s" tabindex="1" class="button wc-forward">%s</a> %s', esc_url( wc_get_cart_url() ), esc_html__( 'View cart', 'woocommerce' ), esc_html( $added_text ) );
 			return $message;
-	
-		} 
-	
+
+		}
+
 		return $message;
 
 	}
 
 	/**
-	 * Add sample label before the product 
+	 * Add sample label before the product
 	 *
 	 * @since      2.0.0
-	 * @param      string, array, array 
-	 */	
-	public function alterItemName ( $product_name, $cart_item, $cart_item_key ) 
-    {
-
-		$product 			= $cart_item['data']; // Get the WC_Product Object
-		$sample_price 		= (float)Helper::samplePrice( $cart_item['product_id'] );
-		$sample_price 		= str_replace( ",",".", $sample_price );
-		$prod_price 		= str_replace( ",",".", $product->get_price() );	
-		if( $sample_price == $prod_price ) {
-			if( get_locale() == 'ja' ) {
-				$product_name   = esc_html__( 'サンプル - ', 'samply' ).$product_name;	
-			} else if( get_locale() == 'de_DE' ) {
-				$product_name   = esc_html__( 'Testzugang - ', 'samply' ).$product_name;						
+	 * @param      string, array, array
+	 */
+	public function alterItemName( $product_name, $cart_item, $cart_item_key ) {
+		$product      = $cart_item['data']; // Get the WC_Product Object
+		$sample_price = (float) Helper::samplePrice( $cart_item['product_id'] );
+		$sample_price = str_replace( ',', '.', $sample_price );
+		$prod_price   = str_replace( ',', '.', $product->get_price() );
+		if ( $sample_price == $prod_price ) {
+			if ( get_locale() == 'ja' ) {
+				$product_name = esc_html__( 'サンプル - ', 'samply' ) . $product_name;
+			} elseif ( get_locale() == 'de_DE' ) {
+				$product_name = esc_html__( 'Testzugang - ', 'samply' ) . $product_name;
 			} else {
-				$product_name   = esc_html__( 'Sample - ', 'samply' ).$product_name;
-			}			
+				$product_name = esc_html__( 'Sample - ', 'samply' ) . $product_name;
+			}
 		}
 
 		return $product_name;
 	}
 
-   	/**
+	/**
 	 * Set sample price instead real price
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      float, array, array 
+	 * @param      float, array, array
 	 */
-    public function cartItemPriceFilter( $price, $cart_item, $cart_item_key ) 
-    {
-	
-		$product 			= $cart_item['data']; // Get the WC_Product Object
-		$sample_price 		= (float)Helper::samplePrice( $cart_item['product_id'] );
-		$set_price 			= str_replace( ",", ".", $sample_price );
-		if( isset( $cart_item['sample_price'] ) ) {
-			$price         = wc_price( $set_price );
+	public function cartItemPriceFilter( $price, $cart_item, $cart_item_key ) {
+		$product      = $cart_item['data']; // Get the WC_Product Object
+		$sample_price = (float) Helper::samplePrice( $cart_item['product_id'] );
+		$set_price    = str_replace( ',', '.', $sample_price );
+		if ( isset( $cart_item['sample_price'] ) ) {
+			$price = wc_price( $set_price );
 		}
-		
+
 		return $price;
 	}
 
 	/**
 	 * Set subtotal
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      float, array, array 
-	 */	
-	public function itemSubtotal( $subtotal, $cart_item, $cart_item_key ) 
-    {
-		
-		if( isset( $cart_item['sample_price'] ) ) {
-			if(empty($cart_item['sample_price'])) {
+	 * @param      float, array, array
+	 */
+	public function itemSubtotal( $subtotal, $cart_item, $cart_item_key ) {
+		if ( isset( $cart_item['sample_price'] ) ) {
+			if ( empty( $cart_item['sample_price'] ) ) {
 				$price = 0.00;
 			} else {
-				$price = (float)$cart_item['sample_price'];
+				$price = (float) $cart_item['sample_price'];
 			}
 
-			$newsubtotal = wc_price( (float)$price * (int)$cart_item['quantity'] ); 		 
-			$subtotal = $newsubtotal; 			
-		}		 
-		 
+			$newsubtotal = wc_price( (float) $price * (int) $cart_item['quantity'] );
+			$subtotal    = $newsubtotal;
+		}
+
 		return $subtotal;
 	}
 
 	/**
 	 * Check Measurement Price Calculation Validation
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      boolean, integer, integer, array 
-	 */		
-	public function measurementPriceCalculatorAddToCartValidation ($valid, $product_id, $quantity, $measurements)
-    {
+	 * @param      boolean, integer, integer, array
+	 */
+	public function measurementPriceCalculatorAddToCartValidation( $valid, $product_id, $quantity, $measurements ) {
 		global $woocommerce;
 		$validation = $valid;
 		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) {
@@ -616,82 +586,80 @@ class SamplyWooCommerce
 		}
 		return $validation;
 	}
-	
+
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      integer, integer, integer, array, array 
-	 */		
-	public function minimumQuantity($minimum_quantity, $checking_id, $cart_item_key, $values)
-    {
-		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] )
+	 * @param      integer, integer, integer, array, array
+	 */
+	public function minimumQuantity( $minimum_quantity, $checking_id, $cart_item_key, $values ) {
+		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) {
 			$minimum_quantity = 1;
+		}
 		return $minimum_quantity;
 	}
 
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      integer, integer, integer, array, array 
-	 */		
-	public function maximumQuantity($maximum_quantity, $checking_id, $cart_item_key, $values)
-    {
-		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] )
+	 * @param      integer, integer, integer, array, array
+	 */
+	public function maximumQuantity( $maximum_quantity, $checking_id, $cart_item_key, $values ) {
+		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) {
 			$maximum_quantity = 1;
+		}
 		return $maximum_quantity;
 	}
 
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      integer, integer, integer, array, array 
-	 */		
-	public function groupOfQuantity($group_of_quantity, $checking_id, $cart_item_key, $values)
-    {
-		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) 
+	 * @param      integer, integer, integer, array, array
+	 */
+	public function groupOfQuantity( $group_of_quantity, $checking_id, $cart_item_key, $values ) {
+		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) {
 			$group_of_quantity = 1;
+		}
 		return $group_of_quantity;
 	}
-	
+
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      integer, integer, integer, array, array 
-	 */		
-	public function removeChainedProducts ($chained_parent_id, $quantity, $chained_variation_id, $chained_variation_data, $chained_cart_item_data, $cart_item_key)
-    {
+	 * @param      integer, integer, integer, array, array
+	 */
+	public function removeChainedProducts( $chained_parent_id, $quantity, $chained_variation_id, $chained_variation_data, $chained_cart_item_data, $cart_item_key ) {
 		global $woocommerce;
-		$cart = $woocommerce->cart->get_cart();
-		$main_is_sample = $cart[$cart_item_key]['sample'];
-		if ($main_is_sample) {
-			$main_product_id = $cart[$cart_item_key]['product_id'];
-			if ( !get_post_meta($main_product_id, 'sample_chained_enambled', true) ) {
-				foreach ($cart as $cart_key => $cart_item) {
-					if ($cart_item['product_id'] == $chained_parent_id) {
-						$woocommerce->cart->remove_cart_item($cart_key);
+		$cart           = $woocommerce->cart->get_cart();
+		$main_is_sample = $cart[ $cart_item_key ]['sample'];
+		if ( $main_is_sample ) {
+			$main_product_id = $cart[ $cart_item_key ]['product_id'];
+			if ( ! get_post_meta( $main_product_id, 'sample_chained_enambled', true ) ) {
+				foreach ( $cart as $cart_key => $cart_item ) {
+					if ( $cart_item['product_id'] == $chained_parent_id ) {
+						$woocommerce->cart->remove_cart_item( $cart_key );
 						break;
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Check WooCommerce min/max quantities validation message
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      array 
-	 */	
-	public function checkCartItems() 
-    {
-		if( ! is_admin() ) {
-			if ( class_exists('WC_Min_Max_Quantities') && WC()->cart->get_cart_contents_count() != 0 ) {			
+	 * @param      array
+	 */
+	public function checkCartItems() {
+		if ( ! is_admin() ) {
+			if ( class_exists( 'WC_Min_Max_Quantities' ) && WC()->cart->get_cart_contents_count() != 0 ) {
 				foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
-					if(isset($values['free_sample']) && $values['free_sample'] == $values['product_id']) {
+					if ( isset( $values['free_sample'] ) && $values['free_sample'] == $values['product_id'] ) {
 						wc_clear_notices();
 					}
 				}
@@ -702,19 +670,18 @@ class SamplyWooCommerce
 
 	/**
 	 * Check WooCommerce min/max quantities validation message
-	 * 
+	 *
 	 * @since      2.0.0
-	 * @param      array 
-	 */	
-	public function cartExclude( $exclude, $checking_id, $cart_item_key, $values ) 
-    {
-		if ( class_exists('WC_Min_Max_Quantities') ) {
+	 * @param      array
+	 */
+	public function cartExclude( $exclude, $checking_id, $cart_item_key, $values ) {
+		if ( class_exists( 'WC_Min_Max_Quantities' ) ) {
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
-				if(isset($values['free_sample']) && $values['free_sample'] == $values['product_id']) {
+				if ( isset( $values['free_sample'] ) && $values['free_sample'] == $values['product_id'] ) {
 					return 'yes';
 				}
 			}
 		}
-	}    
-    
+	}
+
 }

@@ -2,21 +2,18 @@
 
 namespace Samply;
 
-class Samplyi18n 
-{
+class Samplyi18n {
 
-    public function __construct()
-    {
-        add_action( 'plugins_loaded', [ $this, 'load_plugin_textdomain' ] );
-    }
+
+	public function __construct() {
+		 add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+	}
 	/**
 	 *
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() 
-	{
-
+	public function load_plugin_textdomain() {
 		load_plugin_textdomain(
 			'samply',
 			false,

@@ -5,28 +5,28 @@ namespace Samply;
 /**
  * The admin class
  */
-class Admin 
-{
+class Admin {
 
-    /**
-     * Initialize the class
-     */
-    function __construct() {
-        $main = new Admin\Main();
-        $licence = new Admin\Licence();
 
-        $this->dispatch_actions( $main, $licence);
+	/**
+	 * Initialize the class
+	 */
+	function __construct() {
+		$main    = new Admin\Main();
+		$licence = new Admin\Licence();
 
-        new Admin\Menu( $main, $licence );
-        new Admin\PluginMeta();
-    }
+		$this->dispatch_actions( $main, $licence );
 
-    /**
-     * Dispatch and bind actions
-     *
-     * @return void
-     */
-    public function dispatch_actions( $main, $licence ) {
+		new Admin\Menu( $main, $licence );
+		new Admin\PluginMeta();
+	}
 
-    }
+	/**
+	 * Dispatch and bind actions
+	 *
+	 * @return void
+	 */
+	public function dispatch_actions( $main, $licence ) {
+
+	}
 }
