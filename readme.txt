@@ -3,11 +3,11 @@ Contributors: samply
 Donate Link: http://ourtechbro.com
 Tags: free, product, sample, free-sample, free-product-sample, free-sample-product, woocommerce, dokan, e-commerce, ecommerce
 Requires at least: 4.4
-Tested up to: 5.7
+Tested up to: 6.0
 WC requires at least: 3.1
-WC tested up to: 5.1.0
+WC tested up to: 6.6.1
 Requires PHP: 5.6
-Stable tag: 3.0.1
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
