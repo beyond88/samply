@@ -21,7 +21,7 @@
                             if( empty( $active ) ) {
                                 $active = $i++ === 1 ? 'active ' : '';
                             }
-                            echo '<li class="'. $active .'" data-tab="'. $key .'"><a href="#'. $key .'">'. $setting['title'] .'</a></li>';
+                            echo '<li class="'. esc_attr($active) .'" data-tab="'. esc_attr($key) .'"><a href="#'. esc_attr($key) .'">'. esc_attr($setting['title']) .'</a></li>';
                         }
                     ?>
                 </ul>
@@ -40,8 +40,8 @@
                             }
                             $child_sections = $section['sections'];
                         ?>
-                        <div id="samply-<?php echo $sec_id; ?>" class="samply-settings-tab samply-settings-samply_instant_answer <?php echo $active; ?>">
-                            <div id="samply-settings-general_settings" class="samply-settings-section samply-<?php echo $sec_id; ?>">
+                        <div id="samply-<?php echo esc_attr($sec_id); ?>" class="samply-settings-tab samply-settings-samply_instant_answer <?php echo esc_attr($active); ?>">
+                            <div id="samply-settings-general_settings" class="samply-settings-section samply-<?php echo esc_attr($sec_id); ?>">
                             <?php
                             foreach( $child_sections as $sec_id => $grand_child_section ) :
                                 $fields = $grand_child_section['fields'];
@@ -51,10 +51,10 @@
                                         <?php foreach( $fields as  $key => $value ) : ?>
                                         <?php $file_name = isset( $value['type'] ) ? $value['type'] : 'text'; ?> 
                                         <?php $style = isset( $value['style'] ) ? $value['style'] : ''; ?>    
-                                        <tr data-id="<?php echo $value['name']; ?>" id="samply-meta-<?php echo $value['name']; ?>" class="samply-field samply-meta-<?php echo $file_name; ?> type-<?php echo $file_name; ?> <?php echo $style; ?>">
+                                        <tr data-id="<?php echo esc_attr($value['name']); ?>" id="samply-meta-<?php echo esc_attr($value['name']); ?>" class="samply-field samply-meta-<?php echo esc_attr($file_name); ?> type-<?php echo esc_attr($file_name); ?> <?php echo esc_attr($style); ?>">
                                             <th class="samply-label">
-                                                <label for="<?php echo $value['name']; ?>">
-                                                    <?php echo $value['label']; ?>
+                                                <label for="<?php echo esc_attr($value['name']); ?>">
+                                                    <?php echo esc_attr($value['label']); ?>
                                                 </label>
                                             </th>
                                             <td class="samply-control">
@@ -65,7 +65,7 @@
                                                         }                                                    
                                                     ?>
                                                     <?php if( isset( $value['description'] )  && ! empty( $value['description'] ) ) { ?>
-                                                    <p class="samply-field-help"><?php echo $value['description']; ?></p>            
+                                                    <p class="samply-field-help"><?php echo esc_attr($value['description']); ?></p>            
                                                     <?php } ?>
                                                 </div>
                                             </td>
