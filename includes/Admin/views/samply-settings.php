@@ -40,7 +40,7 @@
                             }
                             $child_sections = $section['sections'];
                         ?>
-                        <div id="samply-<?php echo esc_attr($sec_id); ?>" class="samply-settings-tab samply-settings-samply_instant_answer <?php echo esc_attr($active); ?>">
+                        <div id="samply-<?php echo esc_attr($sec_id); ?>" class="samply-settings-tab <?php echo esc_attr($active); ?>">
                             <div id="samply-settings-general_settings" class="samply-settings-section samply-<?php echo esc_attr($sec_id); ?>">
                             <?php
                             foreach( $child_sections as $sec_id => $grand_child_section ) :
@@ -65,7 +65,7 @@
                                                         }                                                    
                                                     ?>
                                                     <?php if( isset( $value['description'] )  && ! empty( $value['description'] ) ) { ?>
-                                                    <p class="samply-field-help"><?php echo esc_attr($value['description']); ?></p>            
+                                                    <p class="samply-field-help"><?php echo $value['description']; ?></p>            
                                                     <?php } ?>
                                                 </div>
                                             </td>
