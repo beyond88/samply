@@ -3,7 +3,7 @@
  * Plugin Name: Samply - WooCommerce Product Sample Solution
  * Description: An ultimate plugin to replicate an actual product with custom prices to order as a sample product.
  * Plugin URI: https://github.com/beyond88/samply
- * Author: OurTechBro
+ * Author: Mohiuddin Abdul Kader
  * Author URI: https://github.com/beyond88
  * Version: 1.0.9
  * License: GPL2 or later
