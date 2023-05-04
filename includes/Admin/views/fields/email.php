@@ -1,0 +1,2 @@
+
+<input class="<?php echo esc_attr( $value['class'] ); ?>" <?php if( isset($value['is_pro']) && $value['is_pro'] == true && ! Samply\Helper::isPro()) { ?>disabled<?php } ?> id="<?php echo esc_attr($value['name']); ?>" type="email" name="<?php echo esc_attr($this->_optionName."[".$value['name']."]"); ?>" value="<?php echo isset( $setting_options[$value['name']] ) ? esc_attr($setting_options[$value['name']]) : ''; ?>" placeholder="<?php echo esc_html($value['placeholder']); ?>">

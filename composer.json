@@ -1,0 +1,23 @@
+{
+    "name": "ourtechbro/samply",
+    "description": "A plugin for WooCommerce Product Sample",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "beyond88",
+            "email": "wpsamply@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "larapack/dd": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Samply\\": "includes/"
+        },
+        "files": [ "includes/functions.php" ]
+    }
+}
