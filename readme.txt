@@ -1,6 +1,6 @@
 === Samply - WooCommerce Product Sample Solution ===
-Contributors: samply
-Donate Link: http://ourtechbro.com
+Contributors: hossain88
+Donate Link: https://github.com/beyond88
 Tags: woocommerce, product, sample, product sample, free sample, free sample product, dokan, e-commerce, ecommerce
 Requires at least: 4.4
 Tested up to: 6.1
@@ -17,7 +17,7 @@ An ultimate plugin to replicate an actual product with custom prices to order as
 
 = SAMPLY =
 
-👉 Official Demo Link: [Official Demo](https://samply.ourtechbro.com)
+👉 Official Demo Link: [Official Demo](https://github.com/beyond88/samply)
 
 = POWERED BY WooCommerce =
 
@@ -56,8 +56,8 @@ This plugin is brought to you by the team behind [Samply](), a dedicated platfor
 
 ## 👨‍💻 DOCUMENTATION AND SUPPORT ##
 
-- 👨‍💻 [Contact Our Support](https://ourtechbro.com/support)
-- 📜 [Check Documentation](https://ourtechbro.com/docs)
+- 👨‍💻 [Contact Our Support](https://github.com/beyond88/samply/issues)
+- 📜 [Check Documentation](https://github.com/beyond88/samply/wiki)
 
 == Screenshots ==
 
