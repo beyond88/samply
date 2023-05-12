@@ -3,7 +3,7 @@ Contributors: hossain88
 Donate Link: https://github.com/beyond88
 Tags: woocommerce, product, sample, product sample, free sample, free sample product, dokan, e-commerce, ecommerce
 Requires at least: 4.4
-Tested up to: 6.1
+Tested up to: 6.2
 WC requires at least: 3.1
 WC tested up to: 7.0.0
 Requires PHP: 5.6
@@ -109,8 +109,6 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
-
-=======
 = 1.0.9 =
 * Integrate sample price for all products
 

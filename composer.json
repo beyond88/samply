@@ -1,23 +1,25 @@
 {
-    "name": "ourtechbro/samply",
-    "description": "A plugin for WooCommerce Product Sample",
-    "type": "wordpress-plugin",
-    "license": "GPLv2",
-    "authors": [
-        {
-            "name": "beyond88",
-            "email": "wpsamply@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {},
-    "require-dev": {
-        "larapack/dd": "1.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Samply\\": "includes/"
-        },
-        "files": [ "includes/functions.php" ]
+  "name": "ourtechbro/samply",
+  "description": "An ultimate plugin to replicate an actual product with custom prices to order as a sample product.",
+  "type": "wordpress-plugin",
+  "license": "GPLv2",
+  "authors": [
+    {
+      "name": "beyond88",
+      "email": "muhin.cse.diu@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "require-dev": {
+    "larapack/dd": "1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Samply\\": "includes/"
+    },
+    "files": [
+      "includes/functions.php"
+    ]
+  }
 }
