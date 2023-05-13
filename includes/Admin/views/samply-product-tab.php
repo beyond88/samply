@@ -6,8 +6,8 @@
         $samply_qty = 0;
     }
 
-    $samply_price   = !empty(get_post_meta( $post->ID, 'samply_price', true ))?get_post_meta( $post->ID, 'samply_price', true ):0; 
-    $_product   = wc_get_product($post->ID);
+    $samply_price   = ! empty( get_post_meta( $post->ID, 'samply_price', true ) ) ? get_post_meta( $post->ID, 'samply_price', true ):0; 
+    $_product   = wc_get_product( $post->ID );
 
 
 ?>

@@ -260,11 +260,12 @@ class SamplySettings
      * @return   void
 	 */	
 	public static function samply_render_tabs() {
-		echo "<li class=\"samply_wc_product_tabs_tab\"><a href=\"#samply-tab\"><span>" . __( 'Product Sample', 'samply' ) . "</span></a></li>";
+        $tabs = "<li class=\"samply_wc_product_tabs_tab\"><a href=\"#samply-tab\"><span>" . __( 'Product Sample', 'samply' ) . "</span></a></li>";
+        echo apply_filters( 'samply_render_tabs_list', $tabs );
 	}
 	
 	/**
-	 * Load Product Sample
+	 * Load product sample tab
 	 *
 	 * @since    1.0.0
 	 * @param    noneclear
@@ -272,7 +273,8 @@ class SamplySettings
 	 */	
 	public static function samply_tabs_panel() {
 		global $woocommerce, $post;
-		return include_once  __DIR__  . '/views/samply-product-tab.php';
+        $paths = __DIR__  . '/views/samply-product-tab.php';
+		return include_once apply_filters( 'samply_product_tab', $paths );
 	}
 	
 	/**
