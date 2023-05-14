@@ -39,8 +39,7 @@ class Helper
 	 * @since    1.0.0
 	 * @param    none
 	 */	
-	public static function samply_settings() 
-	{
+	public static function samply_settings() {
 		return wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );
 	}	
 	
@@ -50,8 +49,7 @@ class Helper
 	 * @since    1.0.0
 	 * @param    none
 	 */	
-	public static function product_is_in_stock( $prodId = NULL ) 
-	{
+	public static function product_is_in_stock( $prodId = NULL ) {
 		if( $prodId ){
 			$product = wc_get_product($prodId);
 		} else {
@@ -67,8 +65,7 @@ class Helper
 	 * @param    none$product_id
 	 *@since    1.0.0
      */
-	public static function check_is_in_cart( $product_id ) 
-	{
+	public static function check_is_in_cart( $product_id ) {
         // Make sure it's only on front end
         if (is_admin()) return false;
 
@@ -111,8 +108,7 @@ class Helper
 	 * @since    1.0.0
 	 * @param    none
 	 */	
-	public static function cart_total( )
-	{
+	public static function cart_total( ) {
 		global $woocommerce;
 		$total = 0;
 		foreach( $woocommerce->cart->get_cart() as $key => $val ) {
@@ -129,8 +125,7 @@ class Helper
 	 * @since    1.0.0
 	 * @param    none
 	 */	
-	public static function product_type() 
-	{
+	public static function product_type() {
 		global $product;
 		if( $product->is_type( 'simple' ) ) {
 			return 'simple';
@@ -147,8 +142,7 @@ class Helper
      * @return string
      * @since    1.0.0
      */
-    public static function request_button() : string
-    {
+    public static function request_button() : string {
         $button = match (self::product_type()) {
             "simple" => '<button type="submit" name="simple-add-to-cart" value="' . get_the_ID() . '" id="samply-button" class="samply-button">' . sprintf(esc_html__('%s', 'samply'), self::button_text()) . '</button>',
             "variable" => '<button type="submit" name="variable-add-to-cart" value="' . get_the_ID() . '" id="samply-button" class="samply-button">' . sprintf(esc_html__('%s', 'samply'), self::button_text()) . '</button>',
@@ -163,8 +157,7 @@ class Helper
      * @return string
      * @since    1.0.0
      */
-	public static function button_text() : string
-    {
+	public static function button_text() : string {
 		$setting_options   = self::samply_settings();
 		return isset( $setting_options['button_label'] ) ? esc_html__( $setting_options['button_label'], 'samply' ) : esc_html__( 'Order a Free Sample', 'samply' );
 	}
@@ -174,8 +167,7 @@ class Helper
      * @return mixed|null
      * @since    1.0.0
      */
-	public static function sample_price( $product_id ): mixed
-    {
+	public static function sample_price( $product_id ): mixed {
 		return apply_filters( 'samply_price', 0.00, $product_id );
 	}
 
@@ -186,8 +178,7 @@ class Helper
 	 * @param    none
      * @return   void
 	 */		
-	public static function sample_qty() 
-	{ 
+	public static function sample_qty() { 
 
 		if ( class_exists( 'SPQ_Smart_Product_Quantity' ) ) {
 			return empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ); 
@@ -203,8 +194,7 @@ class Helper
 	 * @param    none
      * @return   array
 	 */	
-	public static function products() 
-	{
+	public static function products() {
 		
 		global $wpdb;
 		$table 	= $wpdb->prefix . 'posts'; 
@@ -222,8 +212,7 @@ class Helper
 	 * @param    none
      * @return   array
 	 */	
-	public static function categories() 
-	{
+	public static function categories() {
 
 		$orderby 	= 'name';
 		$order 		= 'asc';
@@ -245,56 +234,6 @@ class Helper
 		return $data;
 
     }
-    
-    /**
-	 * Get all shipping classes
-	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
-	 */	
-	public static function shipping_class() 
-	{
-
-		$data 		= array();
-		$data[-1] 	= __( 'No Shipping Class', 'samply' );
-		$shipping_classes = get_terms( array( 'taxonomy' => 'product_shipping_class', 'hide_empty' => false ) );
-		foreach( $shipping_classes as $sc ) {
-			$data[$sc->term_id]  = $sc->name;
-		}
-		return $data; 
-
-	}
-
-	/**
-	 * Get all tax classes
-	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
-	 */	
-	public static function tax_class() 
-	{
-
-		$data 		= array();
-		$options = array(
-			'' => __( 'Standard', 'woocommerce' ),
-		);
-
-		$tax_classes = \WC_Tax::get_tax_classes();
-
-		if ( ! empty( $tax_classes ) ) {
-			foreach ( $tax_classes as $class ) {
-				$options[ sanitize_title( $class ) ] = esc_html( $class );
-			}
-		}
-
-		foreach ( $options as $key => $value ) {
-			$data[$key] = $value;
-		}
-		return $data; 
-
-	}
 
 	/**
 	 * Check dokan seller
@@ -303,8 +242,7 @@ class Helper
 	 * @param    integer
      * @return   boolean
 	 */		
-	public static function dokan_is_user_seller( $user_id ) 
-	{
+	public static function dokan_is_user_seller( $user_id ) {
 		if ( ! user_can( $user_id, 'dokandar' ) ) {
 			return false;
 		}

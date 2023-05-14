@@ -13,8 +13,7 @@ class SamplySettings
 	 */
     public function __construct() {}
 
-    public static function init()
-    {
+    public static function init() {
 
         add_action( 'woocommerce_product_write_panel_tabs', [ __CLASS__, 'samply_render_tabs' ] );
 		add_action( 'woocommerce_product_data_panels', [ __CLASS__, 'samply_tabs_panel' ] );
@@ -35,8 +34,7 @@ class SamplySettings
      * @hooked samply_settings_header
      * @return void
      */
-    public static function header_template()
-    {
+    public static function header_template() {
         ?>
             <div class="samply-settings-header">
                 <div class="samply-header-full">
@@ -53,8 +51,7 @@ class SamplySettings
      * @hooked samply_settings_header
      * @return void
      */
-    public static function footer_template()
-    {
+    public static function footer_template() {
         ?>
             <div class="samply-settings-documentation">
                 <div class="samply-settings-row">
@@ -147,8 +144,7 @@ class SamplySettings
 	 * @param    none
      * @return   array 
 	 */
-    public static function setting_fields() 
-    {
+    public static function setting_fields() {
 
         $setting_fields = array(  
                 'tabs' => apply_filters( 'samply_builder_tabs', array(
