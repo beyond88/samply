@@ -187,54 +187,6 @@ class Helper {
 	}
 
 	/**
-	 * Retrieve all products in the store
-	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   array
-	 */	
-	public static function products() {
-		
-		global $wpdb;
-		$table 	= $wpdb->prefix . 'posts'; 
-		$sql 	= $wpdb->prepare("SELECT ID, `post_title` FROM $table WHERE `post_type` = %s AND `post_status`= 'publish' ORDER BY post_title", 'product');
-		$data 	= [];
-		$data 	= $wpdb->get_results($sql, ARRAY_A);
-		return $data;
-
-	}
-
-	/**
-	 * Retrieve all categories of the products
-	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   array
-	 */	
-	public static function categories() {
-
-		$orderby 	= 'name';
-		$order 		= 'asc';
-		$hide_empty = false ;
-		$cat_args 	= array(
-			'orderby'    => $orderby,
-			'order'      => $order,
-			'hide_empty' => $hide_empty,
-		);
-
-		$data 		= array();
-		$categories = get_terms( 'product_cat', $cat_args );
-		$inc 		= 0;
-		foreach( $categories as $cat ) {
-			$data[$inc]['ID']  		   = $cat->term_id;
-			$data[$inc]['post_title']  = $cat->name;
-			$inc++;
-		}
-		return $data;
-
-    }
-
-	/**
 	 * Check dokan seller
 	 *
 	 * @since    1.0.0
