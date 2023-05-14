@@ -2,8 +2,7 @@
 
 namespace Samply;
 
-class Helper 
-{
+class Helper {
 
     /**
 	 * The option of this plugin.

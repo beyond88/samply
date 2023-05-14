@@ -22,8 +22,7 @@ class Menu {
     /**
      * Initialize the class
      */
-    function __construct( $main, $licence ) 
-    {
+    function __construct( $main, $licence ) {
         $this->main = $main;
         $this->licence = $licence;
 
@@ -35,8 +34,7 @@ class Menu {
      *
      * @return void
      */
-    public function admin_menu() 
-    {
+    public function admin_menu() {
         $parent_slug = 'samply';
         $capability = 'manage_options';
         $icon_url = SAMPLY_ASSETS . '/img/samply-icon.svg';
@@ -50,8 +48,7 @@ class Menu {
      *
      * @return void
      */
-    public function enqueue_assets() 
-    {
+    public function enqueue_assets() {
         wp_enqueue_style( 'samply-admin-boostrap' );
         wp_enqueue_style( 'samply-admin-style' );
         wp_enqueue_script( 'samply-admin-script' );

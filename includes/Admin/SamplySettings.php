@@ -2,8 +2,7 @@
 
 namespace Samply\Admin;
 
-class SamplySettings 
-{
+class SamplySettings {
 
     /**
 	 * Initialize the class and set its settings options.

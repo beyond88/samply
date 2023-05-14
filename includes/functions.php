@@ -6,8 +6,7 @@
  * @since    1.0.0
  * @return void
  */
-if( class_exists( 'BeRocket_MM_Quantity' ) ) 
-{
+if( class_exists( 'BeRocket_MM_Quantity' ) ) {
     add_action( 'woocommerce_after_calculate_totals', 'samply_new_calculate_total', 10, 1 );
     if( ! function_exists( 'samply_new_calculate_total' ) ) {
         function samply_new_calculate_total()
@@ -89,8 +88,7 @@ if( ! function_exists( 'samply_get_started' ) ) {
  * @param    string
  * @return   void
  */		
-function get_samply_refreshed_fragments() 
-{
+function get_samply_refreshed_fragments() {
     ob_start();
 
     woocommerce_mini_cart();
@@ -116,8 +114,7 @@ function get_samply_refreshed_fragments()
  * @param    none
  * @return   array | json
  */	
-function samply_ajax_add_to_cart() 
-{
+function samply_ajax_add_to_cart() {
     ob_start();
 
     $data = $_POST['data'];

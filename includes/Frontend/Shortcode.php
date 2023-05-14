@@ -12,8 +12,7 @@ class Shortcode {
     /**
      * Initializes the class
      */
-    function __construct() 
-    {
+    function __construct() {
         new AddToCart();
     }
 }

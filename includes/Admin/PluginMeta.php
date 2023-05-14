@@ -7,8 +7,7 @@ namespace Samply\Admin;
 *
 * @since    1.0.0
 */
-class PluginMeta 
-{
+class PluginMeta {
 
     public function __construct() {
         add_filter( 'plugin_action_links_' . SAMPLY_BASENAME, [ $this, 'plugin_action_links' ] );

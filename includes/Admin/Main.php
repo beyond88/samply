@@ -18,8 +18,7 @@ class Main
 		'max_qty_per_order'		=> 5
 	];
 
-	public function __construct()
-	{
+	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, 'set_default_options' ] );
 		add_action( 'admin_init', [ $this, 'menu_register_settings' ] );
 
@@ -31,8 +30,7 @@ class Main
      *
      * @return void
      */
-    public function plugin_page() 
-	{
+    public function plugin_page() {
         $settings = SamplySettings::setting_fields();
         $template = __DIR__ . '/views/samply-settings.php';
 
@@ -47,8 +45,7 @@ class Main
 	 * @since    1.0.0
 	 * @param    array
 	 */
-	public function menu_register_settings() 
-    {
+	public function menu_register_settings() {
 		add_option( $this->_optionName, $this->_defaultOptions );	
 		register_setting( $this->_optionGroup, $this->_optionName );
 	}
@@ -59,8 +56,7 @@ class Main
 	 * @since    1.0.0
 	 * @param    none
 	 */
-	public function set_default_options() 
-    {
+	public function set_default_options() {
 		return apply_filters( 'samply_default_options', $this->_defaultOptions );
 	}
 }

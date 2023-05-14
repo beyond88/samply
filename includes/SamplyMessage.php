@@ -25,8 +25,7 @@ class SamplyMessage
 	 * @param    integer
      * @return   string 
 	 */    
-    public static function validation_notice( $product_id )
-    {
+    public static function validation_notice( $product_id ) {
 
         $final_msg         = '';
 		$setting_options   = wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );

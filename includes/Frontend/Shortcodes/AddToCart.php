@@ -23,8 +23,7 @@ class AddToCart
     * @param    none
     * @return   void
     */
-    public function __construct()
-    {
+    public function __construct() {
         add_shortcode( 'samply_add_to_cart_ajax', [ $this, 'samply_add_to_cart_ajax_shortcode' ]);
     }
 
@@ -35,8 +34,7 @@ class AddToCart
     * @param    array
     * @return   string
     */
-    public function samply_add_to_cart_ajax_shortcode( $atts ) 
-    {
+    public function samply_add_to_cart_ajax_shortcode( $atts ) {
         $this->atts = shortcode_atts( [
             'product_id' => null,
         ], $atts );
@@ -51,8 +49,7 @@ class AddToCart
     * @param    none
     * @return   string
     */
-    public function output() 
-    {
+    public function output() {
         ob_start();
 
         if ( Helper::product_is_in_stock( $this->atts['product_id'] ) && Helper::check_is_in_cart( $this->atts['product_id'] ) ) {

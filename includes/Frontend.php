@@ -19,8 +19,7 @@ class Frontend
     * @param    none
     * @return   object
     */
-    function __construct() 
-    {
+    function __construct() {
         new Frontend\Shortcode();
         new Frontend\SamplyWooCommerce();
     }

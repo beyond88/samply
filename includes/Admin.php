@@ -5,14 +5,12 @@ namespace Samply;
 /**
  * The admin class
  */
-class Admin 
-{
+class Admin {
 
     /**
      * Initialize the class
      */
-    function __construct() 
-    {
+    function __construct() {
         $main = new Admin\Main();
         $licence = new Admin\Licence();
 
@@ -27,8 +25,7 @@ class Admin
      *
      * @return void
      */
-    public function dispatch_actions( $main, $licence ) 
-    {
+    public function dispatch_actions( $main, $licence ) {
 
     }
 }

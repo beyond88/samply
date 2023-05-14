@@ -41,8 +41,7 @@ final class Samply {
     /**
      * Class constructor
      */
-    private function __construct() 
-    {
+    private function __construct() {
         $this->define_constants();
 
         register_activation_hook( __FILE__, [ $this, 'activate' ] );
@@ -56,8 +55,7 @@ final class Samply {
      *
      * @return \Samply
      */
-    public static function init() 
-    {
+    public static function init() {
         static $instance = false;
 
         if ( ! $instance ) {
@@ -72,8 +70,7 @@ final class Samply {
      *
      * @return void
      */
-    public function define_constants() 
-    {
+    public function define_constants() {
         define( 'SAMPLY_VERSION', self::version );
         define( 'SAMPLY_FILE', __FILE__ );
         define( 'SAMPLY_PATH', __DIR__ );
@@ -93,8 +90,7 @@ final class Samply {
      *
      * @return void
      */
-    public function init_plugin() 
-    {
+    public function init_plugin() {
 
         new Samply\Assets();
         new Samply\Samplyi18n();
@@ -116,8 +112,7 @@ final class Samply {
      *
      * @return void
      */
-    public function activate() 
-    {
+    public function activate() {
         $installer = new Samply\Installer();
         $installer->run();
     }
