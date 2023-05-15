@@ -1,5 +1,5 @@
 
-<select class="<?php echo esc_attr( $value['class'] ); ?>" id="<?php echo esc_attr($value['name']); ?>" name="<?php echo esc_html($this->_optionName."[".$value['name']."]"); ?>[]" <?php if( isset($value['is_pro']) && $value['is_pro'] == true && ! Samply\Helper::isPro()) { ?>disabled<?php } ?> multiple="multiple">
+<select class="<?php echo esc_attr( $value['class'] ); ?>" id="<?php echo esc_attr($value['name']); ?>" name="<?php echo esc_html($this->_optionName."[".$value['name']."]"); ?>[]" multiple="multiple">
     <option value=""><?php esc_html_e( 'All', 'samply' ); ?></option>
     <?php 
 
