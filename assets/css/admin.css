@@ -16,14 +16,14 @@
 .samply-settings-wrap select {
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   height: auto;
   margin: 0;
   outline: 0;
   padding: 15px;
   width: 100%;
-  background-color: #e8eeef;
-  color: #8a97a0;
+  background-color: #f2f2f2;
+  color: #2c3338;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
   margin-bottom: 30px;
 }
@@ -35,7 +35,7 @@
 
 .samply-settings-wrap select {
   padding: 6px;
-  height: 32px;
+  height: auto;
   border-radius: 2px;
 }
 
@@ -970,7 +970,7 @@ select.samply-settings-field {
   height: auto;
   width: 82%;
   max-width: 300px;
-  padding: 7px;
+  padding: 15px;
   background-color: #f2f2f2;
   box-shadow: none;
   border: 1px solid rgba(0, 0, 0, 0.05);
