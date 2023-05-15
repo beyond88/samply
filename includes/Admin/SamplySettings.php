@@ -63,7 +63,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Get started by spending some time with the documentation to get familiar with Samply. Build an awesome Knowledge Base for your customers with ease.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://ourtechbro.com/docs/" class="samply-button" target="_blank"><?php echo __('Documentation', 'samply'); ?></a>
+                            <a rel="nofollow" href="https://github.com/beyond88/samply/wiki" class="samply-button" target="_blank"><?php echo __('Documentation', 'samply'); ?></a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-contribute">
@@ -104,7 +104,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Join the Facebook community and discuss with fellow developers and users. Best way to connect with people and get feedback on your projects.', 'samply'); ?></p>
-                            <a rel="nofollow" href="#" class="samply-button" target="_blank"><?php echo __('Join Now', 'samply'); ?> </a>
+                            <a rel="nofollow" href="https://github.com/beyond88/samply/issues" class="samply-button" target="_blank"><?php echo __('Join Now', 'samply'); ?> </a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-need-help">
@@ -116,7 +116,7 @@ class SamplySettings {
                         </header>
                         <div class="samply-admin-block-content">
                             <p><?php echo __('Stuck with something? Get help from live chat or support ticket.', 'samply'); ?></p>
-                            <a rel="nofollow" href="https://ourtechbro.com/support" class="samply-button" target="_blank"><?php echo __('Initiate a Chat', 'samply'); ?></a>
+                            <a rel="nofollow" href="https://github.com/beyond88/samply/issues" class="samply-button" target="_blank"><?php echo __('Initiate a Chat', 'samply'); ?></a>
                         </div>
                     </div>
                     <div class="samply-admin-block samply-admin-block-community">
