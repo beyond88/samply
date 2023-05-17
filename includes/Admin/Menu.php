@@ -1,17 +1,12 @@
 <?php
 
 namespace Samply\Admin;
+use Samply\Helper; 
 
 /**
  * The Menu handler class
  */
 class Menu {
-
-    /**
-    * Plugin lisence
-    *
-    */
-    public $licence;
 
     /**
     * Plugin main file
@@ -22,10 +17,8 @@ class Menu {
     /**
      * Initialize the class
      */
-    function __construct( $main, $licence ) {
+    function __construct( $main ) {
         $this->main = $main;
-        $this->licence = $licence;
-
         add_action( 'admin_menu', [ $this, 'admin_menu' ] );
     }
 
@@ -39,8 +32,17 @@ class Menu {
         $capability = 'manage_options';
         $icon_url = SAMPLY_ASSETS . '/img/samply-icon.svg';
 
+        $settings   = apply_filters( 'samply_admin_menu', [] );        
+
         $hook = add_menu_page( __( 'Samply Settings', 'samply' ), __( 'Samply', 'samply' ), $capability, $parent_slug, [ $this->main, 'plugin_page' ], $icon_url, 50 );
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
+
+        foreach( $settings as $slug => $setting ) {
+            $cap  = isset( $setting['capability'] ) ? $setting['capability'] : 'delete_users';
+            if( Helper::is_pro() ) {
+                add_submenu_page( $setting['parent_slug'], $setting['page_title'], $setting['menu_title'], $cap, $slug, $setting['callback'] );
+            }
+        }
     }
 
     /**
@@ -54,5 +56,8 @@ class Menu {
         wp_enqueue_script( 'samply-admin-script' );
     }
 
+    public function license_page() {
+        return "";
+    }
 
 }

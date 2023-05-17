@@ -12,11 +12,9 @@ class Admin {
      */
     function __construct() {
         $main = new Admin\Main();
-        $licence = new Admin\Licence();
+        $this->dispatch_actions( $main );
 
-        $this->dispatch_actions( $main, $licence );
-
-        new Admin\Menu( $main, $licence );
+        new Admin\Menu( $main );
         new Admin\PluginMeta();
     }
 
@@ -25,7 +23,7 @@ class Admin {
      *
      * @return void
      */
-    public function dispatch_actions( $main, $licence ) {
+    public function dispatch_actions( $main ) {
 
     }
 }

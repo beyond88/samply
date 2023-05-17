@@ -201,4 +201,15 @@ class Helper {
 		return true;
 	}
 
+	/**
+	 * Check PRO is exists
+	 *
+	 * @since    1.0.0
+	 * @param    none
+     * @return   boolean
+	 */		
+	public static function is_pro() {
+		return class_exists('SamplyPro');
+	}
+
 }

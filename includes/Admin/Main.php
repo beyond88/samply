@@ -10,9 +10,7 @@ class Main
 {
 
     public $_optionName  = 'samply_settings';
-
     public $_optionGroup = 'samply_options_group';
-
     public $_defaultOptions = [
 		'button_label'      	=> 'Order a Sample',
 		'max_qty_per_order'		=> 5
