@@ -864,7 +864,7 @@ class SamplyWooCommerce {
      * @return   template
 	 */	
 	public function load_dokan_template( $post, $post_id ) {
-		if( ! class_exists('WeDevs_Dokan') ){
+		if( ! class_exists('WeDevs_Dokan') || Helper::is_pro() ) {
 			return;
 		}
 		return include_once self::get_plugin_path() . '/views/dokan-template.php';
