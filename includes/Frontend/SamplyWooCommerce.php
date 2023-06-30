@@ -1,67 +1,77 @@
 <?php
-
 namespace Samply\Frontend;
 use Samply\Helper;
 use Samply\SamplyMessage as Message; 
-
+/**
+ * Load storefront functionality
+ */
 class SamplyWooCommerce {
 
+	/**
+	 * Initial all methods
+	 * 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	void
+	 */
     public function __construct() {
 
-        add_action( 'woocommerce_init', [ $this, 'init' ] );
-		// add_filter( 'plugins_loaded', [ $this, 'sample_price' ] );	
-		add_action( 'woocommerce_after_add_to_cart_button', [ $this, 'sample_button' ], 5 );
-        add_action( 'woocommerce_after_shop_loop_item', [ $this, 'samply_button_on_shop_page' ], 5 );
-		add_action( 'wp_loaded', [ $this, 'add_to_cart_action' ], 10 );	
-		add_filter( 'woocommerce_before_calculate_totals', [ $this, 'apply_sample_price_to_cart_item' ], 10 );			
-		add_filter( 'woocommerce_add_cart_item_data', [ $this, 'store_id' ], 10, 2 );
-		add_filter( 'wc_add_to_cart_message_html', [ $this, 'add_to_cart_message' ], 99, 4 );
-		add_filter( 'woocommerce_add_to_cart_validation', [ $this, 'set_limit_per_order' ], 99, 4 );
-		add_filter( 'woocommerce_get_cart_item_from_session', [ $this, 'get_cart_items_from_session' ], 10, 2 );
-		add_action( 'woocommerce_add_order_item_meta', [ $this, 'save_posted_data_into_order' ], 10, 3 );
-		add_filter( 'woocommerce_locate_template', [ $this, 'set_locate_template' ], 10, 3 );	
-		add_filter( 'woocommerce_cart_item_name', [ $this, 'alter_item_name' ], 10, 3 );	
-		add_filter( 'woocommerce_cart_item_price', [ $this, 'cart_item_price_filter' ], 10, 3 );
-		add_filter( 'woocommerce_update_cart_validation', [ $this, 'cart_update_limit_order' ], PHP_INT_MAX, 4 );		
-		add_filter( 'woocommerce_cart_item_subtotal',  [ $this, 'item_subtotal' ], 99, 3 );
+        add_action( 'woocommerce_init', array( $this, 'init' ) );
+		// add_filter( 'plugins_loaded', array( $this, 'sample_price' ) );	
+		add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'sample_button' ), 5 );
+        add_action( 'woocommerce_after_shop_loop_item', array( $this, 'samply_button_on_shop_page' ), 5 );
+		add_action( 'wp_loaded', array( $this, 'add_to_cart_action' ), 10 );	
+		add_filter( 'woocommerce_before_calculate_totals', array( $this, 'apply_sample_price_to_cart_item' ), 10 );			
+		add_filter( 'woocommerce_add_cart_item_data', array( $this, 'store_id' ), 10, 2 );
+		add_filter( 'wc_add_to_cart_message_html', array( $this, 'add_to_cart_message' ), 99, 4 );
+		add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'set_limit_per_order' ), 99, 4 );
+		add_filter( 'woocommerce_get_cart_item_from_session', array( $this, 'get_cart_items_from_session' ), 10, 2 );
+		add_action( 'woocommerce_add_order_item_meta', array( $this, 'save_posted_data_into_order' ), 10, 3 );
+		add_filter( 'woocommerce_locate_template', array( $this, 'set_locate_template' ), 10, 3 );	
+		add_filter( 'woocommerce_cart_item_name', array( $this, 'alter_item_name' ), 10, 3 );	
+		add_filter( 'woocommerce_cart_item_price', array( $this, 'cart_item_price_filter' ), 10, 3 );
+		add_filter( 'woocommerce_update_cart_validation', array( $this, 'cart_update_limit_order' ), PHP_INT_MAX, 4 );		
+		add_filter( 'woocommerce_cart_item_subtotal',  array( $this, 'item_subtotal' ), 99, 3 );
 		
 		// filter for Minimum/Maximum plugin override overriding
-		add_action( 'woocommerce_before_template_part', [ $this, 'check_cart_items' ] );
-		add_action( 'woocommerce_check_cart_items', [ $this, 'check_cart_items' ] );
-		add_filter( 'wc_min_max_quantity_minmax_do_not_count', [ $this, 'cart_exclude' ], 10, 4 );
-		add_filter( 'wc_min_max_quantity_minmax_cart_exclude', [ $this, 'cart_exclude' ], 10, 4 );
+		add_action( 'woocommerce_before_template_part', array( $this, 'check_cart_items' ) );
+		add_action( 'woocommerce_check_cart_items', array( $this, 'check_cart_items' ) );
+		add_filter( 'wc_min_max_quantity_minmax_do_not_count', array( $this, 'cart_exclude' ), 10, 4 );
+		add_filter( 'wc_min_max_quantity_minmax_cart_exclude', array( $this, 'cart_exclude' ), 10, 4 );
 
-		add_action( 'woocommerce_checkout_order_processed', [ $this, 'sample_update_stock'], PHP_INT_MAX, 1 );
-		add_action( 'template_redirect', [ $this, 'handle_dokan_product_update' ], 11 );	
-		add_action( 'dokan_product_edit_after_inventory_variants', [ $this, 'load_dokan_template' ], 85, 2 );
-		add_filter( 'samply_price', [ $this, 'samply_price' ], PHP_INT_MAX, 2 );
+		add_action( 'woocommerce_checkout_order_processed', array( $this, 'sample_update_stock'), PHP_INT_MAX, 1 );
+		add_action( 'template_redirect', array( $this, 'handle_dokan_product_update' ), 11 );	
+		add_action( 'dokan_product_edit_after_inventory_variants', array( $this, 'load_dokan_template' ), 85, 2 );
+		add_filter( 'samply_price', array( $this, 'samply_price' ), PHP_INT_MAX, 2 );
 
     }
 
 	/**
 	 *
-	 * @since    1.0.0
-	 * @param 	 none
-	 * @return 	 void
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	void
 	 */
 	public function init() {
 		
 		// filter for Measurement Price Calculator plugin override overriding
-		if (in_array('woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_filter('wc_measurement_price_calculator_add_to_cart_validation', [ $this, 'measurement_price_calculator_add_to_cart_validation' ], 10, 4 );
+		if ( in_array( 'woocommerce-measurement-price-calculator/woocommerce-measurement-price-calculator.php', apply_filters( 'active_plugins', get_option('active_plugins') ) ) ) {
+			add_filter( 'wc_measurement_price_calculator_add_to_cart_validation', array( $this, 'measurement_price_calculator_add_to_cart_validation' ), 10, 4 );
 		}
 
 		// filter for Minimum/Maximum plugin override overriding
-		if (in_array('woocommerce-min-max-quantities/min-max-quantities.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_filter('wc_min_max_quantity_minimum_allowed_quantity', [ $this, 'minimum_quantity' ], 10, 4 );
-			add_filter('wc_min_max_quantity_maximum_allowed_quantity', [ $this, 'maximum_quantity' ], 10, 4 );
-			add_filter('wc_min_max_quantity_group_of_quantity', [ $this, 'group_of_quantity' ], 10, 4 );			
+		if ( in_array( 'woocommerce-min-max-quantities/min-max-quantities.php', apply_filters( 'active_plugins', get_option('active_plugins') ) ) ) {
+			add_filter( 'wc_min_max_quantity_minimum_allowed_quantity', array( $this, 'minimum_quantity' ), 10, 4 );
+			add_filter( 'wc_min_max_quantity_maximum_allowed_quantity', array( $this, 'maximum_quantity' ), 10, 4 );
+			add_filter( 'wc_min_max_quantity_group_of_quantity', array( $this, 'group_of_quantity' ), 10, 4 );
 			// Check items.			
 		}
 
 		// filter for WooCommerce Chained Products plugin override overriding
-		if (in_array('woocommerce-chained-products/woocommerce-chained-products.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-			add_action( 'wc_after_chained_add_to_cart', [ $this, 'remove_chained_products' ], 20, 6 );
+		if ( in_array( 'woocommerce-chained-products/woocommerce-chained-products.php', apply_filters( 'active_plugins', get_option('active_plugins') ) ) ) {
+			add_action( 'wc_after_chained_add_to_cart', array( $this, 'remove_chained_products' ), 20, 6 );
 		}
 
 	}	
@@ -70,6 +80,7 @@ class SamplyWooCommerce {
 	 * Display sample button
 	 * 
 	 * @since  	1.0.0
+	 * @access	public
 	 * @param  	none  
 	 * @return 	html
 	 */
@@ -83,9 +94,10 @@ class SamplyWooCommerce {
     /**
      * Display sample button in the shop page
      *
-     * @since    1.0.0
-     * @param    string
-     * @return   void
+     * @since	1.0.0
+	 * @access	public
+     * @param	string
+     * @return	void
      */
     public function samply_button_on_shop_page() {
         global $product;
@@ -110,10 +122,10 @@ class SamplyWooCommerce {
 
             if( $enable_type == "product" ) {
 
-                if( empty($product_ids[0]) ) {
+                if( empty( $product_ids[0] ) ) {
 
                     if( $product->is_type('variable') || $product->is_type('grouped') ) return;
-                    if( Helper::product_is_in_stock() ){
+                    if( Helper::product_is_in_stock() ) {
                         echo '<div style="margin-bottom:10px;">';
                         echo '<a href="?add-to-cart='.$product_id.'" data-quantity="1" class="button product_type_simple samply_ajax_add_to_cart ajax_add_to_cart" data-product_id="'.$product_id.'" data-product_sku="'.$sku.'" rel="nofollow">'.$button_label.'</a>';
                         echo '</div>';
@@ -122,7 +134,7 @@ class SamplyWooCommerce {
                 } else if( in_array(get_the_ID(), $product_ids) ) {
 
                     if( $product->is_type('variable') || $product->is_type('grouped') ) return;
-                    if( Helper::product_is_in_stock() ){
+                    if( Helper::product_is_in_stock() ) {
                         echo '<div style="margin-bottom:10px;">';
                         echo '<a href="?add-to-cart='.$product_id.'" data-quantity="1" class="button product_type_simple samply_ajax_add_to_cart ajax_add_to_cart" data-product_id="'.$product_id.'" data-product_sku="'.$sku.'" rel="nofollow">'.$button_label.'</a>';
                         echo '</div>';
@@ -135,7 +147,7 @@ class SamplyWooCommerce {
                 if( empty($category_ids) ) {
 
                     if( $product->is_type('variable') || $product->is_type('grouped') ) return;
-                    if( Helper::product_is_in_stock() ){
+                    if( Helper::product_is_in_stock() ) {
                         echo '<div style="margin-bottom:10px;">';
                         echo '<a href="?add-to-cart='.$product_id.'" data-quantity="1" class="button product_type_simple samply_ajax_add_to_cart ajax_add_to_cart" data-product_id="'.$product_id.'" data-product_sku="'.$sku.'" rel="nofollow">'.$button_label.'</a>';
                         echo '</div>';
@@ -144,7 +156,7 @@ class SamplyWooCommerce {
                 } else if( count( array_intersect( $product_cat_id, $category_ids ) ) == count( $product_cat_id ) ) {
 
                     if( $product->is_type('variable') || $product->is_type('grouped') ) return;
-                    if( Helper::product_is_in_stock() ){
+                    if( Helper::product_is_in_stock() ) {
                         echo '<div style="margin-bottom:10px;">';
                         echo '<a href="?add-to-cart='.$product_id.'" data-quantity="1" class="button product_type_simple samply_ajax_add_to_cart ajax_add_to_cart" data-product_id="'.$product_id.'" data-product_sku="'.$sku.'" rel="nofollow">'.$button_label.'</a>';
                         echo '</div>';
@@ -160,8 +172,10 @@ class SamplyWooCommerce {
 	/**
 	 * Handle add to cart
 	 *
-	 * @since 1.0.0
-	 * @param string
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	string
+	 * @return	redirect
 	 */
 	public static function add_to_cart_action( $url = false ) {
 
@@ -183,9 +197,9 @@ class SamplyWooCommerce {
 		$add_to_cart_handler = apply_filters( 'woocommerce_add_to_cart_handler', $adding_to_cart->get_type(), $adding_to_cart );
 
 		if ( 'variable' === $add_to_cart_handler || 'variation' === $add_to_cart_handler ) {
-			$was_added_to_cart = self::addToCartHandlerVariable( $product_id );
+			$was_added_to_cart = self::add_to_cart_handler_variable( $product_id );
 		} else {
-			$was_added_to_cart = self::addToCartHandlerSimple( $product_id );
+			$was_added_to_cart = self::add_to_cart_handler_simple( $product_id );
 		}
 
 		// If we added the product to the cart we can now optionally do a redirect.
@@ -205,11 +219,12 @@ class SamplyWooCommerce {
 	/**
 	 * Handle adding simple products to the cart.
 	 *
-	 * @since 2.4.6 Split from add_to_cart_action.
-	 * @param int $product_id Product ID to add to the cart.
-	 * @return bool success or not
+	 * @since	2.4.6 Split from add_to_cart_action.
+	 * @access	public
+	 * @param	int $product_id Product ID to add to the cart.
+	 * @return	bool success or not
 	 */
-	private static function addToCartHandlerSimple( $product_id ) {
+	private static function add_to_cart_handler_simple( $product_id ) {
 
 		$quantity          = Helper::sample_qty();
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );	
@@ -224,12 +239,13 @@ class SamplyWooCommerce {
 	/**
 	 * Handle adding variable products to the cart.
 	 *
-	 * @since 2.4.6 Split from add_to_cart_action.
-	 * @throws Exception If add to cart fails.
-	 * @param int $product_id Product ID to add to the cart.
-	 * @return bool success or not
+	 * @since	2.4.6 Split from add_to_cart_action.
+	 * @access	private
+	 * @throws	Exception If add to cart fails.
+	 * @param	int $product_id Product ID to add to the cart.
+	 * @return	bool success or not
 	 */
-	private static function addToCartHandlerVariable( $product_id ) {
+	private static function add_to_cart_handler_variable( $product_id ) {
 		try {
 			$variation_id       = empty( $_REQUEST['variation_id'] ) ? '' : absint( wp_unslash( $_REQUEST['variation_id'] ) );
 			$quantity           = empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) );
@@ -276,13 +292,13 @@ class SamplyWooCommerce {
 
 			// If no variation ID is set, attempt to get a variation ID from posted attributes.
 			if ( empty( $variation_id ) ) {
-				$data_store   = WC_Data_Store::load( 'product' );
+				$data_store   = \WC_Data_Store::load( 'product' );
 				$variation_id = $data_store->find_matching_product_variation( $adding_to_cart, $posted_attributes );
 			}
 
 			// Do we have a variation ID?
 			if ( empty( $variation_id ) ) {
-				throw new Exception( __( 'Please choose product options&hellip;', 'woocommerce' ) );
+				throw new \Exception( __( 'Please choose product options&hellip;', 'woocommerce' ) );
 			}
 
 			// Check the data we have is valid.
@@ -313,7 +329,7 @@ class SamplyWooCommerce {
 						$variations[ $attribute_key ] = $value;
 					} else {
 						/* translators: %s: Attribute name. */
-						throw new Exception( sprintf( __( 'Invalid value posted for %s', 'woocommerce' ), wc_attribute_label( $attribute['name'] ) ) );
+						throw new \Exception( sprintf( __( 'Invalid value posted for %s', 'woocommerce' ), wc_attribute_label( $attribute['name'] ) ) );
 					}
 				} elseif ( '' === $valid_value ) {
 					$missing_attributes[] = wc_attribute_label( $attribute['name'] );
@@ -321,9 +337,9 @@ class SamplyWooCommerce {
 			}
 			if ( ! empty( $missing_attributes ) ) {
 				/* translators: %s: Attribute name. */
-				throw new Exception( sprintf( _n( '%s is a required field', '%s are required fields', count( $missing_attributes ), 'woocommerce' ), wc_format_list_of_items( $missing_attributes ) ) );
+				throw new \Exception( sprintf( _n( '%s is a required field', '%s are required fields', count( $missing_attributes ), 'woocommerce' ), wc_format_list_of_items( $missing_attributes ) ) );
 			}
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 			wc_add_notice( $e->getMessage(), 'error' );
 			return false;
 		}
@@ -341,17 +357,19 @@ class SamplyWooCommerce {
 	/**
 	 * Set sample price in the cart
 	 * 
-	 * @since      1.0.0     
-	 * @param      string, string    	 
+	 * @since	1.0.0
+	 * @access	public      
+	 * @param	string, string
+	 * @return	array    	 
 	 */
 	public function store_id( $cart_item ) {
 
 		if( isset( $_REQUEST['simple-add-to-cart'] ) || isset( $_REQUEST['variable-add-to-cart'] ) ) {
 			$cart_item['free_sample']  = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
 			$product_id = isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
-			$cart_item['sample_price'] = (float)Helper::sample_price( $product_id );
-			$cart_item['line_subtotal']= (float)Helper::sample_price( $product_id );
-			$cart_item['line_total']   = (float)Helper::sample_price( $product_id );				
+			$cart_item['sample_price'] = (float) Helper::sample_price( $product_id );
+			$cart_item['line_subtotal']= (float) Helper::sample_price( $product_id );
+			$cart_item['line_total']   = (float) Helper::sample_price( $product_id );				
 		}			
 		return $cart_item; 
 	}	
@@ -359,16 +377,18 @@ class SamplyWooCommerce {
 	/**
 	 * Set sample price in session
 	 * 
-	 * @since      1.0.0
-	 * @param      array, array    
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	array, array
+	 * @return	array  
 	 */
 	public function get_cart_items_from_session( $cart_item, $values ) {
 	
 		if ( isset( $values['simple-add-to-cart'] ) || isset( $values['variable-add-to-cart'] ) ) {
 			$product_id 					= isset( $_REQUEST['simple-add-to-cart'] ) ? sanitize_text_field( $_REQUEST['simple-add-to-cart'] ) : sanitize_text_field( $_REQUEST['variable-add-to-cart'] );
 			$cart_item['free_sample'] 		= isset( $values['simple-add-to-cart'] ) ? $values['simple-add-to-cart'] : $values['variable-add-to-cart'];			
-			$cart_item['line_subtotal'] 	= (float)Helper::sample_price( $product_id );
-			$cart_item['line_total'] 	  	= (float)Helper::sample_price( $product_id );	
+			$cart_item['line_subtotal'] 	= (float) Helper::sample_price( $product_id );
+			$cart_item['line_total'] 	  	= (float) Helper::sample_price( $product_id );	
 		}    
 
 		return $cart_item;
@@ -377,21 +397,22 @@ class SamplyWooCommerce {
 	/**
 	 * Add product meta for sample to indentity in the admin order details
 	 * 
-	 * @since      1.0.0
-	 * @param      int, array    	 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	int, array
+	 * @return	void    	 
 	 */
 	public function save_posted_data_into_order( $itemID, $values ) {
 
 		if ( isset( $values['free_sample'] ) ) {
 			$sample 		= __( 'Sample', 'samply' );
-			if( get_locale() == 'de_DE' ){
+			if( get_locale() == 'de_DE' ) {
 				wc_add_order_item_meta( $itemID, 'Produkt', 'MUSTERBESTELLUNG' );
 				wc_add_order_item_meta( $itemID, 'Preis', 'Wir übernehmen die Kosten für Sie!' );
 			} else {
 				wc_add_order_item_meta( $itemID, 'PRODUCT_TYPE', $sample );
 				wc_add_order_item_meta( $itemID, 'SAMPLE_PRICE', (float)$values["sample_price"] );
 			}
-			
 		}
 		
 	}
@@ -399,8 +420,10 @@ class SamplyWooCommerce {
 	/**
 	 * Return plugin directory
 	 *
-	 * @since      1.0.0
-	 * @param      none
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	string
 	 */
 	public static function get_plugin_path() {		
 		return untrailingslashit( plugin_dir_path( __FILE__ ) );
@@ -409,8 +432,10 @@ class SamplyWooCommerce {
 	/**
 	 * Return WooCommerce template path
 	 * 
-	 * @since      1.0.0
-	 * @param      none
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	string, string, string
+	 * @return	string
 	 */
 	public function set_locate_template( $template, $template_name, $template_path ) {
 
@@ -441,8 +466,9 @@ class SamplyWooCommerce {
 	/**
 	 * Set sample price in the order meta
 	 * 
-	 * @since      1.0.0
-	 * @param      object, array     	 
+	 * @since	1.0.0
+	 * @param	object, array
+	 * @return	void     	 
 	 */
     public function apply_sample_price_to_cart_item( $cart ) {
 
@@ -456,7 +482,7 @@ class SamplyWooCommerce {
 		foreach ( $cart->get_cart() as $key => $value ) {
 			if( isset( $value["sample_price"] ) ) {	
 				$product = $value['data'];
-				method_exists( $product, 'set_price' ) ? $product->set_price( (float)$value["sample_price"] ) : $product->price = $value["sample_price"];			
+				method_exists( $product, 'set_price' ) ? $product->set_price( (float) $value["sample_price"] ) : $product->price = $value["sample_price"];			
 			}			
 
 		}   
@@ -465,8 +491,9 @@ class SamplyWooCommerce {
 	/**
 	 * Display validation message when order a product sample 
 	 *
-	 * @since      1.0.0
-	 * @param      int, array 
+	 * @since	1.0.0
+	 * @param	int, array
+	 * @return	boolean
 	 */		
 	public function set_limit_per_order( $valid, $product_id ) {
 	
@@ -508,10 +535,12 @@ class SamplyWooCommerce {
 	}	
 
 	/**
-	 * Show validation message in the cart page for maximum order
+	 * Show validation message in the cart page 
+	 * for maximum order
 	 * 
-	 * @since      1.0.0
-	 * @param      boolean, array, array, int 
+	 * @since	1.0.0
+	 * @param	boolean, array, array, int
+	 * @return	boolean
 	 */
 	public function cart_update_limit_order( $passed, $cart_item_key, $values, $updated_quantity ) {
 
@@ -564,8 +593,10 @@ class SamplyWooCommerce {
 	/**
 	 * Sample product added in the cart message
 	 *
-	 * @since      1.0.0
-	 * @param      int, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	int, array
+	 * @return	string 
 	 */	
 	public function add_to_cart_message ( $message, $products ) {
 
@@ -604,33 +635,38 @@ class SamplyWooCommerce {
 	/**
 	 * Add sample label before the product 
 	 *
-	 * @since      1.0.0
-	 * @param      string, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	string, array, array
+	 * @return	string 
 	 */	
 	public function alter_item_name ( $product_name, $cart_item, $cart_item_key ) {
 
 		$product 			= $cart_item['data']; // Get the WC_Product Object
-		$sample_price 		= (float)Helper::sample_price( $cart_item['product_id'] );
+		$sample_price 		= (float) Helper::sample_price( $cart_item['product_id'] );
 		$sample_price 		= str_replace( ",",".", $sample_price );
 		$prod_price 		= str_replace( ",",".", $product->get_price() );	
 		if( $sample_price == $prod_price ) {
 			if( get_locale() == 'ja' ) {
-				$product_name   = esc_html__( 'サンプル - ', 'samply' ).$product_name;	
+				$product_name   = esc_html__( 'サンプル - ', 'samply' ) . $product_name;	
 			} else if( get_locale() == 'de_DE' ) {
-				$product_name   = esc_html__( 'Testzugang - ', 'samply' ).$product_name;						
+				$product_name   = esc_html__( 'Testzugang - ', 'samply' ) . $product_name;						
 			} else {
-				$product_name   = esc_html__( 'Sample - ', 'samply' ).$product_name;
+				$product_name   = esc_html__( 'Sample - ', 'samply' ) . $product_name;
 			}			
 		}
 
 		return $product_name;
+
 	}
 
    	/**
 	 * Set sample price instead real price
 	 * 
-	 * @since      1.0.0
-	 * @param      float, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	float, array, array
+	 * @return	integer|float
 	 */
     public function cart_item_price_filter( $price, $cart_item, $cart_item_key ) {
 	
@@ -647,8 +683,10 @@ class SamplyWooCommerce {
 	/**
 	 * Set subtotal
 	 * 
-	 * @since      1.0.0
-	 * @param      float, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	float, array, array
+	 * @return	integer|float
 	 */	
 	public function item_subtotal( $subtotal, $cart_item, $cart_item_key ) {
 		
@@ -669,8 +707,10 @@ class SamplyWooCommerce {
 	/**
 	 * Check Measurement Price Calculation Validation
 	 * 
-	 * @since      1.0.0
-	 * @param      boolean, integer, integer, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	boolean, integer, integer, array
+	 * @return	boolean
 	 */		
 	public function measurement_price_calculator_add_to_cart_validation ($valid, $product_id, $quantity, $measurements) {
 		global $woocommerce;
@@ -685,8 +725,10 @@ class SamplyWooCommerce {
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
 	 * 
-	 * @since      1.0.0
-	 * @param      integer, integer, integer, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	integer, integer, integer, array, array
+	 * @return	integer
 	 */		
 	public function minimum_quantity($minimum_quantity, $checking_id, $cart_item_key, $values) {
 		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] )
@@ -697,8 +739,10 @@ class SamplyWooCommerce {
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
 	 * 
-	 * @since      1.0.0
-	 * @param      integer, integer, integer, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	integer, integer, integer, array, array
+	 * @return	integer
 	 */		
 	public function maximum_quantity($maximum_quantity, $checking_id, $cart_item_key, $values) {
 		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] )
@@ -709,8 +753,10 @@ class SamplyWooCommerce {
 	/**
 	 * Filter for Minimum/Maximum plugin overriding
 	 * 
-	 * @since      1.0.0
-	 * @param      integer, integer, integer, array, array 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	integer, integer, integer, array, array
+	 * @return	integer
 	 */		
 	public function group_of_quantity($group_of_quantity, $checking_id, $cart_item_key, $values) {
 		if ( $_REQUEST['simple-add-to-cart'] || $_REQUEST['variable-add-to-cart'] ) 
@@ -763,8 +809,10 @@ class SamplyWooCommerce {
 	/**
 	 * Check WooCommerce min/max quantities validation message
 	 * 
-	 * @since      2.0.0
-	 * @param      array 
+	 * @since	2.0.0
+	 * @access	public
+	 * @param	array
+	 * @return	string|null
 	 */	
 	public function cart_exclude( $exclude, $checking_id, $cart_item_key, $values ) {
 		if ( class_exists('WC_Min_Max_Quantities') ) {
@@ -779,9 +827,10 @@ class SamplyWooCommerce {
 	/**
 	 * Update stock quantity
 	 *
-	 * @since    1.0.0
-	 * @param    int
-     * @return   void
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	integer
+     * @return	void
 	 */	
 	public function sample_update_stock( $order_id ) {
 
@@ -820,9 +869,10 @@ class SamplyWooCommerce {
 	/**
 	 * Handle product update
 	 *
-	 * @since    1.0.0
-	 * @param    object, integer
-     * @return   void
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	object, integer
+     * @return	void
 	 */		
     public function handle_dokan_product_update() {
 		
@@ -859,9 +909,10 @@ class SamplyWooCommerce {
 	/**
 	 * Add product sample tab in the dokan dashboard
 	 *
-	 * @since    1.0.0
-	 * @param    object, integer
-     * @return   template
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	object, integer
+     * @return	template
 	 */	
 	public function load_dokan_template( $post, $post_id ) {
 		if( ! class_exists('WeDevs_Dokan') || Helper::is_pro() ) {
@@ -874,9 +925,10 @@ class SamplyWooCommerce {
 	/**
 	 * Add samply price filter
 	 *
-	 * @since    1.0.8
-	 * @param    object, integer
-     * @return   integer|float
+	 * @since	1.0.8
+	 * @access	public
+	 * @param	object, integer
+     * @return	integer|float
 	 */	
 	public function samply_price( $price, $product_id ) {
 

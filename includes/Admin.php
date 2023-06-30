@@ -9,6 +9,11 @@ class Admin {
 
     /**
      * Initialize the class
+     * 
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
      */
     function __construct() {
         $main = new Admin\Main();
@@ -21,7 +26,10 @@ class Admin {
     /**
      * Dispatch and bind actions
      *
-     * @return void
+     * @since   1.0.0
+     * @access  public
+     * @param   string
+     * @return  void
      */
     public function dispatch_actions( $main ) {
 

@@ -13,6 +13,7 @@
  * Requires PHP:      5.6
  * Requires at least: 4.4
  * Tested up to:      6.2
+ * @package Samply
  *
  * WC requires at least: 3.1
  * WC tested up to:   7.0.0

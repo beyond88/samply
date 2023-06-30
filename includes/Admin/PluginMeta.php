@@ -9,18 +9,27 @@ namespace Samply\Admin;
 */
 class PluginMeta {
 
+    /**
+     * Load plugin meta actions
+     * 
+     * @since 1.0.0
+     * @access public
+     * @param none
+     * @return void
+     */
     public function __construct() {
         add_filter( 'plugin_action_links_' . SAMPLY_BASENAME, [ $this, 'plugin_action_links' ] );
         add_filter( 'plugin_row_meta', [ $this, 'plugin_meta_links' ], 10, 2 );
     }
 
     /**
-    * Create plugin action links
-    *
-    * @since    1.0.0
-    * @param    array
-    * @return   array
-    */
+     * Create plugin action links
+     *
+     * @since   1.0.0
+     * @access  public
+     * @param   array
+     * @return  array
+     */
     public function plugin_action_links( $links ) {
 
         $links[] = '<a href="' . admin_url( 'admin.php?page=samply#general_settings' ) . '">' . __( 'Settings', 'samply' ) . '</a>';
@@ -30,12 +39,13 @@ class PluginMeta {
     }
 
     /**
-    * Create plugin meta links
-    *
-    * @since    1.0.0
-    * @param    array string
-    * @return   array
-    */
+     * Create plugin meta links
+     *
+     * @since   1.0.0
+     * @access  public
+     * @param   array string
+     * @return  array
+     */
     public function plugin_meta_links( $links, $file ) {
         
         if ($file !== plugin_basename( SAMPLY_FILE )) {

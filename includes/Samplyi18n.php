@@ -6,22 +6,27 @@ namespace Samply;
  * 
  * @since    1.0.0
  */ 
-class Samplyi18n 
-{
+class Samplyi18n {
 
 	/**
-	* Call language method 
-	*
-	* @since    1.0.0
+	 * Call language method 
+	 *
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	void
 	*/
     public function __construct() {
-        add_action( 'plugins_loaded', [ $this, 'load_plugin_textdomain' ] );
+        add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
     }
 
 	/**
-	* Load language file from directory
-	*
-	* @since    1.0.0
+	 * Load language file from directory
+	 *
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	void
 	*/
 	public function load_plugin_textdomain() {
 

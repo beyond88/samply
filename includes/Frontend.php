@@ -1,5 +1,4 @@
 <?php
-
 namespace Samply;
 
 /**
@@ -9,8 +8,7 @@ namespace Samply;
 * @param    none
 * @return   object
 */
-class Frontend 
-{
+class Frontend {
 
     /**
     * Initialize the class

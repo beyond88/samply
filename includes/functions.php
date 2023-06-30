@@ -3,8 +3,8 @@
 /**
  * Handle compability with BeRocket
  * 
- * @since    1.0.0
- * @return void
+ * @since   1.0.0
+ * @return  void
  */
 if( class_exists( 'BeRocket_MM_Quantity' ) ) {
     add_action( 'woocommerce_after_calculate_totals', 'samply_new_calculate_total', 10, 1 );
@@ -44,9 +44,9 @@ if( class_exists( 'BeRocket_MM_Quantity' ) ) {
 /**
  * Admin notice if WooCommerce is missing
  * 
- * @since    1.0.0
- * @param    nonne
- * @return   void
+ * @since   1.0.0
+ * @param   nonne
+ * @return  void
  */
 if( ! function_exists( 'samply_woocommerce_missing_wc_notice' ) ) {
     function samply_woocommerce_missing_wc_notice() 
@@ -67,8 +67,9 @@ if( ! function_exists( 'samply_woocommerce_missing_wc_notice' ) ) {
 /**
  * Thing need to process once the samply plugin activation is done and loaded.
  * 
- * @since    1.0.0
- * @return   void
+ * @since   1.0.0
+ * @param   nonne
+ * @return  void
  */
 add_action( 'admin_init', 'samply_get_started' );
 
