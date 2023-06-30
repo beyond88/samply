@@ -1,0 +1,10 @@
+/.wordpress-org
+/.git
+/.github
+
+.distignore
+.gitignore
+package.json
+package-lock.json
+phpcs.xml
+README.md

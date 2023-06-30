@@ -1,0 +1,52 @@
+<?php return array(
+    'root' => array(
+        'name' => 'ourtechbro/samply',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '276b2efe54d31314dbd77e9caacabfc327979f1b',
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'larapack/dd' => array(
+            'pretty_version' => 'v1.1.x-dev',
+            'version' => '1.1.9999999.9999999-dev',
+            'reference' => '561b5111a13d0094b59b5c81b1572489485fb948',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../larapack/dd',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+        'ourtechbro/samply' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '276b2efe54d31314dbd77e9caacabfc327979f1b',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/polyfill-mbstring' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '8ad114f6b39e2c98a8b0e3bd907732c207c2b534',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
+            'aliases' => array(
+                0 => '1.27.x-dev',
+            ),
+            'dev_requirement' => true,
+        ),
+        'symfony/var-dumper' => array(
+            'pretty_version' => '6.3.x-dev',
+            'version' => '6.3.9999999.9999999-dev',
+            'reference' => '422e4a6f42e623092161d34ebfbb2aff7ca1cc27',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-dumper',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+    ),
+);
