@@ -1,18 +1,18 @@
 <?php
-
 namespace Samply;
 
 /**
  * Installer class
  */
-class Installer 
-{
+class Installer {
 
     /**
-    * Run the installer
-    *
-    * @param none
-    * @return void
+     * Run the installer
+     * 
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
     */
     public function run() {
         $this->add_version();
@@ -21,8 +21,10 @@ class Installer
     /**
      * Add time and version on DB
      * 
-     * @param none
-     * @return void
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
      */
     public function add_version() {
         $installed = get_option( 'samply_installed' );

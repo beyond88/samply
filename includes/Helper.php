@@ -1,5 +1,4 @@
 <?php
-
 namespace Samply;
 
 class Helper {
@@ -7,24 +6,24 @@ class Helper {
     /**
 	 * The option of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @param    string 
+	 * @since	1.0.0
+	 * @var	string 
 	 */
 	public static $_optionName  = 'samply_settings';
 	
 	/**
 	 * The option group of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @param    string 
+	 * @since	1.0.0
+	 * @var	string 
 	 */	
 	public static $_optionGroup = 'samply_options_group';
 	
 	/**
 	 * The default option of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @param    array 
+	 * @since	1.0.0
+	 * @var	array 
 	 */	
 	public static $_defaultOptions = array(
 		'button_label'          => 'Order a Sample',
@@ -35,8 +34,10 @@ class Helper {
 	/**
 	 * Check product is in stock
 	 * 
-	 * @since    1.0.0
-	 * @param    none
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	array
 	 */	
 	public static function samply_settings() {
 		return wp_parse_args( get_option(self::$_optionName), self::$_defaultOptions );
@@ -45,8 +46,10 @@ class Helper {
 	/**
 	 * Check product is in stock
 	 * 
-	 * @since    1.0.0
-	 * @param    none
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+	 * @return	integer
 	 */	
 	public static function product_is_in_stock( $prodId = NULL ) {
 		if( $prodId ){
@@ -61,8 +64,10 @@ class Helper {
 	/**
 	 * Check product already is in cart
 	 * 
-	 * @param    none$product_id
-	 *@since    1.0.0
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none$product_id
+	 * @return	boolean
      */
 	public static function check_is_in_cart( $product_id ) {
         // Make sure it's only on front end
@@ -104,8 +109,10 @@ class Helper {
 	/**
 	 * Check product quantity is in cart
 	 * 
-	 * @since    1.0.0
-	 * @param    none
+     * @since	1.0.0
+	 * @access	public
+	 * @param	none
+     * @return	string
 	 */	
 	public static function cart_total( ) {
 		global $woocommerce;
@@ -121,8 +128,10 @@ class Helper {
 	/**
 	 * Check product type in product details page
 	 * 
-	 * @since    1.0.0
-	 * @param    none
+     * @since	1.0.0
+	 * @access	public
+	 * @param	none
+     * @return	string|null
 	 */	
 	public static function product_type() {
 		global $product;
@@ -137,9 +146,11 @@ class Helper {
 
     /**
      * Display sample button
-     *
-     * @return string
-     * @since    1.0.0
+	 * 
+     * @since	1.0.0
+	 * @access	public
+	 * @param	none
+     * @return	string
      */
     public static function request_button() : string {
         $button = match (self::product_type()) {
@@ -152,9 +163,11 @@ class Helper {
 
     /**
      * Retrieve button label
-     *
-     * @return string
-     * @since    1.0.0
+	 * 
+     * @since	1.0.0
+	 * @access	public
+	 * @param	none
+     * @return	string
      */
 	public static function button_text() : string {
 		$setting_options   = self::samply_settings();
@@ -163,8 +176,11 @@ class Helper {
 
     /**
      * Return sample price
-     * @return mixed|null
-     * @since    1.0.0
+	 * 
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	integer
+     * @return	mixed|null
      */
 	public static function sample_price( $product_id ): mixed {
 		return apply_filters( 'samply_price', 0.00, $product_id );
@@ -173,12 +189,12 @@ class Helper {
 	/**
 	 * Sample Qty
 	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
+	 * @since	1.0.0
+	 * @access	public
+	 * @param	none
+     * @return	void
 	 */		
 	public static function sample_qty() { 
-
 		if ( class_exists( 'SPQ_Smart_Product_Quantity' ) ) {
 			return empty( $_REQUEST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ); 
 		}
@@ -189,9 +205,10 @@ class Helper {
 	/**
 	 * Check dokan seller
 	 *
-	 * @since    1.0.0
-	 * @param    integer
-     * @return   boolean
+     * @since	1.0.0
+     * @access	public
+	 * @param	integer
+     * @return	boolean
 	 */		
 	public static function dokan_is_user_seller( $user_id ) {
 		if ( ! user_can( $user_id, 'dokandar' ) ) {
@@ -204,9 +221,10 @@ class Helper {
 	/**
 	 * Check PRO is exists
 	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   boolean
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return	boolean
 	 */		
 	public static function is_pro() {
 		return class_exists('SamplyPro');

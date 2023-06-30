@@ -7,7 +7,7 @@ Tested up to: 6.2
 WC requires at least: 3.1
 WC tested up to: 7.0.0
 Requires PHP: 5.6
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,9 @@ This section describes how to install the plugin and get it working.
 5. Save/update product details
 
 == Changelog ==
+
+= 1.0.10 =
+* Rename methods name and tested with WordPress 6.2.2
 
 = 1.0.9 =
 * Integrate sample price for all products

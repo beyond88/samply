@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/beyond88/samply
  * Author: Mohiuddin Abdul Kader
  * Author URI: https://github.com/beyond88
- * Version: 1.0.9
+ * Version: 1.0.10
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       samply
@@ -13,6 +13,7 @@
  * Requires PHP:      5.6
  * Requires at least: 4.4
  * Tested up to:      6.2
+ * @package Samply
  *
  * WC requires at least: 3.1
  * WC tested up to:   7.0.0
@@ -36,7 +37,7 @@ final class Samply {
      *
      * @var string
      */
-    const version = '1.0.9';
+    const version = '1.0.10';
 
     /**
      * Class constructor

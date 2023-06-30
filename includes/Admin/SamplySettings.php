@@ -1,37 +1,53 @@
 <?php
-
 namespace Samply\Admin;
 
+/**
+ * This class is responsible for settings functionality
+ * 
+ */
 class SamplySettings {
 
     /**
 	 * Initialize the class and set its settings options.
 	 *
-	 * @since    1.0.0
-	 * @param    none 
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void 
 	 */
     public function __construct() {}
 
+    /**
+	 * Initialize all settings option.
+	 *
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void 
+	 */
     public static function init() {
 
-        add_action( 'woocommerce_product_write_panel_tabs', [ __CLASS__, 'samply_render_tabs' ] );
-		add_action( 'woocommerce_product_data_panels', [ __CLASS__, 'samply_tabs_panel' ] );
+        add_action( 'woocommerce_product_write_panel_tabs', array( __CLASS__, 'samply_render_tabs' ) );
+		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'samply_tabs_panel' ) );
 
 		// Save custom tab data
-		add_action( 'woocommerce_process_product_meta', [ __CLASS__, 'samply_save_tab_data' ], 10, 2 );
+		add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'samply_save_tab_data' ), 10, 2 );
         add_action( 'samply_settings_header', array( __CLASS__, 'header_template' ), 10 );
         add_action( 'samply_settings_footer', array( __CLASS__, 'footer_template' ), 10 );
 
         // Add sample price into variations
-        add_action( 'woocommerce_variation_options_pricing', [ __CLASS__, 'sample_price_to_variations' ], 10, 3 );
-        add_action( 'woocommerce_save_product_variation', [ __CLASS__, 'save_sample_price_variations' ], 10, 2 );
+        add_action( 'woocommerce_variation_options_pricing', array( __CLASS__, 'sample_price_to_variations' ), 10, 3 );
+        add_action( 'woocommerce_save_product_variation', array( __CLASS__, 'save_sample_price_variations' ), 10, 2 );
     }
 
     /**
      * This function is responsible for settings page header
      *
      * @hooked samply_settings_header
-     * @return void
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void
      */
     public static function header_template() {
         ?>
@@ -48,7 +64,10 @@ class SamplySettings {
      * This function is responsible for settings page header
      *
      * @hooked samply_settings_header
-     * @return void
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void
      */
     public static function footer_template() {
         ?>
@@ -139,9 +158,10 @@ class SamplySettings {
     /**
 	 * Define setting options as array
 	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   array 
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  array 
 	 */
     public static function setting_fields() {
 
@@ -250,9 +270,10 @@ class SamplySettings {
     /**
 	 * Retrieve all categories of the products
 	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void
 	 */	
 	public static function samply_render_tabs() {
         $tabs = "<li class=\"samply_wc_product_tabs_tab\"><a href=\"#samply-tab\"><span>" . __( 'Product Sample', 'samply' ) . "</span></a></li>";
@@ -262,9 +283,10 @@ class SamplySettings {
 	/**
 	 * Load product sample tab
 	 *
-	 * @since    1.0.0
-	 * @param    noneclear
-     * @return   void
+	 * @since   1.0.0
+     * @access  public
+	 * @param   none
+     * @return  void
 	 */	
 	public static function samply_tabs_panel() {
 		global $woocommerce, $post;
@@ -275,9 +297,10 @@ class SamplySettings {
 	/**
 	 * Save product sample meta
 	 *
-	 * @since    1.0.0
-	 * @param    none
-     * @return   void
+	 * @since   1.0.0
+     * @access  public
+	 * @param   integer
+     * @return  void
 	 */	
 	public static function samply_save_tab_data( $post_id ) {
 		
@@ -292,17 +315,18 @@ class SamplySettings {
     /**
 	 * Add sample price field in product variations
 	 *
-	 * @since    1.0.9
-	 * @param    string, array, object
-     * @return   html
+	 * @since   1.0.9
+     * @access  public
+	 * @param   string, array, object
+     * @return  html
 	 */	
 	public static function sample_price_to_variations( $loop, $variation_data, $variation ) {
 		woocommerce_wp_text_input( array(
 			'id' 	=> 'samply_price[' . $loop . ']',
 			'class' => 'short',
 			'type'	=> 'number',
-			'label' => sprintf(__( 'Sample Price (%s)', 'samply' ), get_woocommerce_currency_symbol()),
-			'value' => !empty(get_post_meta( $variation->ID, 'samply_price', true ))?get_post_meta( $variation->ID, 'samply_price', true ):0,			
+			'label' => sprintf( __( 'Sample Price (%s)', 'samply' ), get_woocommerce_currency_symbol() ),
+			'value' => ! empty( get_post_meta( $variation->ID, 'samply_price', true ) ) ? get_post_meta( $variation->ID, 'samply_price', true ) : 0,			
 			'custom_attributes' => array(
 				'step' 	=> '1',
 				'min'	=> '0'
@@ -313,12 +337,13 @@ class SamplySettings {
     /**
 	 * Save sample price field in product variations
 	 *
-	 * @since    1.0.9
-	 * @param    string, array, object
-     * @return   void
+	 * @since   1.0.9
+     * @access  public
+	 * @param   string, array, object
+     * @return  void
 	 */		
 	public static function save_sample_price_variations( $variation_id, $i ) {
-		$custom_field = sanitize_text_field($_POST['samply_price'][$i]);
+		$custom_field = sanitize_text_field( $_POST['samply_price'][ $i ] );
 		if ( isset( $custom_field ) ) update_post_meta( $variation_id, 'samply_price', esc_attr( $custom_field ) );
 	}
 

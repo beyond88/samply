@@ -12,43 +12,51 @@ use Samply\Helper;
 * @param    none
 * @return   object
 */
-class AddToCart
-{
+class AddToCart {
+
+    /**
+     * Private attributes
+     * 
+     * @var string
+     */
     private $atts;
 
     /**
-    * Initialize shortcode
-    *
-    * @since    1.0.0
-    * @param    none
-    * @return   void
-    */
+     * Initialize shortcode
+     *
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
+     */
     public function __construct() {
-        add_shortcode( 'samply_add_to_cart_ajax', [ $this, 'samply_add_to_cart_ajax_shortcode' ]);
+        add_shortcode( 'samply_add_to_cart_ajax', array( $this, 'samply_add_to_cart_ajax_shortcode' ) );
     }
 
     /**
-    * Shortcode callback method
-    *
-    * @since    1.0.0
-    * @param    array
-    * @return   string
-    */
+     * Shortcode callback method
+     *
+     * @since   1.0.0
+     * @access  public
+     * @param   array
+     * @return  string
+     */
     public function samply_add_to_cart_ajax_shortcode( $atts ) {
-        $this->atts = shortcode_atts( [
+        $this->atts = shortcode_atts( array(
             'product_id' => null,
-        ], $atts );
+        ), $atts );
 
         return $this->output();
     }
 
     /**
-    * Render samply button
-    *
-    * @since    1.0.0
-    * @param    none
-    * @return   string
-    */
+     * Render samply button
+     *
+     * @since    1.0.0
+     * @access  public
+     * @param    none
+     * @return   string
+     */
     public function output() {
         ob_start();
 

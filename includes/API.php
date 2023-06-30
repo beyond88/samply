@@ -9,17 +9,23 @@ class API {
 
     /**
      * Initialize the class
+     * 
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
      */
     function __construct() {
-        add_action( 'rest_api_init', [ $this, 'register_api' ] );
+        add_action( 'rest_api_init', array( $this, 'register_api' ) );
     }
 
     /**
      * Register the API
      *
-     * @return void
+     * @since   1.0.0
+     * @access  public
+     * @param   none
+     * @return  void
      */
-    public function register_api() {
-
-    }
+    public function register_api() {}
 }

@@ -9,33 +9,42 @@ use Samply\Helper;
 class Menu {
 
     /**
-    * Plugin main file
-    *
+     * Plugin main file
+     *
+     * @var string
     */
     public $main;
 
     /**
      * Initialize the class
+     * 
+     * @since   1.0.0
+     * @access  public
+     * @param   object
+     * @return  void
      */
     function __construct( $main ) {
         $this->main = $main;
-        add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+        add_action( 'admin_menu', array( $this, 'admin_menu' ) );
     }
 
     /**
      * Register admin menu
      *
-     * @return void
+     * @since   1.0.0
+     * @access  public
+     * @param   none   
+     * @return  void
      */
     public function admin_menu() {
         $parent_slug = 'samply';
         $capability = 'manage_options';
         $icon_url = SAMPLY_ASSETS . '/img/samply-icon.svg';
 
-        $settings   = apply_filters( 'samply_admin_menu', [] );        
+        $settings   = apply_filters( 'samply_admin_menu', array() );        
 
         $hook = add_menu_page( __( 'Samply Settings', 'samply' ), __( 'Samply', 'samply' ), $capability, $parent_slug, [ $this->main, 'plugin_page' ], $icon_url, 50 );
-        add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
+        add_action( 'admin_head-' . $hook, array( $this, 'enqueue_assets' ) );
 
         foreach( $settings as $slug => $setting ) {
             $cap  = isset( $setting['capability'] ) ? $setting['capability'] : 'delete_users';
@@ -48,16 +57,15 @@ class Menu {
     /**
      * Enqueue scripts and styles
      *
-     * @return void
+     * @since   1.0.0
+     * @access  public
+     * @param   none   
+     * @return  void
      */
     public function enqueue_assets() {
         wp_enqueue_style( 'samply-admin-boostrap' );
         wp_enqueue_style( 'samply-admin-style' );
         wp_enqueue_script( 'samply-admin-script' );
-    }
-
-    public function license_page() {
-        return "";
     }
 
 }

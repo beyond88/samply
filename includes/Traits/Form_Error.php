@@ -17,9 +17,10 @@ trait Form_Error {
     /**
      * Check if the form has error
      *
-     * @param  string  $key
-     *
-     * @return boolean
+     * @since   1.0.0
+     * @access  public
+     * @param   key $key
+     * @return  boolean
      */
     public function has_error( $key ) {
         return isset( $this->errors[ $key ] ) ? true : false;
@@ -28,9 +29,10 @@ trait Form_Error {
     /**
      * Get the error by key
      *
-     * @param  key $key
-     *
-     * @return string | false
+     * @since   1.0.0
+     * @access  public
+     * @param   key $key
+     * @return  string | false
      */
     public function get_error( $key ) {
         if ( isset( $this->errors[ $key ] ) ) {
