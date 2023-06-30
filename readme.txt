@@ -109,6 +109,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0.10 =
+* Rename methods name and tested with WordPress 6.2.2
+
 = 1.0.9 =
 * Integrate sample price for all products
 
