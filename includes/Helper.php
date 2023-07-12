@@ -149,16 +149,30 @@ class Helper {
 	 * 
      * @since	1.0.0
 	 * @access	public
-	 * @param	none
      * @return	string
      */
     public static function request_button() : string {
-        $button = match (self::product_type()) {
-            "simple" => '<button type="submit" name="simple-add-to-cart" value="' . get_the_ID() . '" id="samply-button" class="samply-button">' . sprintf(esc_html__('%s', 'samply'), self::button_text()) . '</button>',
-            "variable" => '<button type="submit" name="variable-add-to-cart" value="' . get_the_ID() . '" id="samply-button" class="samply-button">' . sprintf(esc_html__('%s', 'samply'), self::button_text()) . '</button>',
-            default => '',
-        };
-        return $button; 
+        $button = '';
+		switch (self::product_type()) {
+			case 'simple':
+				$button = sprintf(
+					'<button type="submit" name="simple-add-to-cart" value="%d" id="samply-button" class="samply-button">%s</button>',
+					get_the_ID(),
+					esc_html__('Add to cart', 'samply')
+				);
+				break;
+			case 'variable':
+				$button = sprintf(
+					'<button type="submit" name="variable-add-to-cart" value="%d" id="samply-button" class="samply-button">%s</button>',
+					get_the_ID(),
+					esc_html__('Add to cart', 'samply')
+				);
+				break;
+			default:
+				break;
+		}
+
+		return $button;
     }
 
     /**
@@ -166,7 +180,6 @@ class Helper {
 	 * 
      * @since	1.0.0
 	 * @access	public
-	 * @param	none
      * @return	string
      */
 	public static function button_text() : string {

@@ -135,7 +135,7 @@ function samply_ajax_add_to_cart() {
     if ( $product && 'variation' === $product->get_type() ) {
     	$variation_id = $product_id;
     	$product_id   = $product->get_parent_id();
-        $variable_product = new WC_Product_Variable( $variation_id );
+        $variable_product = new \WC_Product_Variable( $variation_id );
     	$variation    = $variable_product->get_variation_attributes();
     }
 
