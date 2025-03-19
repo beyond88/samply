@@ -153,19 +153,22 @@ class Helper {
      */
     public static function request_button() : string {
         $button = '';
+		$setting = Helper::samply_settings();
+        $button_label = isset( $setting['button_label'] ) ? sprintf(__( '%s', 'samply' ),$setting['button_label']) : __( 'Order a Sample', 'samply' );
+		
 		switch (self::product_type()) {
 			case 'simple':
 				$button = sprintf(
 					'<button type="submit" name="simple-add-to-cart" value="%d" id="samply-button" class="samply-button">%s</button>',
 					get_the_ID(),
-					esc_html__('Add to cart', 'samply')
+					$button_label
 				);
 				break;
 			case 'variable':
 				$button = sprintf(
 					'<button type="submit" name="variable-add-to-cart" value="%d" id="samply-button" class="samply-button">%s</button>',
 					get_the_ID(),
-					esc_html__('Add to cart', 'samply')
+					$button_label
 				);
 				break;
 			default:
