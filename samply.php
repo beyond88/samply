@@ -6,7 +6,7 @@
  * Plugin URI: https://github.com/beyond88/samply
  * Author: Mohiuddin Abdul Kader
  * Author URI: https://github.com/beyond88
- * Version: 1.0.11
+ * Version: 1.0.12
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       samply
@@ -39,7 +39,7 @@ final class Samply
      *
      * @var string
      */
-    const version = '1.0.11';
+    const version = '1.0.12';
 
     /**
      * Class constructor
