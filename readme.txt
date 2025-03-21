@@ -1,11 +1,11 @@
 === Samply - WooCommerce Product Sample Solution ===
 Contributors: hossain88
 Donate Link: https://github.com/beyond88
-Tags: woocommerce, product, sample, product sample, free sample, free sample product, dokan, e-commerce, ecommerce
-Requires at least: 4.4
-Tested up to: 6.2
+Tags: woocommerce, product, sample
+Requires at least: 5.5
+Tested up to: 6.7
 WC requires at least: 3.1
-WC tested up to: 7.0.0
+WC tested up to: 9.7
 Requires PHP: 5.6
 Stable tag: 1.0.12
 License: GPLv2 or later
